@@ -46,3 +46,6 @@
 - MoveNetはTensorFlow.jsを使用した、ブラウザで実行可能な姿勢推定モデルである
 - 事前調査で、ジョジョ立ち画像に対して、そこそこの精度で姿勢推定ができることを確認済み<br>
   ※身体の重なりが箇所が少ないものに限る
+
+# 画面遷移図
+https://www.figma.com/file/kggQ7O5W0hDlSyVkDHkqz3/Flow?node-id=0%3A1
