@@ -1,7 +1,7 @@
 <template>
   <header>
     <nav class="navbar navbar-expand navbar-dark bg-dark justify-content-between">
-      <span class="navbar-brand mb-0 h1">{{ title }}</span>
+      <router-link :to="{ name: 'TopIndex' }" class="navbar-brand mb-0 h1">{{ title }}</router-link> 
     </nav>
   </header>
 </template>
