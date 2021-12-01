@@ -4,7 +4,7 @@
       <div class="row">
         <div class="mx-auto">
           <h2 class="fw-light">ジョジョ立ち検定</h2>
-          <div class="btn btn-secondary my-2">検定一覧へ</div>
+          <router-link :to="{ name: 'ExamListIndex' }" class="btn btn-secondary">検定一覧へ</router-link> 
         </div>
       </div>
     </section>
