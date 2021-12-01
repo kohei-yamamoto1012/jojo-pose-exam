@@ -1,7 +1,9 @@
 <template>
   <div class="d-flex flex-column min-vh-100">
     <TheHeader class="mb-auto" />
-    <router-view />
+    <transition mode="out-in">
+      <router-view />
+    </transition>
     <TheFooter class="mt-auto" />
   </div>
 </template>
@@ -23,5 +25,10 @@ export default {
 </script>
 
 <style scoped>
-
+.v-enter-active, .v-leave-active {
+  transition: opacity .5s;
+}
+.v-enter, .v-leave-to {
+  opacity: 0;
+}
 </style>
