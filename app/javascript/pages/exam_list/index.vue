@@ -16,22 +16,22 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   created() {
-    this.getTasks()
+    this.fetchExams()
   },
   data: function () {
     return {
-      exams: []
     }
   },
+  computed:{
+    ...mapGetters('exams', ['exams'])
+  },
   methods: {
-    getTasks(){
-      this.$axios.get('exams')
-        .then(res => this.exams = res.data)
-        .catch(err => console.log(err.status))
-    },
+    ...mapActions('exams', ['fetchExams']),
+
     getImagePath(title){
       return require(`../../../assets/images/${title}.png`)
     }
