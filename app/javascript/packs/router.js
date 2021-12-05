@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import TopIndex from '../pages/top/index.vue'
 import ExamListIndex from '../pages/exam_list/index.vue'
+import ExamIndex from '../pages/exam/index.vue'
 
 Vue.use(VueRouter)
 
@@ -17,6 +18,11 @@ export default new VueRouter({
       path: '/exams',
       name: 'ExamListIndex',
       component: ExamListIndex
+    },
+    {
+      path: '/exam/:exam_path',
+      name: 'ExamIndex',
+      component: ExamIndex
     }
   ]
 })

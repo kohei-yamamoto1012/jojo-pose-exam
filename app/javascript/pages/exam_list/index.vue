@@ -5,9 +5,11 @@
     </div>
     <div class="row">
       <div class="mx-auto">
-       <div v-for="exam in exams" :key="exam.id" class="col-12 my-5">
-          <h5>{{ exam.title }}検定</h5>
-          <img class="img-fluid border" :src="getImagePath(exam.title)" />
+        <div v-for="exam in exams" :key="exam.id" class="col-12 my-5">
+          <router-link :to="{ name: 'ExamIndex', params: { exam_path: exam.path } }" @click.native="setSelectedExam(exam)" >
+            <h5>{{ exam.title }}検定</h5>
+            <img class="img-fluid border" :src="getImagePath(exam.title)" />
+          </router-link>
         </div>
       </div>
     </div>
@@ -16,7 +18,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
   created() {
@@ -30,11 +32,13 @@ export default {
     ...mapGetters('exams', ['exams'])
   },
   methods: {
+    ...mapMutations('exams', ['setSelectedExam']),
     ...mapActions('exams', ['fetchExams']),
 
     getImagePath(title){
       return require(`../../../assets/images/${title}.png`)
     }
+
   }
 }
 </script>
