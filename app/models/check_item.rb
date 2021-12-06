@@ -5,5 +5,4 @@ class CheckItem < ApplicationRecord
   validates :content, presence: true
   validates :allocation, presence: true
   validates :check_pattern, presence: true
-
 end
