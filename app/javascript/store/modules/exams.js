@@ -28,7 +28,7 @@ export default {
 
   actions: {
     fetchExams({commit}){
-      axios.get('exams')
+      axios.get('/api/exams')
         .then(res => commit('setExams', res.data))
         .catch(err => console.log(err.response))
     }
