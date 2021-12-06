@@ -1,7 +1,45 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+giorno_exam = Exam.new(
+  title: "ジョルノ立ち",
+  description: "第5部「黄金の風」の第5話「ブチャラティが来る② 」にて、主人公のジョルノ・ジョバーナが行ったジョジョ立ち。ジョルノの回想シーン中で「ギャング・スター」にあこがれるようになったのだ！というナレーションと共に描かれた。",
+  path: "giorno"
+)
+giorno_exam.save!
+
+CheckItem.create!([
+  {
+    exam: giorno_exam,
+    check_pattern: 1,
+    content: "顎を軽く引き、正面を見据える",
+    allocation: 10
+  },
+  {
+    exam: giorno_exam,
+    check_pattern: 2,
+    content: "右肘を曲げ、右手で胸元を掴む",
+    allocation: 20
+  },
+  {
+    exam: giorno_exam,
+    check_pattern: 3,
+    content: "左手を軽く握り、左腿に添える",
+    allocation: 20
+  },
+  {
+    exam: giorno_exam,
+    check_pattern: 4,
+    content: "股を大きく開く",
+    allocation: 10
+  },
+  {
+    exam: giorno_exam,
+    check_pattern: 5,
+    content: "右膝を真っ直ぐ斜めに伸ばす",
+    allocation: 20
+  },
+  {
+    exam: giorno_exam,
+    check_pattern: 6,
+    content: "左膝を軽く曲げ、踵を浮かす",
+    allocation: 20
+  }
+])
