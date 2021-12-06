@@ -5,15 +5,24 @@
     </div>
     <div class="row">
       <div class="mx-auto">
-        <div v-for="exam in exams" :key="exam.id" class="col-12 my-5">
-          <router-link :to="{ name: 'ExamIndex', params: { exam_path: exam.path } }" @click.native="setSelectedExam(exam)" >
+        <div
+          v-for="exam in exams"
+          :key="exam.id"
+          class="col-12 my-5"
+        >
+          <router-link
+            :to="{ name: 'ExamIndex', params: { exam_path: exam.path } }"
+            @click.native="setSelectedExam(exam)"
+          >
             <h5>{{ exam.title }}検定</h5>
-            <img class="img-fluid border" :src="getImagePath(exam.title)" />
+            <img
+              class="img-fluid border"
+              :src="getImagePath(exam.title)"
+            >
           </router-link>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -21,15 +30,15 @@
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
-  created() {
-    this.fetchExams()
-  },
   data: function () {
     return {
     }
   },
   computed:{
     ...mapGetters('exams', ['exams'])
+  },
+  created() {
+    this.fetchExams()
   },
   methods: {
     ...mapMutations('exams', ['setSelectedExam']),
