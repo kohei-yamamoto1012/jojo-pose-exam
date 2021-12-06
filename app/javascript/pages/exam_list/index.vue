@@ -5,36 +5,49 @@
     </div>
     <div class="row">
       <div class="mx-auto">
-       <div v-for="exam in exams" :key="exam.id" class="col-12 my-5">
-          <h5>{{ exam.title }}検定</h5>
-          <img class="img-fluid border" :src="getImagePath(exam.title)" />
+        <div
+          v-for="exam in exams"
+          :key="exam.id"
+          class="col-12 my-5"
+        >
+          <router-link
+            :to="{ name: 'ExamIndex', params: { exam_path: exam.path } }"
+            @click.native="setSelectedExam(exam)"
+          >
+            <h5>{{ exam.title }}検定</h5>
+            <img
+              class="img-fluid border"
+              :src="getImagePath(exam.title)"
+            >
+          </router-link>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
-  created() {
-    this.getTasks()
-  },
   data: function () {
     return {
-      exams: []
     }
   },
+  computed:{
+    ...mapGetters('exams', ['exams'])
+  },
+  created() {
+    this.fetchExams()
+  },
   methods: {
-    getTasks(){
-      this.$axios.get('exams')
-        .then(res => this.exams = res.data)
-        .catch(err => console.log(err.status))
-    },
+    ...mapMutations('exams', ['setSelectedExam']),
+    ...mapActions('exams', ['fetchExams']),
+
     getImagePath(title){
       return require(`../../../assets/images/${title}.png`)
     }
+
   }
 }
 </script>

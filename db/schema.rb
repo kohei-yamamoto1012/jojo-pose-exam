@@ -10,16 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_30_125929) do
+ActiveRecord::Schema.define(version: 2021_12_05_143021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "check_items", force: :cascade do |t|
+    t.bigint "exam_id", null: false
+    t.string "content", null: false
+    t.integer "allocation", null: false
+    t.integer "check_pattern", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exam_id"], name: "index_check_items_on_exam_id"
+  end
 
   create_table "exams", force: :cascade do |t|
     t.string "title", null: false
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "path", null: false
   end
 
 end
