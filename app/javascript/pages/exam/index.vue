@@ -37,6 +37,7 @@
           <input
             id="jojo-pose-image"
             type="file"
+            accept="image/*"
             class="form-control-file"
             @change="handleChange"
           >
