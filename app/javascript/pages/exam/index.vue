@@ -20,26 +20,42 @@
       </div>
     </div>
 
-    <div class="form-group mt-4">
-      <label
-        for="jojo-pose-image"
-        class="d-block"
-      >ジョジョ立ち画像を添付</label>
-      <input
-        id="jojo-pose-image"
-        type="file"
-        class="form-control-file"
+    <ValidationObserver v-slot="{ handleSubmit }">
+      <!-- eslint-disable vue/no-unused-vars -->
+      <ValidationProvider
+        v-slot="{ errors, validate }"
+        ref="provider"
+        name="ジョジョ立ち画像"
+        rules="required|image"
       >
+        <div class="form-group mt-4">
+          <label
+            for="jojo-pose-image"
+            class="d-block"
+          >ジョジョ立ち画像を添付</label>
+
+          <input
+            id="jojo-pose-image"
+            type="file"
+            accept="image/*"
+            class="form-control-file"
+            @change="handleChange"
+          >
+          <span class="text-danger">{{ errors[0] }}</span>
+        </div>
+      </ValidationProvider>
+      
       <div class="text-center my-4">
         <button
           type="submit"
           class="btn btn-secondary"
-          @click="takeExam()"
+          @click="handleSubmit(takeExam)"
         >
           受検するッ！
         </button>
       </div>
-    </div>
+    </ValidationObserver>
+
   </div>
 </template>
 
@@ -74,6 +90,11 @@ export default {
     },
     takeExam(){
       console.log("受検ッ")
+    },
+    async handleChange(e){
+      const { valid } = await this.$refs.provider.validate(e) // バリデーションチェック
+      if (valid) console.log("valid")
+      // if (valid) this.uploadAvatar = e.target.files[0] // イベントオブジェクトからファイルを取得して、dataに格納
     }
   }
 
