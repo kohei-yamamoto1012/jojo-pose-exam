@@ -56,11 +56,21 @@
       </div>
     </ValidationObserver>
 
+    <!-- <button
+      type="submit"
+      class="btn btn-secondary"
+      @click="poseEstimateTest"
+    >
+      姿勢推定(テスト)
+    </button> -->
+
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions, mapMutations } from 'vuex'
+import * as poseDetection from '@tensorflow-models/pose-detection'
+import '@tensorflow/tfjs-backend-webgl'
 
 export default {
   data: function () {
@@ -95,7 +105,14 @@ export default {
       const { valid } = await this.$refs.provider.validate(e) // バリデーションチェック
       if (valid) console.log("valid")
       // if (valid) this.uploadAvatar = e.target.files[0] // イベントオブジェクトからファイルを取得して、dataに格納
-    }
+    },
+    // async poseEstimateTest(){
+    //   const detector = await poseDetection.createDetector(poseDetection.SupportedModels.MoveNet);
+    //   const imageElement = document.getElementById('img')
+      
+    //   const poses = await detector.estimatePoses(imageElement)
+    //   console.log(poses[0].keypoints)
+    // }
   }
 
 }
