@@ -56,16 +56,30 @@
       </div>
     </ValidationObserver>
 
+      <div class="text-center my-4">
+        <button
+          type="submit"
+          class="btn btn-secondary"
+          @click="poseEstimateTest"
+        >
+          姿勢推定(テスト)
+        </button>
+      </div>
+
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions, mapMutations } from 'vuex'
+import * as poseDetection from '@tensorflow-models/pose-detection'
+import '@tensorflow/tfjs-backend-webgl'
 
 export default {
   data: function () {
     return {
-      check_items: []
+      check_items: [],
+      detector: null,
+      uploadImageElement: null
     }
   },
   computed: {
@@ -74,8 +88,9 @@ export default {
       return this.check_items.filter( check_item => check_item.exam_id === this.selectedExam.id )
     }
   },
-  created(){
+  async created(){
     this.getCheckItems()
+    this.createDetector()
   },
   methods: {
     getCheckItems(){
@@ -85,16 +100,35 @@ export default {
         })
         .catch(err => console.log(err.status))
     },
+    async createDetector(){
+      const detectorConfig = {
+        modelType: poseDetection.movenet.modelType.SINGLEPOSE_THUNDER,
+        enableSmoothing: false
+      }
+      this.detector = await poseDetection.createDetector(poseDetection.SupportedModels.MoveNet, detectorConfig)
+    },
     getImagePath(title){
       return require(`../../../assets/images/${title}.png`)
+    },
+    async handleChange(e){
+      const { valid } = await this.$refs.provider.validate(e) // バリデーションチェック
+
+      if (valid){
+        const image_file = e.target.files[0] // イベントオブジェクトからファイルを取得
+        const url = URL.createObjectURL(image_file) // ファイルからurl作成
+        if(this.uploadImageElement) URL.revokeObjectURL(this.uploadImageElement.src)
+        
+        this.uploadImageElement = new Image()
+        this.uploadImageElement.src = url
+      }
     },
     takeExam(){
       console.log("受検ッ")
     },
-    async handleChange(e){
-      const { valid } = await this.$refs.provider.validate(e) // バリデーションチェック
-      if (valid) console.log("valid")
-      // if (valid) this.uploadAvatar = e.target.files[0] // イベントオブジェクトからファイルを取得して、dataに格納
+    async poseEstimateTest(){
+      console.log("姿勢測定スタート")
+      const poses = await this.detector.estimatePoses(this.uploadImageElement)
+      console.log(poses[0].keypoints)
     }
   }
 
