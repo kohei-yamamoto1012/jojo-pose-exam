@@ -14,7 +14,7 @@ orientation: horizontal
 polymorphism: false
 sort: true
 warn: true
-title: sample title
+title: jojo_pose_exam
 exclude: null
 only: null
 only_recursion_depth: null
