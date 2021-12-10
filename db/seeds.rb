@@ -43,3 +43,23 @@ CheckItem.create!([
     allocation: 20
   }
 ])
+
+Keypoint.create!([
+  { name: "nose" },
+  { name: "left_eye" },
+  { name: "right_eye" },
+  { name: "left_ear" },
+  { name: "right_ear" },
+  { name: "left_shoulder" },
+  { name: "right_shoulder" },
+  { name: "left_elbow" },
+  { name: "right_elbow" },
+  { name: "left_wrist" },
+  { name: "right_wrist" },
+  { name: "left_hip" },
+  { name: "right_hip" },
+  { name: "left_knee" },
+  { name: "right_knee" },
+  { name: "left_ankle" },
+  { name: "right_ankle" }
+])
