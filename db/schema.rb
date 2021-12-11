@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_05_143021) do
+ActiveRecord::Schema.define(version: 2021_12_08_150355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "check_item_results", force: :cascade do |t|
+    t.bigint "exam_result_id"
+    t.bigint "check_item_id"
+    t.boolean "result", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["check_item_id"], name: "index_check_item_results_on_check_item_id"
+    t.index ["exam_result_id"], name: "index_check_item_results_on_exam_result_id"
+  end
 
   create_table "check_items", force: :cascade do |t|
     t.bigint "exam_id", null: false
@@ -25,12 +35,39 @@ ActiveRecord::Schema.define(version: 2021_12_05_143021) do
     t.index ["exam_id"], name: "index_check_items_on_exam_id"
   end
 
+  create_table "exam_result_keypoints", force: :cascade do |t|
+    t.bigint "exam_result_id"
+    t.bigint "keypoint_id"
+    t.integer "x_coordinate"
+    t.integer "y_coordinate"
+    t.integer "score"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exam_result_id"], name: "index_exam_result_keypoints_on_exam_result_id"
+    t.index ["keypoint_id"], name: "index_exam_result_keypoints_on_keypoint_id"
+  end
+
+  create_table "exam_results", force: :cascade do |t|
+    t.bigint "exam_id"
+    t.boolean "privacy_setting", default: true, null: false
+    t.boolean "hide_face", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exam_id"], name: "index_exam_results_on_exam_id"
+  end
+
   create_table "exams", force: :cascade do |t|
     t.string "title", null: false
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "path", null: false
+  end
+
+  create_table "keypoints", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end

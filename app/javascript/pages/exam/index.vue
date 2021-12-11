@@ -55,17 +55,6 @@
         </button>
       </div>
     </ValidationObserver>
-
-      <div class="text-center my-4">
-        <button
-          type="submit"
-          class="btn btn-secondary"
-          @click="poseEstimateTest"
-        >
-          姿勢推定(テスト)
-        </button>
-      </div>
-
   </div>
 </template>
 
@@ -122,13 +111,28 @@ export default {
         this.uploadImageElement.src = url
       }
     },
-    takeExam(){
-      console.log("受検ッ")
-    },
-    async poseEstimateTest(){
-      console.log("姿勢測定スタート")
+    async takeExam(){
+      console.log("姿勢推定を実施")
       const poses = await this.detector.estimatePoses(this.uploadImageElement)
-      console.log(poses[0].keypoints)
+
+      let examResultKeypoints = poses[0].keypoints.map(item => {
+        return {
+          x_coordinate: Math.round(item.x),
+          y_coordinate: Math.round(item.y),
+          score: Math.round(item.score * 100),
+          name: item.name
+        }
+      })
+      console.log(examResultKeypoints)
+
+      this.$axios.post('/api/exam_results', {
+        exam_result: {
+          exam_id: this.selectedExam.id,
+          privacy_setting: true,
+          hide_face: false,
+          exam_result_keypoints: examResultKeypoints
+        }
+      })
     }
   }
 

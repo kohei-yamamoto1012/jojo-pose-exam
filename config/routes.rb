@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :api, format: 'json' do
     resources :exams, only: %i[index]
     resources :check_items, only: %i[index]
+    resources :exam_results, only: %i[create]
   end
 
   get '*path', to: 'home#index'
