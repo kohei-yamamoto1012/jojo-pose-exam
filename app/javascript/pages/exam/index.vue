@@ -115,8 +115,6 @@ export default {
     async takeExam(){
       console.log("姿勢推定を実施")
       const poses = await this.detector.estimatePoses(this.uploadImageElement)
-      console.log(this.uploadImageElement)
-      console.log(poses)
 
       let examResultKeypoints = poses[0].keypoints.map(item => {
         return {
