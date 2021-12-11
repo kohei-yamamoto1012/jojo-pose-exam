@@ -27,7 +27,7 @@ CheckItem.create!([
   {
     exam: giorno_exam,
     check_pattern: 4,
-    content: "股を大きく開く",
+    content: "足を大きく開く",
     allocation: 10
   },
   {
