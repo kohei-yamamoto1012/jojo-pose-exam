@@ -7,4 +7,14 @@ class CheckItem < ApplicationRecord
   validates :content, presence: true
   validates :allocation, presence: true
   validates :check_pattern, presence: true
+
+  enum check_pattern: {
+    nose_between_rl_hip: 1,
+    r_elbow_angle_0_45: 2,
+    l_elbow_angle_90_180: 3,
+    rl_leg_angle_90_180: 4,
+    r_knee_angle_135_225: 5,
+    l_knee_angle_90_180: 6
+  }
+
 end
