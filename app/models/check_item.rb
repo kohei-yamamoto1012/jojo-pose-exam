@@ -19,10 +19,15 @@ class CheckItem < ApplicationRecord
   has_many :check_item_results, dependent: :destroy
   has_many :exam_results, through: :check_item_results
 
-  validates :exam, presence: true
-  validates :content, presence: true
-  validates :allocation, presence: true
-  validates :check_pattern, presence: true
+  with_options presence: true do
+    validates :exam
+    validates :content
+    validates :allocation
+    validates :check_pattern
+  end
+
+  validates :content, length: { maximum: 50 }
+  validates :allocation, inclusion: { in: 0..100 }
 
   enum check_pattern: {
     nose_between_rl_hip: 1,

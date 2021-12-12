@@ -7,7 +7,7 @@
 #  privacy_setting :boolean          default(TRUE), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  exam_id         :bigint
+#  exam_id         :bigint           not null
 #
 # Indexes
 #
@@ -18,6 +18,15 @@ class ExamResult < ApplicationRecord
   has_many :check_item_results, dependent: :destroy
   has_many :check_items, through: :check_item_results
   has_many :exam_result_keypoints, dependent: :destroy
+
+  with_options presence: true do
+    validates :exam
+    validates :check_item_results
+    validates :exam_result_keypoints
+  end
+
+  validates :hide_face, inclusion: { in: [true, false] }
+  validates :privacy_setting, inclusion: { in: [true, false] }
 
   attr_writer :exam_id, :privacy_setting, :hide_face, :exam_result_keypoints
 

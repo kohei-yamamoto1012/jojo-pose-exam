@@ -6,8 +6,8 @@
 #  result         :boolean          default(FALSE), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  check_item_id  :bigint
-#  exam_result_id :bigint
+#  check_item_id  :bigint           not null
+#  exam_result_id :bigint           not null
 #
 # Indexes
 #
@@ -18,6 +18,13 @@ class CheckItemResult < ApplicationRecord
   require 'matrix'
   belongs_to :exam_result
   belongs_to :check_item
+
+  with_options presence: true do
+    validates :exam_result
+    validates :check_item
+  end
+
+  validates :result, inclusion: { in: [true, false] }
 
   def correct_false_judge(keypoints)
     self.result =
