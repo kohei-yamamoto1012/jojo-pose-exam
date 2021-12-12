@@ -7,7 +7,7 @@
 #  privacy_setting :boolean          default(TRUE), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  exam_id         :bigint
+#  exam_id         :bigint           not null
 #
 # Indexes
 #

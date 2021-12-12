@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2021_12_08_150355) do
   enable_extension "plpgsql"
 
   create_table "check_item_results", force: :cascade do |t|
-    t.bigint "exam_result_id"
-    t.bigint "check_item_id"
+    t.bigint "exam_result_id", null: false
+    t.bigint "check_item_id", null: false
     t.boolean "result", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -36,11 +36,11 @@ ActiveRecord::Schema.define(version: 2021_12_08_150355) do
   end
 
   create_table "exam_result_keypoints", force: :cascade do |t|
-    t.bigint "exam_result_id"
-    t.bigint "keypoint_id"
-    t.integer "x_coordinate"
-    t.integer "y_coordinate"
-    t.integer "score"
+    t.bigint "exam_result_id", null: false
+    t.bigint "keypoint_id", null: false
+    t.integer "x_coordinate", null: false
+    t.integer "y_coordinate", null: false
+    t.integer "score", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["exam_result_id"], name: "index_exam_result_keypoints_on_exam_result_id"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2021_12_08_150355) do
   end
 
   create_table "exam_results", force: :cascade do |t|
-    t.bigint "exam_id"
+    t.bigint "exam_id", null: false
     t.boolean "privacy_setting", default: true, null: false
     t.boolean "hide_face", default: false, null: false
     t.datetime "created_at", precision: 6, null: false

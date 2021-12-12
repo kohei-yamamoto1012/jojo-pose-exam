@@ -3,13 +3,13 @@
 # Table name: exam_result_keypoints
 #
 #  id             :bigint           not null, primary key
-#  score          :integer
-#  x_coordinate   :integer
-#  y_coordinate   :integer
+#  score          :integer          not null
+#  x_coordinate   :integer          not null
+#  y_coordinate   :integer          not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  exam_result_id :bigint
-#  keypoint_id    :bigint
+#  exam_result_id :bigint           not null
+#  keypoint_id    :bigint           not null
 #
 # Indexes
 #

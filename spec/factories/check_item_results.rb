@@ -6,8 +6,8 @@
 #  result         :boolean          default(FALSE), not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  check_item_id  :bigint
-#  exam_result_id :bigint
+#  check_item_id  :bigint           not null
+#  exam_result_id :bigint           not null
 #
 # Indexes
 #

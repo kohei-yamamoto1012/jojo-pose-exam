@@ -1,7 +1,7 @@
 class CreateExamResults < ActiveRecord::Migration[6.1]
   def change
     create_table :exam_results do |t|
-      t.belongs_to :exam
+      t.belongs_to :exam, null: false
       t.boolean :privacy_setting, null: false, default: true
       t.boolean :hide_face, null: false, default: false
 
