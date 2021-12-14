@@ -68,7 +68,8 @@ export default {
     return {
       check_items: [],
       detector: null,
-      uploadImageElement: null
+      image_file: null,
+      image_element: null
     }
   },
   computed: {
@@ -89,6 +90,7 @@ export default {
         })
         .catch(err => console.log(err.status))
     },
+
     async createDetector(){
       const detectorConfig = {
         modelType: poseDetection.movenet.modelType.SINGLEPOSE_THUNDER,
@@ -96,26 +98,37 @@ export default {
       }
       this.detector = await poseDetection.createDetector(poseDetection.SupportedModels.MoveNet, detectorConfig)
     },
+
     getImagePath(title){
       return require(`../../../assets/images/${title}.png`)
     },
+
     async handleChange(e){
       const { valid } = await this.$refs.provider.validate(e) // バリデーションチェック
 
       if (valid){
-        const image_file = e.target.files[0] // イベントオブジェクトからファイルを取得
-        const url = URL.createObjectURL(image_file) // ファイルからurl作成
-        if(this.uploadImageElement) URL.revokeObjectURL(this.uploadImageElement.src)
-        
-        this.uploadImageElement = new Image()
-        this.uploadImageElement.src = url
+        const image_file = e.target.files[0]
+        this.setImageFile(image_file)
+        this.setImageElement(image_file)
       }
     },
-    async takeExam(){
-      console.log("姿勢推定を実施")
-      const poses = await this.detector.estimatePoses(this.uploadImageElement)
 
-      let examResultKeypoints = poses[0].keypoints.map(item => {
+    setImageFile(image_file){
+      this.image_file = image_file
+    },
+
+    setImageElement(image_file){
+      const url = URL.createObjectURL(image_file)
+      if(this.image_element) URL.revokeObjectURL(this.image_element.src)
+
+      this.image_element = new Image()
+      this.image_element.src = url
+    },
+
+    async estimatePoses(){
+      console.log("姿勢推定を実施")
+      const poses = await this.detector.estimatePoses(this.image_element)
+      const examResultKeypoints = poses[0].keypoints.map(item => {
         return {
           x_coordinate: Math.round(item.x),
           y_coordinate: Math.round(item.y),
@@ -124,18 +137,32 @@ export default {
         }
       })
       console.log(examResultKeypoints)
+      return examResultKeypoints
+    },
 
+    uploadImageFile(exam_result){
+      if (this.image_file){
+        const formData = new FormData()
+        formData.append('exam_result[upload_image]', this.image_file)
+        this.$axios.post(`/api/exam_results/${exam_result.id}/upload_image`, formData)
+      }
+    },
+
+    async takeExam(){
       this.$axios.post('/api/exam_results', {
         exam_result: {
           exam_id: this.selectedExam.id,
           privacy_setting: true,
           hide_face: false,
-          exam_result_keypoints: examResultKeypoints
+          exam_result_keypoints: await this.estimatePoses()
         }
       })
+      .then(res => {
+        this.uploadImageFile(res.data)
+      })
     }
-  }
 
+  }
 }
 </script>
 

@@ -18,6 +18,7 @@ class ExamResult < ApplicationRecord
   has_many :check_item_results, dependent: :destroy
   has_many :check_items, through: :check_item_results
   has_many :exam_result_keypoints, dependent: :destroy
+  has_one_attached :upload_image
 
   with_options presence: true do
     validates :exam
@@ -76,5 +77,9 @@ class ExamResult < ApplicationRecord
       check_item_result.correct_false_judge(@exam_result_keypoints)
       check_item_results << check_item_result
     end
+  end
+
+  def upload_image_url
+    upload_image.attached? ? Rails.application.routes.url_helpers.rails_blob_path(upload_image, only_path: true) : nil
   end
 end
