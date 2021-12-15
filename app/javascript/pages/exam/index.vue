@@ -1,5 +1,15 @@
 <template>
-  <div class="container">
+  <div class="container vld-parent">
+    <loading 
+      :active.sync="isLoading"
+      :opacity="0.9"
+    >
+      <div>
+        <img :src="require(`../../../assets/images/loading.gif`)">
+        <h4 class="mt-3">解析中ッ</h4>
+      </div>
+    </loading>
+
     <div class="mt-4">
       <h2>{{ selectedExam.title }}検定</h2>
       <img
@@ -62,6 +72,8 @@
 import { mapGetters, mapActions, mapMutations } from 'vuex'
 import * as poseDetection from '@tensorflow-models/pose-detection'
 import '@tensorflow/tfjs-backend-webgl'
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
   data: function () {
@@ -69,8 +81,12 @@ export default {
       check_items: [],
       detector: null,
       image_file: null,
-      image_element: null
+      image_element: null,
+      isLoading: false,
     }
+  },
+  components: {
+    Loading
   },
   computed: {
     ...mapGetters('exams', ['selectedExam']),
@@ -148,20 +164,24 @@ export default {
       }
     },
 
-    async takeExam(){
-      this.$axios.post('/api/exam_results', {
-        exam_result: {
-          exam_id: this.selectedExam.id,
-          privacy_setting: true,
-          hide_face: false,
-          exam_result_keypoints: await this.estimatePoses()
-        }
-      })
-      .then(res => {
-        this.uploadImageFile(res.data)
-      })
-    }
+    takeExam(){
+      this.isLoading = true
 
+      setTimeout(async() =>{
+        this.$axios.post('/api/exam_results', {
+          exam_result: {
+            exam_id: this.selectedExam.id,
+            privacy_setting: true,
+            hide_face: false,
+            exam_result_keypoints: await this.estimatePoses()
+          }
+        })
+        .then(res => {
+          this.uploadImageFile(res.data)
+          this.isLoading = false
+        })
+      }, 500)
+    }
   }
 }
 </script>
