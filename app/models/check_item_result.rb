@@ -41,7 +41,7 @@ class CheckItemResult < ApplicationRecord
           right_keypoint: left_hip
         )
 
-      when 'r_elbow_angle_0to45'
+      when 'r_elbow_angle_0to30'
         right_elbow = keypoints.find { |n| n['name'] == 'right_elbow' }
         right_wrist = keypoints.find { |n| n['name'] == 'right_wrist' }
         right_shoulder = keypoints.find { |n| n['name'] == 'right_shoulder' }
@@ -51,10 +51,10 @@ class CheckItemResult < ApplicationRecord
           side_a_keypoint: right_wrist,
           side_b_keypoint: right_shoulder,
           min_angle: 0,
-          max_angle: 45
+          max_angle: 30
         )
 
-      when 'l_elbow_angle_90to180'
+      when 'l_elbow_angle_130to160'
         left_elbow = keypoints.find { |n| n['name'] == 'left_elbow' }
         left_wrist = keypoints.find { |n| n['name'] == 'left_wrist' }
         left_shoulder = keypoints.find { |n| n['name'] == 'left_shoulder' }
@@ -63,11 +63,11 @@ class CheckItemResult < ApplicationRecord
           vertex_keypoint: left_elbow,
           side_a_keypoint: left_wrist,
           side_b_keypoint: left_shoulder,
-          min_angle: 90,
-          max_angle: 180
+          min_angle: 130,
+          max_angle: 160
         )
 
-      when 'rl_leg_angle_90to180'
+      when 'rl_leg_angle_100to150'
         right_hip = keypoints.find { |n| n['name'] == 'right_hip' }
         right_knee = keypoints.find { |n| n['name'] == 'right_knee' }
         left_hip = keypoints.find { |n| n['name'] == 'left_hip' }
@@ -77,18 +77,18 @@ class CheckItemResult < ApplicationRecord
           vertex_keypoint: right_hip,
           side_a_keypoint: right_knee,
           side_b_keypoint: left_hip,
-          min_angle: 90,
-          max_angle: 180
+          min_angle: 100,
+          max_angle: 150
         ) &&
         angle_correct?(
           vertex_keypoint: left_hip,
           side_a_keypoint: left_knee,
           side_b_keypoint: right_hip,
-          min_angle: 90,
-          max_angle: 180
+          min_angle: 100,
+          max_angle: 150
         )
 
-      when 'r_knee_angle_135to225'
+      when 'r_knee_angle_165to195'
         right_knee = keypoints.find { |n| n['name'] == 'right_knee' }
         right_hip = keypoints.find { |n| n['name'] == 'right_hip' }
         right_ankle = keypoints.find { |n| n['name'] == 'right_ankle' }
@@ -97,11 +97,11 @@ class CheckItemResult < ApplicationRecord
           vertex_keypoint: right_knee,
           side_a_keypoint: right_hip,
           side_b_keypoint: right_ankle,
-          min_angle: 135,
-          max_angle: 225
+          min_angle: 165,
+          max_angle: 195
         )
 
-      when 'l_knee_angle_90to180'
+      when 'l_knee_angle_110to140'
         left_knee = keypoints.find { |n| n['name'] == 'left_knee' }
         left_hip = keypoints.find { |n| n['name'] == 'left_hip' }
         left_ankle = keypoints.find { |n| n['name'] == 'left_ankle' }
@@ -110,8 +110,8 @@ class CheckItemResult < ApplicationRecord
           vertex_keypoint: left_knee,
           side_a_keypoint: left_hip,
           side_b_keypoint: left_ankle,
-          min_angle: 90,
-          max_angle: 180
+          min_angle: 110,
+          max_angle: 140
         )
       end
 

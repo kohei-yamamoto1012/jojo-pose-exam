@@ -31,10 +31,10 @@ class CheckItem < ApplicationRecord
 
   enum check_pattern: {
     nose_between_rl_hip: 1,
-    r_elbow_angle_0to45: 2,
-    l_elbow_angle_90to180: 3,
-    rl_leg_angle_90to180: 4,
-    r_knee_angle_135to225: 5,
-    l_knee_angle_90to180: 6
+    r_elbow_angle_0to30: 2,
+    l_elbow_angle_130to160: 3,
+    rl_leg_angle_100to150: 4,
+    r_knee_angle_165to195: 5,
+    l_knee_angle_110to140: 6
   }
 end
