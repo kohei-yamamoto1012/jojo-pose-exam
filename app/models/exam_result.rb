@@ -88,6 +88,6 @@ class ExamResult < ApplicationRecord
     check_item_results.each do |check_item_result|
       score += check_item_result.check_item.allocation if check_item_result.result
     end
-    return score
+    score
   end
 end

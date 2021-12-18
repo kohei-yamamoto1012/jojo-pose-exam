@@ -5,15 +5,10 @@ class ExamResultResource
 
   attributes :id, :privacy_setting
 
-  attribute :upload_image_url do |resource|
-    resource.upload_image_url
-  end
+  attribute :upload_image_url, &:upload_image_url
 
-  attribute :total_score do |resource|
-    resource.total_score
-  end
+  attribute :total_score, &:total_score
 
   one :exam, resource: ExamResource
   many :check_item_results, resource: CheckItemResultResource
-
 end

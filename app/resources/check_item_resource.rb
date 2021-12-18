@@ -4,5 +4,4 @@ class CheckItemResource
   root_key :check_item
 
   attributes :id, :exam_id, :content
-
 end

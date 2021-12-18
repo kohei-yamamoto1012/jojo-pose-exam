@@ -8,5 +8,4 @@ class CheckItemResultResource
   attribute :content do |resource|
     resource.check_item.content
   end
-
 end
