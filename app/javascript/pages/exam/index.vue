@@ -6,7 +6,9 @@
     >
       <div>
         <img :src="require(`../../../assets/images/loading.gif`)">
-        <h4 class="mt-3">解析中ッ</h4>
+        <h4 class="mt-3">
+          解析中ッ
+        </h4>
       </div>
     </loading>
 
@@ -79,6 +81,9 @@ import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
+  components: {
+    Loading
+  },
   data: function () {
     return {
       check_items: [],
@@ -87,9 +92,6 @@ export default {
       image_element: null,
       isLoading: false,
     }
-  },
-  components: {
-    Loading
   },
   computed: {
     ...mapGetters('exams', ['selectedExam']),

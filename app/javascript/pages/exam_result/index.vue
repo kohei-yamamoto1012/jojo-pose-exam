@@ -1,9 +1,10 @@
 <template>
   <div class="container">
-
     <div class="mt-4">
       <h5>{{ exam_result.exam.title }}検定</h5>
-      <h2 class="text-center">{{ exam_result.total_score }}点 {{ pass_fail }}</h2>
+      <h2 class="text-center">
+        {{ exam_result.total_score }}点 {{ pass_fail }}
+      </h2>
       <img
         class="img-fluid border"
         :src="exam_result.upload_image_url"
@@ -18,15 +19,15 @@
       <div class="text-center mb-3">
         <span>~ 各Pointの結果 ~</span>
         <div
+          v-for="(check_item_result, index) in exam_result.check_item_results"
+          :key="index"
           class="text-center rounded border border-secondary py-1 my-1"
-          v-for="(check_item_result, index) in exam_result.check_item_results" :key="index"
         >
           <span>Point{{ index+1 }}: {{ check_item_result.content }}</span>
           <h5>{{ getResult(check_item_result.result) }}</h5>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -34,7 +35,10 @@
 
 export default {
   props: {
-    exam_result_id: Number
+    examResultId: {
+      type: Number,
+      default: null
+    }
   },
   data: function () {
     return {
@@ -52,9 +56,6 @@ export default {
     }
   },
   computed:{
-  },
-  created() {
-    this.getExamResult()
   },
   computed: {
     pass_fail(){
@@ -81,9 +82,12 @@ export default {
       }
     }
   },
+  created() {
+    this.getExamResult()
+  },
   methods: {
     getExamResult(){
-      this.$axios.get(`/api/exam_results/${this.exam_result_id}`)
+      this.$axios.get(`/api/exam_results/${this.examResultId}`)
         .then(res => {
           this.exam_result = res.data.exam_result
           console.log(res.data.exam_result)
