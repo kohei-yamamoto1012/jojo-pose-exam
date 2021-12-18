@@ -82,4 +82,12 @@ class ExamResult < ApplicationRecord
   def upload_image_url
     upload_image.attached? ? Rails.application.routes.url_helpers.rails_blob_path(upload_image, only_path: true) : nil
   end
+
+  def total_score
+    score = 0
+    check_item_results.each do |check_item_result|
+      score += check_item_result.check_item.allocation if check_item_result.result
+    end
+    return score
+  end
 end
