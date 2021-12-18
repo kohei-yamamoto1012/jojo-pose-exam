@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import TopIndex from '../pages/top/index.vue'
 import ExamListIndex from '../pages/exam_list/index.vue'
 import ExamIndex from '../pages/exam/index.vue'
+import ExamResultIndex from '../pages/exam_result/index.vue'
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,14 @@ export default new VueRouter({
       path: '/exam/:exam_path',
       name: 'ExamIndex',
       component: ExamIndex
+    },
+    {
+      path: '/exam_results/:exam_result_id',
+      name: 'ExamResultIndex',
+      component: ExamResultIndex,
+      props: routes => ({
+        exam_result_id: Number(routes.params.exam_result_id)
+      })
     }
   ]
 })
