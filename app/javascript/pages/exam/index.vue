@@ -19,13 +19,16 @@
       <p>{{ selectedExam.description }}</p>
     </div>
 
-    <div
-      v-for="(check_item, index) in selectedExamCheckItems"
-      :key="check_item.id"
-    >
-      <div class="border py-1 my-2">
-        <div class="pl-2 py-1">
-          Point: {{ index + 1 }} {{ check_item.content }}
+    <div class="text-center">
+      <span>~ Point一覧 ~</span>
+      <div
+        v-for="(check_item, index) in selectedExamCheckItems"
+        :key="check_item.id"
+      >
+        <div class="rounded border border-secondary py-1 my-1">
+          <div class="pl-2 py-1">
+            Point: {{ index + 1 }} {{ check_item.content }}
+          </div>
         </div>
       </div>
     </div>
@@ -177,8 +180,10 @@ export default {
           }
         })
         .then(res => {
-          this.uploadImageFile(res.data)
+          const exam_result = res.data.exam_result
+          this.uploadImageFile(exam_result)
           this.isLoading = false
+          this.$router.push({ name: 'ExamResultIndex', params: { exam_result_id: exam_result.id } })
         })
       }, 500)
     }
