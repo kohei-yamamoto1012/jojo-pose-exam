@@ -11,8 +11,8 @@
       >
       <div class="text-center my-3">
         <span>~ 評価コメント ~</span>
-        <div class="text-center rounded  py-2 border border-secondary">
-          <h5>{{ comment }}</h5>
+        <div class="text-center rounded border border-secondary">
+          <h5 class="my-2">{{ comment }}</h5>
         </div>
       </div>
 
@@ -51,6 +51,9 @@ export default {
           id: null,
           title: "",
           description: ""
+        },
+        exam_result_comment: {
+          content: ""
         }
       }
     }
@@ -67,19 +70,7 @@ export default {
       }
     },
     comment(){
-      const score = this.exam_result.total_score
-      if (score <= 40){
-        return "やれやれだぜ"
-      }
-      else if (score <= 60){
-        return "逆に考えるんだ こんなジョジョ立ちでもいいさと..."
-      }
-      else if (score <= 99){
-        return "ブラボー！おお...ブラボー！！"
-      }
-      else if (score <= 100){
-        return "グレートですよこいつはァ"
-      }
+      return this.exam_result.exam_result_comment.content
     }
   },
   created() {

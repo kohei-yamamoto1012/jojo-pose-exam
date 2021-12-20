@@ -10,5 +10,8 @@ class ExamResultResource
   attribute :total_score, &:total_score
 
   one :exam, resource: ExamResource
+  one :exam_result_comment do
+    attributes :content
+  end
   many :check_item_results, resource: CheckItemResultResource
 end

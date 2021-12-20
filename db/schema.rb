@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_20_055935) do
+ActiveRecord::Schema.define(version: 2021_12_20_090401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,14 @@ ActiveRecord::Schema.define(version: 2021_12_20_055935) do
     t.index ["exam_id"], name: "index_check_items_on_exam_id"
   end
 
+  create_table "exam_result_comments", force: :cascade do |t|
+    t.bigint "score_border_id", null: false
+    t.string "content", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["score_border_id"], name: "index_exam_result_comments_on_score_border_id"
+  end
+
   create_table "exam_result_keypoints", force: :cascade do |t|
     t.bigint "exam_result_id", null: false
     t.bigint "keypoint_id", null: false
@@ -77,11 +85,13 @@ ActiveRecord::Schema.define(version: 2021_12_20_055935) do
 
   create_table "exam_results", force: :cascade do |t|
     t.bigint "exam_id", null: false
+    t.bigint "exam_result_comment_id", null: false
     t.boolean "privacy_setting", default: true, null: false
     t.boolean "hide_face", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["exam_id"], name: "index_exam_results_on_exam_id"
+    t.index ["exam_result_comment_id"], name: "index_exam_results_on_exam_result_comment_id"
   end
 
   create_table "exams", force: :cascade do |t|
@@ -93,6 +103,12 @@ ActiveRecord::Schema.define(version: 2021_12_20_055935) do
 
   create_table "keypoints", force: :cascade do |t|
     t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "score_borders", force: :cascade do |t|
+    t.integer "score", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
