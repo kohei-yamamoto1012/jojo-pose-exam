@@ -3,5 +3,7 @@ class ExamResource
 
   root_key :exam
 
-  attributes :id, :title, :description, :path
+  attributes :id, :title, :description
+
+  many :check_items, resource: CheckItemResource 
 end

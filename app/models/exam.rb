@@ -4,7 +4,6 @@
 #
 #  id          :bigint           not null, primary key
 #  description :string
-#  path        :string           not null
 #  title       :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
@@ -15,7 +14,6 @@ class Exam < ApplicationRecord
 
   with_options presence: true do
     validates :title
-    validates :path
   end
 
   validates :title, length: { maximum: 30 }
