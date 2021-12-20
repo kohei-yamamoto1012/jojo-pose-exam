@@ -5,15 +5,15 @@ export default {
 
   state: {
     exams: [],
-    selectedExam: {}
+    exam: {}
   },
 
   getters: {
     exams(state){
       return state.exams
     },
-    selectedExam(state){
-      return state.selectedExam
+    exam(state){
+      return state.exam
     }
   },
 
@@ -21,8 +21,8 @@ export default {
     setExams(state, exams){
       state.exams = exams
     },
-    setSelectedExam(state, exam){
-      state.selectedExam = exam
+    setExam(state, exam){
+      state.exam = exam
     }
   },
 
@@ -30,6 +30,11 @@ export default {
     fetchExams({commit}){
       axios.get('/api/exams')
         .then(res => commit('setExams', res.data))
+        .catch(err => console.log(err.response))
+    },
+    fetchExam({commit}, exam_id){
+      axios.get(`/api/exams/${exam_id}`)
+        .then(res => commit('setExam', res.data.exam))
         .catch(err => console.log(err.response))
     }
   }
