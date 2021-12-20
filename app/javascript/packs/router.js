@@ -21,9 +21,12 @@ export default new VueRouter({
       component: ExamListIndex
     },
     {
-      path: '/exam/:exam_path',
+      path: '/exam/:exam_id',
       name: 'ExamIndex',
-      component: ExamIndex
+      component: ExamIndex,
+      props: routes => ({
+        examId: Number(routes.params.exam_id)
+      })
     },
     {
       path: '/exam_results/:exam_result_id',

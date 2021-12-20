@@ -13,18 +13,19 @@
     </loading>
 
     <div class="mt-4">
-      <h2>{{ selectedExam.title }}検定</h2>
+      <h2>{{ exam.title }}検定</h2>
       <img
+        v-if="exam.title"
         class="img-fluid border"
-        :src="getImagePath(selectedExam.title)"
+        :src="getImagePath(exam.title)"
       >
-      <p>{{ selectedExam.description }}</p>
+      <p>{{ exam.description }}</p>
     </div>
 
     <div class="text-center">
       <span>~ Point一覧 ~</span>
       <div
-        v-for="(check_item, index) in selectedExamCheckItems"
+        v-for="(check_item, index) in exam.check_items"
         :key="check_item.id"
       >
         <div class="rounded border border-secondary py-1 my-1">
@@ -74,7 +75,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions, mapMutations } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import * as poseDetection from '@tensorflow-models/pose-detection'
 import '@tensorflow/tfjs-backend-webgl'
 import Loading from 'vue-loading-overlay'
@@ -83,6 +84,9 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 export default {
   components: {
     Loading
+  },
+  props: {
+    examId: Number
   },
   data: function () {
     return {
@@ -94,23 +98,14 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('exams', ['selectedExam']),
-    selectedExamCheckItems(){
-      return this.check_items.filter( check_item => check_item.exam_id === this.selectedExam.id )
-    }
+    ...mapGetters('exams', ['exam'])
   },
-  async created(){
-    this.getCheckItems()
+  created(){
+    this.fetchExam(this.examId)
     this.createDetector()
   },
   methods: {
-    getCheckItems(){
-      this.$axios.get('/api/check_items')
-        .then(res => {
-          this.check_items = res.data
-        })
-        .catch(err => console.log(err.status))
-    },
+    ...mapActions('exams', ['fetchExam']),
 
     async createDetector(){
       const detectorConfig = {
@@ -175,7 +170,7 @@ export default {
       setTimeout(async() =>{
         this.$axios.post('/api/exam_results', {
           exam_result: {
-            exam_id: this.selectedExam.id,
+            exam_id: this.exam.id,
             privacy_setting: true,
             hide_face: false,
             exam_result_keypoints: await this.estimatePoses()

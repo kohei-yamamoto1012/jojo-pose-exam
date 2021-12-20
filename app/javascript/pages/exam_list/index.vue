@@ -11,8 +11,7 @@
           class="col-12 my-5"
         >
           <router-link
-            :to="{ name: 'ExamIndex', params: { exam_path: exam.path } }"
-            @click.native="setSelectedExam(exam)"
+            :to="{ name: 'ExamIndex', params: { exam_id: exam.id } }"
           >
             <h5>{{ exam.title }}検定</h5>
             <img
@@ -41,7 +40,6 @@ export default {
     this.fetchExams()
   },
   methods: {
-    ...mapMutations('exams', ['setSelectedExam']),
     ...mapActions('exams', ['fetchExams']),
 
     getImagePath(title){

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   namespace :api, format: 'json' do
-    resources :exams, only: %i[index]
+    resources :exams, only: %i[index show]
     resources :check_items, only: %i[index]
     resources :exam_results, only: %i[create show] do
       post 'upload_image', on: :member
