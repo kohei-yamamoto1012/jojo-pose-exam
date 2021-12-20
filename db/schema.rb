@@ -85,11 +85,13 @@ ActiveRecord::Schema.define(version: 2021_12_20_090401) do
 
   create_table "exam_results", force: :cascade do |t|
     t.bigint "exam_id", null: false
+    t.bigint "exam_result_comment_id", null: false
     t.boolean "privacy_setting", default: true, null: false
     t.boolean "hide_face", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["exam_id"], name: "index_exam_results_on_exam_id"
+    t.index ["exam_result_comment_id"], name: "index_exam_results_on_exam_result_comment_id"
   end
 
   create_table "exams", force: :cascade do |t|

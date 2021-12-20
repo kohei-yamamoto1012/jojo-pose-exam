@@ -2,19 +2,22 @@
 #
 # Table name: exam_results
 #
-#  id              :bigint           not null, primary key
-#  hide_face       :boolean          default(FALSE), not null
-#  privacy_setting :boolean          default(TRUE), not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  exam_id         :bigint           not null
+#  id                     :bigint           not null, primary key
+#  hide_face              :boolean          default(FALSE), not null
+#  privacy_setting        :boolean          default(TRUE), not null
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  exam_id                :bigint           not null
+#  exam_result_comment_id :bigint           not null
 #
 # Indexes
 #
-#  index_exam_results_on_exam_id  (exam_id)
+#  index_exam_results_on_exam_id                 (exam_id)
+#  index_exam_results_on_exam_result_comment_id  (exam_result_comment_id)
 #
 class ExamResult < ApplicationRecord
   belongs_to :exam
+  belongs_to :exam_result_comment
   has_many :check_item_results, dependent: :destroy
   has_many :check_items, through: :check_item_results
   has_many :exam_result_keypoints, dependent: :destroy
@@ -24,6 +27,7 @@ class ExamResult < ApplicationRecord
     validates :exam
     validates :check_item_results
     validates :exam_result_keypoints
+    validates :exam_result_comment
   end
 
   validates :hide_face, inclusion: { in: [true, false] }
@@ -35,7 +39,8 @@ class ExamResult < ApplicationRecord
                     :set_privacy_setting_default,
                     :set_hide_face_default,
                     :set_exam_result_keypoints,
-                    :set_check_item_results
+                    :set_check_item_results,
+                    :set_exam_result_comment
 
   def set_exam
     return unless @exam_id
@@ -77,6 +82,19 @@ class ExamResult < ApplicationRecord
       check_item_result.correct_false_judge(@exam_result_keypoints)
       check_item_results << check_item_result
     end
+  end
+
+  def set_exam_result_comment
+    return if self.exam_result_comment
+
+    comment_score_border = ScoreBorder.first
+    ScoreBorder.all.each do |score_border|
+      if total_score <= score_border.score
+        comment_score_border = score_border
+        break
+      end
+    end
+    self.exam_result_comment = ExamResultComment.where(score_border: comment_score_border).sample
   end
 
   def upload_image_url
