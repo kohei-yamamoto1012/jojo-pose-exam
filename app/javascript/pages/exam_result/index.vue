@@ -5,10 +5,14 @@
       <h2 class="text-center">
         {{ exam_result.total_score }}点 {{ pass_fail }}
       </h2>
-      <img
-        class="img-fluid border"
-        :src="exam_result.upload_image_url"
-      >
+      
+      <div class="text-center">
+        <img
+          class="img-fluid border"
+          :src="exam_result.upload_image_url"
+        >
+      </div>
+
       <div class="text-center my-3">
         <span>~ 評価コメント ~</span>
         <div class="text-center rounded border border-secondary">
