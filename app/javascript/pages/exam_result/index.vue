@@ -16,7 +16,9 @@
       <div class="text-center my-3">
         <span>~ 評価コメント ~</span>
         <div class="text-center rounded border border-secondary">
-          <h5 class="my-2">{{ comment }}</h5>
+          <h5 class="my-2">
+            {{ comment }}
+          </h5>
         </div>
       </div>
 
