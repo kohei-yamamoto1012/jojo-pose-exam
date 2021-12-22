@@ -85,10 +85,10 @@ class ExamResult < ApplicationRecord
   end
 
   def set_exam_result_comment
-    return if self.exam_result_comment
+    return if exam_result_comment
 
     comment_score_border = ScoreBorder.first
-    ScoreBorder.all.each do |score_border|
+    ScoreBorder.all.find_each do |score_border|
       if total_score <= score_border.score
         comment_score_border = score_border
         break

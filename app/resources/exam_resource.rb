@@ -5,5 +5,5 @@ class ExamResource
 
   attributes :id, :title, :description
 
-  many :check_items, resource: CheckItemResource 
+  many :check_items, resource: CheckItemResource
 end

@@ -13,7 +13,7 @@
 #  index_exam_result_comments_on_score_border_id  (score_border_id)
 #
 class ExamResultComment < ApplicationRecord
-  has_many :exam_result
+  has_many :exam_result, dependent: :destroy
   belongs_to :score_border
 
   with_options presence: true do
