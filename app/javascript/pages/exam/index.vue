@@ -86,7 +86,10 @@ export default {
     Loading
   },
   props: {
-    examId: Number
+    examId:{
+      type: Number,
+      default: null
+    }
   },
   data: function () {
     return {

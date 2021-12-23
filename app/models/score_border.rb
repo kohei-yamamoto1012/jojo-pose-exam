@@ -8,7 +8,7 @@
 #  updated_at :datetime         not null
 #
 class ScoreBorder < ApplicationRecord
-  has_many :exam_result_comments
+  has_many :exam_result_comments, dependent: :destroy
 
   validates :score, presence: true
   validates :score, inclusion: { in: 0..100 }
