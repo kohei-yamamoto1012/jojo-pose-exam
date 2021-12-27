@@ -54,7 +54,7 @@ class CheckItemResult < ApplicationRecord
           max_angle: 30
         )
 
-      when 'l_elbow_angle_130to160'
+      when 'l_elbow_angle_125to160'
         left_elbow = keypoints.find { |n| n['name'] == 'left_elbow' }
         left_wrist = keypoints.find { |n| n['name'] == 'left_wrist' }
         left_shoulder = keypoints.find { |n| n['name'] == 'left_shoulder' }
@@ -63,7 +63,7 @@ class CheckItemResult < ApplicationRecord
           vertex_keypoint: left_elbow,
           side_a_keypoint: left_wrist,
           side_b_keypoint: left_shoulder,
-          min_angle: 130,
+          min_angle: 125,
           max_angle: 160
         )
 
