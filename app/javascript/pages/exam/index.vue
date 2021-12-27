@@ -23,14 +23,14 @@
     </div>
 
     <div class="text-center">
-      <span>~ Point一覧 ~</span>
+      <span>~ Point List ~</span>
       <div
         v-for="(check_item, index) in exam.check_items"
         :key="check_item.id"
       >
         <div class="rounded border border-secondary py-1 my-1">
           <div class="pl-2 py-1">
-            Point: {{ index + 1 }} {{ check_item.content }}
+            Point{{ index + 1 }}: {{ check_item.content }}
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@
       </div>
 
       <div class="text-center my-3">
-        <span>~ 評価コメント ~</span>
+        <span>~ Comment ~</span>
         <div class="text-center rounded border border-secondary">
           <h5 class="my-2">
             {{ comment }}
@@ -23,7 +23,7 @@
       </div>
 
       <div class="text-center mb-3">
-        <span>~ 各Pointの結果 ~</span>
+        <span>~ Point Result ~</span>
         <div
           v-for="(check_item_result, index) in exam_result.check_item_results"
           :key="index"
@@ -33,6 +33,15 @@
           <h5>{{ getResult(check_item_result.result) }}</h5>
         </div>
       </div>
+
+      <div class="text-center">
+        <router-link
+          :to="{ name: 'ExamIndex', params: { exam_id: exam_result.exam.id } }"
+        >
+          再挑戦する
+        </router-link>
+      </div>
+
     </div>
   </div>
 </template>
@@ -49,12 +58,12 @@ export default {
   data: function () {
     return {
       exam_result:{
-        id: null,
-        total_score: null,
-        upload_image_url: null,
+        id: 0,
+        total_score: 0,
+        upload_image_url: "",
         check_item_results: [],
         exam: {
-          id: null,
+          id: 0,
           title: "",
           description: ""
         },
@@ -63,8 +72,6 @@ export default {
         }
       }
     }
-  },
-  computed:{
   },
   computed: {
     pass_fail(){
