@@ -164,6 +164,10 @@ export default {
         const formData = new FormData()
         formData.append('exam_result[upload_image]', this.image_file)
         this.$axios.post(`/api/exam_results/${exam_result.id}/upload_image`, formData)
+        .then(() => {
+          this.isLoading = false
+          this.$router.push({ name: 'ExamResultIndex', params: { exam_result_id: exam_result.id } })
+        })
       }
     },
 
@@ -182,8 +186,6 @@ export default {
         .then(res => {
           const exam_result = res.data.exam_result
           this.uploadImageFile(exam_result)
-          this.isLoading = false
-          this.$router.push({ name: 'ExamResultIndex', params: { exam_result_id: exam_result.id } })
         })
       }, 500)
     }
