@@ -75,7 +75,7 @@ export default {
   },
   computed: {
     pass_fail(){
-      if (this.exam_result.total_score >= 100){
+      if (this.exam_result.total_score >= 80){
         return "合格ッ！"
       }
       else {
