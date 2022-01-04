@@ -4,9 +4,7 @@ Rails.application.routes.draw do
   namespace :api, format: 'json' do
     resources :exams, only: %i[index show]
     resources :check_items, only: %i[index]
-    resources :exam_results, only: %i[create show] do
-      post 'upload_image', on: :member
-    end
+    resources :exam_results, only: %i[create show]
   end
 
   get '*path', to: 'home#index', constraints: lambda { |req|
