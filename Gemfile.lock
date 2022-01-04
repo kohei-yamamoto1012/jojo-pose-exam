@@ -143,6 +143,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
+    onnxruntime (0.6.5)
+      ffi
     parallel (1.21.0)
     parser (3.0.3.0)
       ast (~> 2.4.1)
@@ -236,6 +238,8 @@ GEM
     ruby-graphviz (1.2.5)
       rexml
     ruby-progressbar (1.11.0)
+    ruby-vips (2.1.4)
+      ffi (~> 1.12)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -305,6 +309,7 @@ DEPENDENCIES
   factory_bot_rails
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  onnxruntime
   pg (~> 1.1)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
@@ -315,6 +320,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
+  ruby-vips
   sass-rails (>= 6)
   spring
   turbolinks (~> 5)
