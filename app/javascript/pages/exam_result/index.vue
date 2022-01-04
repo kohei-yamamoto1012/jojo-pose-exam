@@ -41,7 +41,6 @@
           再挑戦する
         </router-link>
       </div>
-
     </div>
   </div>
 </template>

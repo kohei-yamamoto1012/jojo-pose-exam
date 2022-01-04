@@ -19,12 +19,20 @@
     <section class="py-4 container">
       <div class="row">
         <div class="mx-auto">
-          <div class="text-center">~ How to Use ~</div>
+          <div class="text-center">
+            ~ How to Use ~
+          </div>
           <div class="rounded border border-secondary">
             <div class="px-2 py-2">
-              <p class="my-1">Step1: 受験する検定を選択</p>
-              <p class="my-1">Step2: ジョジョ立ち写真を撮影</p>
-              <p class="my-1">Step3: ジョジョ立ち写真をアップロード</p>
+              <p class="my-1">
+                Step1: 受験する検定を選択
+              </p>
+              <p class="my-1">
+                Step2: ジョジョ立ち写真を撮影
+              </p>
+              <p class="my-1">
+                Step3: ジョジョ立ち写真をアップロード
+              </p>
             </div>
           </div>
         </div>
