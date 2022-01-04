@@ -76,8 +76,6 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import * as poseDetection from '@tensorflow-models/pose-detection'
-import '@tensorflow/tfjs-backend-webgl'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css';
 
@@ -94,9 +92,7 @@ export default {
   data: function () {
     return {
       check_items: [],
-      detector: null,
-      image_file: null,
-      image_element: null,
+      upload_image: null,
       isLoading: false,
     }
   },
@@ -105,18 +101,9 @@ export default {
   },
   created(){
     this.fetchExam(this.examId)
-    this.createDetector()
   },
   methods: {
     ...mapActions('exams', ['fetchExam']),
-
-    async createDetector(){
-      const detectorConfig = {
-        modelType: poseDetection.movenet.modelType.SINGLEPOSE_THUNDER,
-        enableSmoothing: false
-      }
-      this.detector = await poseDetection.createDetector(poseDetection.SupportedModels.MoveNet, detectorConfig)
-    },
 
     getImagePath(title){
       return require(`../../../assets/images/${title}.png`)
@@ -126,69 +113,27 @@ export default {
       const { valid } = await this.$refs.provider.validate(e) // バリデーションチェック
 
       if (valid){
-        const image_file = e.target.files[0]
-        this.setImageFile(image_file)
-        this.setImageElement(image_file)
-      }
-    },
-
-    setImageFile(image_file){
-      this.image_file = image_file
-    },
-
-    setImageElement(image_file){
-      const url = URL.createObjectURL(image_file)
-      if(this.image_element) URL.revokeObjectURL(this.image_element.src)
-
-      this.image_element = new Image()
-      this.image_element.src = url
-    },
-
-    async estimatePoses(){
-      console.log("姿勢推定を実施")
-      const poses = await this.detector.estimatePoses(this.image_element)
-      const examResultKeypoints = poses[0].keypoints.map(item => {
-        return {
-          x_coordinate: Math.round(item.x),
-          y_coordinate: Math.round(item.y),
-          score: Math.round(item.score * 100),
-          name: item.name
-        }
-      })
-      console.log(examResultKeypoints)
-      return examResultKeypoints
-    },
-
-    uploadImageFile(exam_result){
-      if (this.image_file){
-        const formData = new FormData()
-        formData.append('exam_result[upload_image]', this.image_file)
-        this.$axios.post(`/api/exam_results/${exam_result.id}/upload_image`, formData)
-        .then(() => {
-          this.isLoading = false
-          this.$router.push({ name: 'ExamResultIndex', params: { exam_result_id: exam_result.id } })
-        })
+        this.upload_image = e.target.files[0]
       }
     },
 
     takeExam(){
       this.isLoading = true
 
-      setTimeout(async() =>{
-        this.$axios.post('/api/exam_results', {
-          exam_result: {
-            exam_id: this.exam.id,
-            privacy_setting: true,
-            hide_face: false,
-            exam_result_keypoints: await this.estimatePoses()
-          }
-        })
-        .then(res => {
-          const exam_result = res.data.exam_result
-          this.uploadImageFile(exam_result)
-        })
-      }, 500)
+      const formData = new FormData()
+      formData.append('exam_result[exam_id]', this.exam.id)
+      formData.append('exam_result[upload_image]', this.upload_image)
+
+      this.$axios.post('/api/exam_results', formData)
+      .then(res => {
+        // console.log(res.data.exam_result)
+        const exam_result = res.data.exam_result
+
+        this.isLoading = false
+        this.$router.push({ name: 'ExamResultIndex', params: { exam_result_id: exam_result.id } })
+      })
     }
+
   }
 }
 </script>

@@ -33,7 +33,7 @@ class ExamResult < ApplicationRecord
   validates :hide_face, inclusion: { in: [true, false] }
   validates :privacy_setting, inclusion: { in: [true, false] }
 
-  attr_writer :exam_id, :privacy_setting, :hide_face, :exam_result_keypoints
+  attr_writer :upload_image_tmpfile
 
   before_validation :set_exam,
                     :set_privacy_setting_default,
@@ -42,50 +42,56 @@ class ExamResult < ApplicationRecord
                     :set_check_item_results,
                     :set_exam_result_comment
 
-  def set_exam
-    return unless @exam_id
+  ML_MODEL_PATH = 'app/ml_models/movenet_singlepose_lightning_4.onnx'.freeze
+  INPUT_IMG_WIDTH = 192.0
+  INPUT_IMG_HEIGHT = 192.0
 
-    self.exam = Exam.find(@exam_id)
+  def set_exam
+    return unless exam_id
+
+    self.exam = Exam.find(exam_id)
   end
 
   def set_privacy_setting_default
-    return unless @privacy_setting
+    return if privacy_setting
 
-    self.privacy_setting = @privacy_setting
+    self.privacy_setting = true
   end
 
   def set_hide_face_default
-    return unless @hide_face
+    return if hide_face
 
-    self.hide_face = @hide_face
+    self.hide_face = false
   end
 
   def set_exam_result_keypoints
-    return unless @exam_result_keypoints
+    return unless @upload_image_tmpfile
 
-    @exam_result_keypoints.each do |keypoint|
+    img = Vips::Image.new_from_file(@upload_image_tmpfile.path)
+    results = estimate_pose(img)
+    results.each_with_index do |keypoint, index|
       exam_result_keypoint = ExamResultKeypoint.new(
-        keypoint: Keypoint.find_by(name: keypoint['name']),
-        x_coordinate: keypoint['x_coordinate'],
-        y_coordinate: keypoint['y_coordinate'],
-        score: keypoint['score']
+        keypoint: Keypoint.find(index + 1),
+        x_coordinate: (keypoint[1] * img.width).round,
+        y_coordinate: (keypoint[0] * img.height).round,
+        score: (keypoint[2] * 100).round
       )
       exam_result_keypoints << exam_result_keypoint
     end
   end
 
   def set_check_item_results
-    return unless @exam_result_keypoints
+    return unless exam_result_keypoints
 
     exam.check_items.each do |check_item|
       check_item_result = CheckItemResult.new(check_item: check_item)
-      check_item_result.correct_false_judge(@exam_result_keypoints)
+      check_item_result.correct_false_judge(exam_result_keypoints)
       check_item_results << check_item_result
     end
   end
 
   def set_exam_result_comment
-    return if exam_result_comment
+    return if exam_result_comment # 既にコメントが紐付いていればreturn
 
     comment_score_border = ScoreBorder.first
     ScoreBorder.all.find_each do |score_border|
@@ -107,5 +113,21 @@ class ExamResult < ApplicationRecord
       score += check_item_result.check_item.allocation if check_item_result.result
     end
     score
+  end
+
+  private
+
+  def estimate_pose(img)
+    input = preprocess(img)
+    model = OnnxRuntime::Model.new(Rails.root.join(ML_MODEL_PATH))
+    model.predict({ 'input' => [input] })['output_0'][0][0]
+  end
+
+  def preprocess(img)
+    img = img[0..2] if img.bands > 3
+    resize_hscale = INPUT_IMG_WIDTH / img.width
+    resize_vscale = INPUT_IMG_HEIGHT / img.height
+    img_resize = img.resize(resize_hscale, vscale: resize_vscale)
+    img_resize.to_a
   end
 end

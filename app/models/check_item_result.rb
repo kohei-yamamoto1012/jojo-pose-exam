@@ -26,14 +26,14 @@ class CheckItemResult < ApplicationRecord
 
   validates :result, inclusion: { in: [true, false] }
 
-  def correct_false_judge(keypoints)
+  def correct_false_judge(exam_result_keypoints)
     self.result =
       case check_item.check_pattern
 
       when 'nose_between_rl_hip'
-        nose = keypoints.find { |n| n['name'] == 'nose' }
-        right_hip = keypoints.find { |n| n['name'] == 'right_hip' }
-        left_hip = keypoints.find { |n| n['name'] == 'left_hip' }
+        nose = exam_result_keypoints.find { |n| n.keypoint.name == 'nose' }
+        right_hip = exam_result_keypoints.find { |n| n.keypoint.name == 'right_hip' }
+        left_hip = exam_result_keypoints.find { |n| n.keypoint.name == 'left_hip' }
 
         between_horizontal?(
           center_keypoint: nose,
@@ -42,9 +42,9 @@ class CheckItemResult < ApplicationRecord
         )
 
       when 'r_elbow_angle_0to30'
-        right_elbow = keypoints.find { |n| n['name'] == 'right_elbow' }
-        right_wrist = keypoints.find { |n| n['name'] == 'right_wrist' }
-        right_shoulder = keypoints.find { |n| n['name'] == 'right_shoulder' }
+        right_elbow = exam_result_keypoints.find { |n| n.keypoint.name == 'right_elbow' }
+        right_wrist = exam_result_keypoints.find { |n| n.keypoint.name == 'right_wrist' }
+        right_shoulder = exam_result_keypoints.find { |n| n.keypoint.name == 'right_shoulder' }
 
         angle_correct?(
           vertex_keypoint: right_elbow,
@@ -55,9 +55,9 @@ class CheckItemResult < ApplicationRecord
         )
 
       when 'l_elbow_angle_125to160'
-        left_elbow = keypoints.find { |n| n['name'] == 'left_elbow' }
-        left_wrist = keypoints.find { |n| n['name'] == 'left_wrist' }
-        left_shoulder = keypoints.find { |n| n['name'] == 'left_shoulder' }
+        left_elbow = exam_result_keypoints.find { |n| n.keypoint.name == 'left_elbow' }
+        left_wrist = exam_result_keypoints.find { |n| n.keypoint.name == 'left_wrist' }
+        left_shoulder = exam_result_keypoints.find { |n| n.keypoint.name == 'left_shoulder' }
 
         angle_correct?(
           vertex_keypoint: left_elbow,
@@ -68,10 +68,10 @@ class CheckItemResult < ApplicationRecord
         )
 
       when 'rl_leg_angle_100to150'
-        right_hip = keypoints.find { |n| n['name'] == 'right_hip' }
-        right_knee = keypoints.find { |n| n['name'] == 'right_knee' }
-        left_hip = keypoints.find { |n| n['name'] == 'left_hip' }
-        left_knee = keypoints.find { |n| n['name'] == 'left_knee' }
+        right_hip = exam_result_keypoints.find { |n| n.keypoint.name == 'right_hip' }
+        right_knee = exam_result_keypoints.find { |n| n.keypoint.name == 'right_knee' }
+        left_hip = exam_result_keypoints.find { |n| n.keypoint.name == 'left_hip' }
+        left_knee = exam_result_keypoints.find { |n| n.keypoint.name == 'left_knee' }
 
         angle_correct?(
           vertex_keypoint: right_hip,
@@ -88,23 +88,23 @@ class CheckItemResult < ApplicationRecord
           max_angle: 150
         )
 
-      when 'r_knee_angle_165to195'
-        right_knee = keypoints.find { |n| n['name'] == 'right_knee' }
-        right_hip = keypoints.find { |n| n['name'] == 'right_hip' }
-        right_ankle = keypoints.find { |n| n['name'] == 'right_ankle' }
+      when 'r_knee_angle_160to195'
+        right_knee = exam_result_keypoints.find { |n| n.keypoint.name == 'right_knee' }
+        right_hip = exam_result_keypoints.find { |n| n.keypoint.name == 'right_hip' }
+        right_ankle = exam_result_keypoints.find { |n| n.keypoint.name == 'right_ankle' }
 
         angle_correct?(
           vertex_keypoint: right_knee,
           side_a_keypoint: right_hip,
           side_b_keypoint: right_ankle,
-          min_angle: 165,
+          min_angle: 160,
           max_angle: 195
         )
 
       when 'l_knee_angle_110to140'
-        left_knee = keypoints.find { |n| n['name'] == 'left_knee' }
-        left_hip = keypoints.find { |n| n['name'] == 'left_hip' }
-        left_ankle = keypoints.find { |n| n['name'] == 'left_ankle' }
+        left_knee = exam_result_keypoints.find { |n| n.keypoint.name == 'left_knee' }
+        left_hip = exam_result_keypoints.find { |n| n.keypoint.name == 'left_hip' }
+        left_ankle = exam_result_keypoints.find { |n| n.keypoint.name == 'left_ankle' }
 
         angle_correct?(
           vertex_keypoint: left_knee,
@@ -121,16 +121,16 @@ class CheckItemResult < ApplicationRecord
   private
 
   def between_horizontal?(center_keypoint:, left_keypoint:, right_keypoint:)
-    center_keypoint['x_coordinate'] > left_keypoint['x_coordinate'] && center_keypoint['x_coordinate'] < right_keypoint['x_coordinate']
+    center_keypoint.x_coordinate > left_keypoint.x_coordinate && center_keypoint.x_coordinate < right_keypoint.x_coordinate
   end
 
   def angle_correct?(vertex_keypoint:, side_a_keypoint:, side_b_keypoint:, min_angle:, max_angle:)
-    a1 = vertex_keypoint['x_coordinate'] - side_a_keypoint['x_coordinate']
-    a2 = vertex_keypoint['y_coordinate'] - side_a_keypoint['y_coordinate']
+    a1 = vertex_keypoint.x_coordinate - side_a_keypoint.x_coordinate
+    a2 = vertex_keypoint.y_coordinate - side_a_keypoint.y_coordinate
     vector_a = Vector[a1, a2]
 
-    b1 = vertex_keypoint['x_coordinate'] - side_b_keypoint['x_coordinate']
-    b2 = vertex_keypoint['y_coordinate'] - side_b_keypoint['y_coordinate']
+    b1 = vertex_keypoint.x_coordinate - side_b_keypoint.x_coordinate
+    b2 = vertex_keypoint.y_coordinate - side_b_keypoint.y_coordinate
     vector_b = Vector[b1, b2]
 
     angle = (vector_a.angle_with(vector_b) * 180 / Math::PI).round
