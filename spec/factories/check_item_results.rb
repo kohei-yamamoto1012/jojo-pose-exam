@@ -7,7 +7,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  check_item_id  :bigint           not null
-#  exam_result_id :bigint           not null
+#  exam_result_id :uuid             not null
 #
 # Indexes
 #
