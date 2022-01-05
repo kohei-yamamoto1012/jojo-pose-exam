@@ -50,7 +50,7 @@
 export default {
   props: {
     examResultId: {
-      type: Number,
+      type: String,
       default: null
     }
   },
