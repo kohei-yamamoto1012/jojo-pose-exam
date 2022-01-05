@@ -1,6 +1,8 @@
 class CreateExamResults < ActiveRecord::Migration[6.1]
   def change
-    create_table :exam_results do |t|
+    enable_extension 'pgcrypto' unless extension_enabled?('pgcrypto')
+
+    create_table :exam_results, id: :uuid do |t|
       t.belongs_to :exam, null: false
       t.belongs_to :exam_result_comment, null: false
       t.boolean :privacy_setting, null: false, default: true

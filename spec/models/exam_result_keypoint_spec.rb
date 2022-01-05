@@ -8,7 +8,7 @@
 #  y_coordinate   :integer          not null
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  exam_result_id :bigint           not null
+#  exam_result_id :uuid             not null
 #  keypoint_id    :bigint           not null
 #
 # Indexes

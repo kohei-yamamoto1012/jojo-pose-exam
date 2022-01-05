@@ -2,7 +2,7 @@
 #
 # Table name: exam_results
 #
-#  id                     :bigint           not null, primary key
+#  id                     :uuid             not null, primary key
 #  hide_face              :boolean          default(FALSE), not null
 #  privacy_setting        :boolean          default(TRUE), not null
 #  created_at             :datetime         not null

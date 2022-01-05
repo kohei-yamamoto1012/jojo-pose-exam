@@ -33,7 +33,7 @@ export default new VueRouter({
       name: 'ExamResultIndex',
       component: ExamResultIndex,
       props: routes => ({
-        examResultId: Number(routes.params.exam_result_id)
+        examResultId: routes.params.exam_result_id
       })
     }
   ]
