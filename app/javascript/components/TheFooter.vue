@@ -1,7 +1,17 @@
 <template>
-  <footer class="text-center">
-    <small>Copyright &copy; 2021. ジョジョ立ち検定</small>
-  </footer>
+    <v-footer
+      app 
+      padless
+      color="white"
+      absolute
+    >
+      <v-col
+        class="text-center"
+        cols="12"
+      >
+      <span class="text-caption">Copyright 2022 ジョジョ立ち検定</span>
+      </v-col>
+    </v-footer>
 </template>
 
 <script>
