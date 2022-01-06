@@ -1,14 +1,22 @@
 <template>
-  <div class="d-flex flex-column min-vh-100">
-    <TheHeader class="mb-auto" />
-    <transition mode="out-in">
-      <router-view />
-    </transition>
-    <TheFooter class="mt-auto" />
-  </div>
+  <v-app>
+    <TheHeader />
+
+    <v-main>
+      <v-container>
+        <transition mode="out-in">
+          <router-view />
+        </transition>
+      </v-container>
+    </v-main>
+
+    <TheFooter />
+
+  </v-app>
 </template>
 
 <script>
+
 import TheHeader from './components/TheHeader.vue'
 import TheFooter from './components/TheFooter.vue'
 
@@ -19,6 +27,7 @@ export default {
   },
   data: function () {
     return {
+      drawer: false
     }
   }
 }
