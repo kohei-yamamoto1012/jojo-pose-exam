@@ -1,17 +1,16 @@
 <template>
   <v-app>
-    <TheHeader />
+      <TheHeader />
 
-    <v-main>
-      <v-container>
-        <transition mode="out-in">
-          <router-view />
-        </transition>
-      </v-container>
-    </v-main>
+      <v-main class="bg main">
+        <v-container>
+          <transition mode="out-in">
+            <router-view />
+          </transition>
+        </v-container>
+      </v-main>
 
-    <TheFooter />
-
+      <TheFooter />
   </v-app>
 </template>
 
@@ -24,20 +23,25 @@ export default {
   components: {
     TheHeader,
     TheFooter
-  },
-  data: function () {
-    return {
-      drawer: false
-    }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .v-enter-active, .v-leave-active {
   transition: opacity .5s;
 }
 .v-enter, .v-leave-to {
   opacity: 0;
+}
+
+.bg{
+  background-image: url('../assets/images/background');
+  background-size: contain;
+  background-repeat: repeat;
+}
+
+.main{
+  color: var(--v-font-base);
 }
 </style>

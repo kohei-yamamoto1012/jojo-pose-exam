@@ -9,4 +9,15 @@ export default new Vuetify({
   icons: {
     iconfont: 'md',
   },
+  theme: {
+    themes: {
+      light: {
+        primary: '#7C4DFF',
+        accent: '#FFD059',
+        background: '#F2F3FB',
+        font: '#595959'
+      }
+    },
+    options: { customProperties: true, variations: false }
+  }
 })
