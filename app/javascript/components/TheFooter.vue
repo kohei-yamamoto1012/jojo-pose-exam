@@ -2,7 +2,7 @@
     <v-footer
       app 
       padless
-      color="white"
+      color="background"
       absolute
     >
       <v-col
