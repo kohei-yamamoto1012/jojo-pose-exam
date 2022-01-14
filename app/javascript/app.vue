@@ -2,7 +2,7 @@
   <v-app>
       <TheHeader />
 
-      <v-main class="bg">
+      <v-main class="bg main">
         <v-container>
           <transition mode="out-in">
             <router-view />
@@ -41,4 +41,7 @@ export default {
   background-repeat: repeat;
 }
 
+.main{
+  color: var(--v-font-base);
+}
 </style>
