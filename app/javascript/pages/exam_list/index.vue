@@ -1,27 +1,26 @@
 <template>
-  <div class="py-4 container">
-    <div class="text-center">
-      <h2>検定一覧</h2>
-    </div>
-    <div class="row">
-      <div class="mx-auto">
-        <div
-          v-for="exam in exams"
-          :key="exam.id"
-          class="col-12 my-5"
-        >
-          <router-link
-            :to="{ name: 'ExamIndex', params: { exam_id: exam.id } }"
-          >
-            <h5>{{ exam.title }}検定</h5>
-            <img
-              class="img-fluid border"
-              :src="getImagePath(exam.title)"
-            >
-          </router-link>
-        </div>
-      </div>
-    </div>
+  <div>
+     <TheSectionTitle>~ 検定一覧 ~</TheSectionTitle>
+
+    <v-row dense class="mb-10" justify="center">
+      <v-col
+        v-for="(exam) in exams"
+        :key="exam.title"
+        cols="11"
+        md="6"
+        class="mb-8"
+      >
+        <v-card :to="{ name: 'ExamIndex', params: { exam_id: exam.id } }">
+          <v-img
+            :src="getImagePath(exam.title)"
+          ></v-img>
+            <div class="card-exam-title text-center pb-3 text-h6 font-weight-bold">
+              {{ exam.title }}検定
+            </div>
+        </v-card>
+      </v-col>
+    </v-row>
+
   </div>
 </template>
 
@@ -51,5 +50,7 @@ export default {
 </script>
 
 <style scoped>
-
+.card-exam-title{
+  color: var(--v-font-base);
+}
 </style>
