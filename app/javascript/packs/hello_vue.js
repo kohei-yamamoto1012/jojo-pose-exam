@@ -9,7 +9,9 @@ import '../plugins/validation.js'
 import vuetify from '../plugins/vuetify.js'
 
 import TheButton from '../components/TheButton.vue'
+import TheSectionTitle from '../components/TheSectionTitle.vue'
 Vue.component('TheButton', TheButton)
+Vue.component('TheSectionTitle', TheSectionTitle)
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
