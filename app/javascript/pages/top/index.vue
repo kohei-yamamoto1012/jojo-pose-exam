@@ -1,18 +1,13 @@
 <template>
-  <main class="back">
-    <div>
-      <v-img 
-      :src="logo_top_src"
-      />
-    </div>
+  <div>
+    <v-img :src="logo_top_src" />
 
     <div class="text-center mb-16">
       <TheButton to-name="ExamListIndex">受験する</TheButton>
     </div>
 
-    <p class="text-center text-h5 mb-1 font-weight-bold">
-      <span class="background">~ 受検手順 ~</span>
-    </p>
+    <TheSectionTitle>~ 受検手順 ~</TheSectionTitle>
+
     <v-row dense class="mb-6" justify="center">
       <v-col
         v-for="(card, index) in cards"
@@ -41,7 +36,7 @@
       <TheButton to-name="ExamListIndex">受験する</TheButton>
     </div>
 
-  </main>
+  </div>
 </template>
 
 <script>
