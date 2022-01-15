@@ -1,7 +1,9 @@
 <template>
 
-  <p class="text-center text-h5 mb-1 font-weight-bold">
-    <slot></slot>
+  <p class="text-center text-h5 font-weight-bold">
+    <span class="background">
+      <slot></slot>
+    </span>
   </p>
 
 </template>
