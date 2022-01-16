@@ -23,7 +23,7 @@ export default {
     },
     toName: {
       type: String,
-      required: false
+      required: true
     }
   }
 }
