@@ -8,9 +8,9 @@ import store from '../store/store.js'
 import '../plugins/validation.js'
 import vuetify from '../plugins/vuetify.js'
 
-import TheButton from '../components/TheButton.vue'
+import TheLinkButton from '../components/TheLinkButton.vue'
 import TheSectionTitle from '../components/TheSectionTitle.vue'
-Vue.component('TheButton', TheButton)
+Vue.component('TheLinkButton', TheLinkButton)
 Vue.component('TheSectionTitle', TheSectionTitle)
 
 Vue.config.productionTip = false

@@ -1,76 +1,100 @@
 <template>
-  <div class="container vld-parent">
+  <div class="vld-parent">
     <loading 
       :active.sync="isLoading"
       :opacity="0.9"
     >
       <div>
-        <img :src="require(`../../../assets/images/loading.gif`)">
-        <h4 class="mt-3">
-          解析中ッ
-        </h4>
+        <v-progress-circular
+          :size="80"
+          indeterminate
+          color="font"
+        ></v-progress-circular>
+        <p class="text-center text-h5 font-weight-bold mt-4">
+          採点中...
+        </p>
       </div>
     </loading>
 
-    <div class="mt-4">
-      <h2>{{ exam.title }}検定</h2>
-      <img
-        v-if="exam.title"
-        class="img-fluid border"
-        :src="getImagePath(exam.title)"
-      >
-      <p>{{ exam.description }}</p>
-    </div>
+    <v-row dense class="mt-1 mb-3" justify="center">
+      <v-col cols="11" md="6" lg="4">
+        <v-card>
+          <v-img
+            v-if="exam.title"
+            :src="getImagePath(exam.title)"
+          ></v-img>
+          <v-card-title class="py-1 card-font font-weight-bold">
+            {{ exam.title }}検定
+          </v-card-title>
+          <v-card-text>{{ exam.description }}</v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
 
-    <div class="text-center">
-      <span>~ Point List ~</span>
-      <div
-        v-for="(check_item, index) in exam.check_items"
-        :key="check_item.id"
-      >
-        <div class="rounded border border-secondary py-1 my-1">
-          <div class="pl-2 py-1">
-            Point{{ index + 1 }}: {{ check_item.content }}
-          </div>
-        </div>
-      </div>
-    </div>
+    <v-row dense class="mb-3" justify="center">
+      <v-col cols="11" md="6" lg="4">
+        <v-card>
+          <v-card-title class="py-2 card-font font-weight-bold">
+            チェックポイント
+          </v-card-title>
 
-    <ValidationObserver v-slot="{ handleSubmit }">
-      <!-- eslint-disable vue/no-unused-vars -->
-      <ValidationProvider
-        v-slot="{ errors, validate }"
-        ref="provider"
-        name="ジョジョ立ち画像"
-        rules="required|image"
-      >
-        <div class="form-group mt-4">
-          <label
-            for="jojo-pose-image"
-            class="d-block"
-          >ジョジョ立ち画像を添付</label>
-
-          <input
-            id="jojo-pose-image"
-            type="file"
-            accept="image/*"
-            class="form-control-file"
-            @change="handleChange"
+          <v-list
+            v-for="check_item in exam.check_items"
+            :key="check_item.id"
+            class="py-0"
+            dense
           >
-          <span class="text-danger">{{ errors[0] }}</span>
-        </div>
-      </ValidationProvider>
-      
-      <div class="text-center my-4">
-        <button
-          type="submit"
-          class="btn btn-secondary"
-          @click="handleSubmit(takeExam)"
-        >
-          受検するッ！
-        </button>
-      </div>
-    </ValidationObserver>
+            <v-list-item>
+                <v-icon class="me-2" color="accent">star</v-icon>
+                <span class="text-subtitle-2 text-sm-subtitle-1">{{ check_item.content }}</span>
+            </v-list-item>
+          </v-list>
+
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <v-row dense class="mb-16" justify="center">
+      <v-col cols="11" md="6" lg="4">
+        <v-card>
+          <v-card-title class="py-2 card-font font-weight-bold">
+            受検フォーム
+          </v-card-title>
+
+          <ValidationObserver v-slot="{ handleSubmit }">
+            <!-- eslint-disable vue/no-unused-vars -->
+            <ValidationProvider
+              v-slot="{ errors, validate }"
+              ref="provider"
+              rules="required|image"
+            >
+              <v-file-input
+                accept="image/*"
+                @change="handleChange"
+                prepend-icon="add_a_photo"
+                label="ジョジョ立ち画像"
+                :error-messages="errors"
+                class="mx-5"
+                color="font"
+              ></v-file-input>
+
+            </ValidationProvider>
+
+            <v-card-actions class="justify-center">
+                <v-btn
+                  color="primary"
+                  block
+                  @click="handleSubmit(takeExam)"
+                >
+                  受検するッ！
+                </v-btn>
+            </v-card-actions>
+          </ValidationObserver>
+
+        </v-card>
+      </v-col>
+    </v-row>
+
   </div>
 </template>
 
@@ -113,7 +137,7 @@ export default {
       const { valid } = await this.$refs.provider.validate(e) // バリデーションチェック
 
       if (valid){
-        this.upload_image = e.target.files[0]
+        this.upload_image = e
       }
     },
 
@@ -126,7 +150,6 @@ export default {
 
       this.$axios.post('/api/exam_results', formData)
       .then(res => {
-        // console.log(res.data.exam_result)
         const exam_result = res.data.exam_result
 
         this.isLoading = false
@@ -139,5 +162,8 @@ export default {
 </script>
 
 <style scoped>
+.card-font{
+  color: var(--v-font-base);
+}
 
 </style>
