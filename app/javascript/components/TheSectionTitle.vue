@@ -1,6 +1,6 @@
 <template>
 
-  <p class="text-center text-h5 font-weight-bold">
+  <p class="text-center text-h5 mb-2 font-weight-bold">
     <span class="background">
       <slot></slot>
     </span>
