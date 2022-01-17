@@ -8,12 +8,12 @@ Vue.component('ValidationProvider', ValidationProvider)
 
 extend('required', {
   ...required,
-  message: '{_field_}は必須項目です'
+  message: '必須項目です'
 })
 
 extend('image', {
   ...image,
-  message: '{_field_}は画像形式で入力してください'
+  message: '画像ファイルを選択してください'
 })
 
 export default ValidationProvider
