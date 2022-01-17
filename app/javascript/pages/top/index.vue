@@ -1,9 +1,13 @@
 <template>
   <div>
-    <v-img :src="logo_top_src" />
+    <v-row justify="center">
+      <v-col cols="12" md="6" lg="4">
+        <v-img :src="logo_top_src" />
+      </v-col>
+    </v-row>
 
     <div class="text-center mb-16">
-      <TheButton to-name="ExamListIndex">受験する</TheButton>
+      <TheLinkButton to-name="ExamListIndex">受験する</TheLinkButton>
     </div>
 
     <TheSectionTitle>~ 受検手順 ~</TheSectionTitle>
@@ -14,13 +18,14 @@
         :key="card.title"
         cols="10"
         md="4"
-        class="mb-2"
+        lg="3"
+        class="mb-3"
       >
         <v-card
           rounded
           class="rounded-xl"
         >
-          <p class="text-button text-center my-2">Lesson{{ index + 1 }}</p>
+          <p class="text-button text-center mb-2">Lesson{{ index + 1 }}</p>
           <v-img
             :src="card.src"
             class="mx-15 mt-2"
@@ -33,7 +38,7 @@
 
 
     <div class="text-center mb-16">
-      <TheButton to-name="ExamListIndex">受験する</TheButton>
+      <TheLinkButton to-name="ExamListIndex">検定一覧</TheLinkButton>
     </div>
 
   </div>
