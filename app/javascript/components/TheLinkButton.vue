@@ -3,7 +3,7 @@
     :color="color"
     large
     rounded
-    :to="{ name: toName}"
+    :to="to"
   >
     <slot></slot>
   </v-btn>
@@ -21,10 +21,14 @@ export default {
       type: String,
       default: 'primary'
     },
-    toName: {
-      type: String,
+    to: {
+      type: Object,
       required: true
-    }
+    }//,
+    // toParams: {
+    //   type: Object,
+    //   required: false,
+    // }
   }
 }
 </script>

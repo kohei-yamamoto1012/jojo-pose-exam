@@ -7,7 +7,7 @@
     </v-row>
 
     <div class="text-center mb-16">
-      <TheLinkButton to-name="ExamListIndex">受験する</TheLinkButton>
+      <TheLinkButton :to="{ name: 'ExamListIndex'}">受験する</TheLinkButton>
     </div>
 
     <TheSectionTitle>~ 受検手順 ~</TheSectionTitle>
@@ -38,7 +38,7 @@
 
 
     <div class="text-center mb-16">
-      <TheLinkButton to-name="ExamListIndex">検定一覧</TheLinkButton>
+      <TheLinkButton :to="{ name: 'ExamListIndex'}">受験する</TheLinkButton>
     </div>
 
   </div>
