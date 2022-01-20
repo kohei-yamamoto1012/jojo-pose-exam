@@ -6,7 +6,7 @@
         :key="exam.title"
         cols="11"
         md="6"
-        lg="4"
+        lg="3"
         class="mb-6"
       >
         <v-card :to="{ name: 'ExamIndex', params: { exam_id: exam.id } }">
