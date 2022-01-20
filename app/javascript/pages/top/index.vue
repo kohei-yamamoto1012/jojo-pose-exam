@@ -1,18 +1,28 @@
 <template>
   <div>
     <v-row justify="center">
-      <v-col cols="12" md="6" lg="4">
+      <v-col
+        cols="12"
+        md="6"
+        lg="4"
+      >
         <v-img :src="logo_top_src" />
       </v-col>
     </v-row>
 
     <div class="text-center mb-16">
-      <TheLinkButton to-name="ExamListIndex">受験する</TheLinkButton>
+      <TheLinkButton :to="{ name: 'ExamListIndex'}">
+        受験する
+      </TheLinkButton>
     </div>
 
     <TheSectionTitle>~ 受検手順 ~</TheSectionTitle>
 
-    <v-row dense class="mb-6" justify="center">
+    <v-row
+      dense
+      class="mb-6"
+      justify="center"
+    >
       <v-col
         v-for="(card, index) in cards"
         :key="card.title"
@@ -25,12 +35,16 @@
           rounded
           class="rounded-xl"
         >
-          <p class="text-button text-center mb-2">Lesson{{ index + 1 }}</p>
+          <p class="text-button text-center mb-2">
+            Lesson{{ index + 1 }}
+          </p>
           <v-img
             :src="card.src"
             class="mx-15 mt-2"
-          ></v-img>
-          <v-card-title class="py-1">{{ card.title }}</v-card-title>
+          />
+          <v-card-title class="py-1">
+            {{ card.title }}
+          </v-card-title>
           <v-card-text>{{ card.text }}</v-card-text>
         </v-card>
       </v-col>
@@ -38,9 +52,10 @@
 
 
     <div class="text-center mb-16">
-      <TheLinkButton to-name="ExamListIndex">検定一覧</TheLinkButton>
+      <TheLinkButton :to="{ name: 'ExamListIndex'}">
+        受験する
+      </TheLinkButton>
     </div>
-
   </div>
 </template>
 

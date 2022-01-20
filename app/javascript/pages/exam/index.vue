@@ -1,39 +1,34 @@
 <template>
-  <div class="vld-parent">
-    <loading 
-      :active.sync="isLoading"
-      :opacity="0.9"
+  <div>
+    <v-row 
+      dense
+      class="mt-1 mb-16"
+      justify="center"
     >
-      <div>
-        <v-progress-circular
-          :size="80"
-          indeterminate
-          color="font"
-        ></v-progress-circular>
-        <p class="text-center text-h5 font-weight-bold mt-4">
-          採点中...
-        </p>
-      </div>
-    </loading>
-
-    <v-row dense class="mt-1 mb-3" justify="center">
-      <v-col cols="11" md="6" lg="4">
+      <v-col
+        cols="11"
+        md="6"
+        lg="3"
+        class="mb-2"
+      >
         <v-card>
           <v-img
             v-if="exam.title"
             :src="getImagePath(exam.title)"
-          ></v-img>
+          />
           <v-card-title class="py-1 card-font font-weight-bold">
             {{ exam.title }}検定
           </v-card-title>
           <v-card-text>{{ exam.description }}</v-card-text>
         </v-card>
       </v-col>
-    </v-row>
 
-    <v-row dense class="mb-3" justify="center">
-      <v-col cols="11" md="6" lg="4">
-        <v-card>
+      <v-col
+        cols="11"
+        md="6"
+        lg="3"
+      >
+        <v-card class="mb-4">
           <v-card-title class="py-2 card-font font-weight-bold">
             チェックポイント
           </v-card-title>
@@ -45,17 +40,17 @@
             dense
           >
             <v-list-item>
-                <v-icon class="me-2" color="accent">star</v-icon>
-                <span class="text-subtitle-2 text-sm-subtitle-1">{{ check_item.content }}</span>
+              <v-icon
+                class="me-2"
+                color="accent"
+              >
+                star
+              </v-icon>
+              <span class="text-subtitle-2 text-sm-subtitle-1 card-font font-weight-bold">{{ check_item.content }}</span>
             </v-list-item>
           </v-list>
-
         </v-card>
-      </v-col>
-    </v-row>
 
-    <v-row dense class="mb-16" justify="center">
-      <v-col cols="11" md="6" lg="4">
         <v-card>
           <v-card-title class="py-2 card-font font-weight-bold">
             受検フォーム
@@ -70,43 +65,38 @@
             >
               <v-file-input
                 accept="image/*"
-                @change="handleChange"
                 prepend-icon="add_a_photo"
                 label="ジョジョ立ち画像"
                 :error-messages="errors"
                 class="mx-5"
                 color="font"
-              ></v-file-input>
-
+                :disabled="isLoading"
+                @change="handleChange"
+              />
             </ValidationProvider>
 
             <v-card-actions class="justify-center">
-                <v-btn
-                  color="primary"
-                  block
-                  @click="handleSubmit(takeExam)"
-                >
-                  受検するッ！
-                </v-btn>
+              <v-btn
+                color="primary"
+                block
+                :loading="isLoading"
+                :disabled="isLoading"
+                @click="handleSubmit(takeExam)"
+              >
+                受検するッ！
+              </v-btn>
             </v-card-actions>
           </ValidationObserver>
-
         </v-card>
       </v-col>
     </v-row>
-
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import Loading from 'vue-loading-overlay'
-import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
-  components: {
-    Loading
-  },
   props: {
     examId:{
       type: Number,

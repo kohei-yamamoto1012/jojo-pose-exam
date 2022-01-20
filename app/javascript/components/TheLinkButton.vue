@@ -3,27 +3,27 @@
     :color="color"
     large
     rounded
-    :to="{ name: toName}"
+    :to="to"
   >
-    <slot></slot>
+    <slot />
   </v-btn>
 </template>
 
 <script>
 export default {
-  data: function () {
-    return {
-
-    }
-  },
   props: {
     color: {
       type: String,
       default: 'primary'
     },
-    toName: {
-      type: String,
+    to: {
+      type: Object,
       required: true
+    }
+  },
+  data: function () {
+    return {
+
     }
   }
 }
