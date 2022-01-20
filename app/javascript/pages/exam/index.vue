@@ -1,21 +1,4 @@
 <template>
-  <div class="vld-parent">
-    <loading 
-      :active.sync="isLoading"
-      :opacity="0.9"
-    >
-      <div>
-        <v-progress-circular
-          :size="80"
-          indeterminate
-          color="font"
-        ></v-progress-circular>
-        <p class="text-center text-h5 font-weight-bold mt-4">
-          採点中...
-        </p>
-      </div>
-    </loading>
-
   <div>
     <v-row dense class="mt-1 mb-16" justify="center">
       <v-col cols="11" md="6" lg="3" class="mb-2">
@@ -71,6 +54,7 @@
                 :error-messages="errors"
                 class="mx-5"
                 color="font"
+                :disabled="isLoading"
               ></v-file-input>
 
             </ValidationProvider>
@@ -80,6 +64,8 @@
                   color="primary"
                   block
                   @click="handleSubmit(takeExam)"
+                  :loading="isLoading"
+                  :disabled="isLoading"
                 >
                   受検するッ！
                 </v-btn>
@@ -95,13 +81,8 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import Loading from 'vue-loading-overlay'
-import 'vue-loading-overlay/dist/vue-loading.css';
 
 export default {
-  components: {
-    Loading
-  },
   props: {
     examId:{
       type: Number,
