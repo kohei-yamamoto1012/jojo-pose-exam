@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import App from '../app.vue'
 import axios from '../plugins/axios'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 import router from './router.js'
 import store from '../store/store.js'
 import '../plugins/validation.js'
