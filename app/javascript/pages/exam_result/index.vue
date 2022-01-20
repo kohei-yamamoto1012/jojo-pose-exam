@@ -126,7 +126,7 @@ export default {
           description: ''
         },
         exam_result_comment: {
-          content: 'content'
+          content: ' '
         }
       },
       comment_cutin: false,
