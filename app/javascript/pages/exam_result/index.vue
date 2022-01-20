@@ -1,11 +1,12 @@
 <template>
-  <div v-if="exam_result.exam.title">
+  <div>
     <v-overlay 
       :value="comment_cutin"
       opacity="1"
       color="background"
     >
       <VueTyper
+        v-if="exam_result.exam.title"
         :text="comment"
         :type-delay="90"
         :repeat="0"
