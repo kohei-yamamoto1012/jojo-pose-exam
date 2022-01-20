@@ -1,16 +1,19 @@
 <template>
   <v-app>
-      <TheHeader />
+    <TheHeader />
 
-      <v-main class="bg main">
-        <v-container>
-          <transition :name="transitionName" mode="out-in">
-            <router-view />
-          </transition>
-        </v-container>
-      </v-main>
+    <v-main class="bg main">
+      <v-container>
+        <transition 
+          :name="transitionName"
+          mode="out-in"
+        >
+          <router-view />
+        </transition>
+      </v-container>
+    </v-main>
 
-      <TheFooter />
+    <TheFooter />
   </v-app>
 </template>
 
@@ -24,6 +27,11 @@ export default {
     TheHeader,
     TheFooter
   },
+  data: function(){
+    return {
+      transitionName: 'normal'
+    }
+  },
   watch: {
     '$route' (to, from){
       if(from.name == 'ExamIndex' && to.name == 'ExamResultIndex'){
@@ -32,12 +40,6 @@ export default {
       else{
         this.transitionName = 'normal'
       }
-    }
-  },
-  
-  data: function(){
-    return {
-      transitionName: 'normal'
     }
   }
 }

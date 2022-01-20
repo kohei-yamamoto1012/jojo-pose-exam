@@ -1,4 +1,4 @@
-<template >
+<template>
   <div>
     <v-overlay 
       :value="comment_cutin"
@@ -7,33 +7,47 @@
     >
       <VueTyper
         :text="comment"
-        :typeDelay="90"
+        :type-delay="90"
         :repeat="0"
         class="ma-5 text-h5 font-weight-bold"
         @completed="typingCompleted"
       />
     </v-overlay>
 
-    <v-row dense justify="center">
-
-      <v-col cols="11" md="6" lg="3" class="mb-2">
+    <v-row
+      dense
+      justify="center"
+    >
+      <v-col
+        cols="11"
+        md="6"
+        lg="3"
+        class="mb-2"
+      >
         <v-card>
           <v-card-title class="pb-0 justify-center text-subtitle-1">
             <span class="result-text">~ {{ exam_result.exam.title }}検定 ~</span>
           </v-card-title>
           <v-card-title class="pt-0 justify-center font-wheight-bold text-h5">
-            <span class="result-text" :class="isPass ? 'pass_underline':'fail_underline'">
+            <span
+              class="result-text"
+              :class="isPass ? 'pass_underline':'fail_underline'"
+            >
               {{ result_text }}
             </span>
           </v-card-title>
 
           <v-img
             :src="exam_result.upload_image_url"
-          ></v-img>
+          />
         </v-card>
       </v-col>
 
-      <v-col cols="11" md="6" lg="4">
+      <v-col
+        cols="11"
+        md="6"
+        lg="4"
+      >
         <v-card class="mb-4">
           <v-card-title class="py-2 card-font font-weight-bold">
             チェックポイント
@@ -46,7 +60,10 @@
             dense
           >
             <v-list-item>
-              <v-icon class="me-2" :color="getCheckItemResultIcon(check_item_result.result).color">
+              <v-icon
+                class="me-2"
+                :color="getCheckItemResultIcon(check_item_result.result).color"
+              >
                 {{ getCheckItemResultIcon(check_item_result.result).icon }}
               </v-icon>
               <span class="text-subtitle-2 text-sm-subtitle-1 card-font font-weight-bold">{{ check_item_result.content }}</span>
@@ -55,10 +72,12 @@
         </v-card>
 
         <v-card>
-            <v-card-title class="py-2 card-font font-weight-bold">
-              評価コメント
-            </v-card-title>
-            <v-card-text class="text-subtitle-1 card-font font-weight-bold">{{ comment }}</v-card-text>
+          <v-card-title class="py-2 card-font font-weight-bold">
+            評価コメント
+          </v-card-title>
+          <v-card-text class="text-subtitle-1 card-font font-weight-bold">
+            {{ comment }}
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
@@ -70,7 +89,6 @@
         再挑戦する
       </TheLinkButton>
     </div>
-
   </div>
 </template>
 

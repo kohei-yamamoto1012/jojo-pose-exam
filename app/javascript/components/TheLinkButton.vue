@@ -5,17 +5,12 @@
     rounded
     :to="to"
   >
-    <slot></slot>
+    <slot />
   </v-btn>
 </template>
 
 <script>
 export default {
-  data: function () {
-    return {
-
-    }
-  },
   props: {
     color: {
       type: String,
@@ -24,11 +19,12 @@ export default {
     to: {
       type: Object,
       required: true
-    }//,
-    // toParams: {
-    //   type: Object,
-    //   required: false,
-    // }
+    }
+  },
+  data: function () {
+    return {
+
+    }
   }
 }
 </script>

@@ -1,8 +1,8 @@
 <template>
   <header>
     <v-navigation-drawer
-      app
       v-model="drawer"
+      app
       :disable-resize-watcher="true"
     >
       <v-list-item>
@@ -17,9 +17,9 @@
 
       <v-list class="py-0">
         <v-list-item 
-        v-for="support in supports"
-        :key="support.name"
-        :to="support.link"
+          v-for="support in supports"
+          :key="support.name"
+          :to="support.link"
         >
           <v-list-item-icon>
             <v-icon>{{ support.icon }}</v-icon>
@@ -28,7 +28,6 @@
           <v-list-item-content>
             <v-list-item-title>{{ support.name }}</v-list-item-title>
           </v-list-item-content>
-
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -40,7 +39,10 @@
       flat
       color="transparent"
     >
-      <v-toolbar-title v-if="$route.name != 'TopIndex'" style="cursor: pointer">
+      <v-toolbar-title 
+        v-if="$route.name != 'TopIndex'" 
+        style="cursor: pointer"
+      >
         <router-link :to="{ name: 'TopIndex'}">
           <v-img
             :src="logo_head_src"
@@ -50,9 +52,9 @@
         </router-link>
       </v-toolbar-title>
 
-      <v-spacer></v-spacer>
+      <v-spacer />
 
-      <v-app-bar-nav-icon @click="drawer=!drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="drawer=!drawer" />
     </v-app-bar>
   </header>
 </template>

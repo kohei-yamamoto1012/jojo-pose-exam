@@ -1,11 +1,9 @@
 <template>
-
   <p class="text-center text-h6 mb-2 font-weight-bold">
     <span class="background">
-      <slot></slot>
+      <slot />
     </span>
   </p>
-
 </template>
 
 <script>

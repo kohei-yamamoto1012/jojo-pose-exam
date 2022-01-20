@@ -1,12 +1,21 @@
 <template>
   <div>
-    <v-row dense class="mt-1 mb-16" justify="center">
-      <v-col cols="11" md="6" lg="3" class="mb-2">
+    <v-row 
+      dense
+      class="mt-1 mb-16"
+      justify="center"
+    >
+      <v-col
+        cols="11"
+        md="6"
+        lg="3"
+        class="mb-2"
+      >
         <v-card>
           <v-img
             v-if="exam.title"
             :src="getImagePath(exam.title)"
-          ></v-img>
+          />
           <v-card-title class="py-1 card-font font-weight-bold">
             {{ exam.title }}検定
           </v-card-title>
@@ -14,7 +23,11 @@
         </v-card>
       </v-col>
 
-      <v-col cols="11" md="6" lg="3">
+      <v-col
+        cols="11"
+        md="6"
+        lg="3"
+      >
         <v-card class="mb-4">
           <v-card-title class="py-2 card-font font-weight-bold">
             チェックポイント
@@ -27,11 +40,15 @@
             dense
           >
             <v-list-item>
-                <v-icon class="me-2" color="accent">star</v-icon>
-                <span class="text-subtitle-2 text-sm-subtitle-1 card-font font-weight-bold">{{ check_item.content }}</span>
+              <v-icon
+                class="me-2"
+                color="accent"
+              >
+                star
+              </v-icon>
+              <span class="text-subtitle-2 text-sm-subtitle-1 card-font font-weight-bold">{{ check_item.content }}</span>
             </v-list-item>
           </v-list>
-
         </v-card>
 
         <v-card>
@@ -48,34 +65,31 @@
             >
               <v-file-input
                 accept="image/*"
-                @change="handleChange"
                 prepend-icon="add_a_photo"
                 label="ジョジョ立ち画像"
                 :error-messages="errors"
                 class="mx-5"
                 color="font"
                 :disabled="isLoading"
-              ></v-file-input>
-
+                @change="handleChange"
+              />
             </ValidationProvider>
 
             <v-card-actions class="justify-center">
-                <v-btn
-                  color="primary"
-                  block
-                  @click="handleSubmit(takeExam)"
-                  :loading="isLoading"
-                  :disabled="isLoading"
-                >
-                  受検するッ！
-                </v-btn>
+              <v-btn
+                color="primary"
+                block
+                :loading="isLoading"
+                :disabled="isLoading"
+                @click="handleSubmit(takeExam)"
+              >
+                受検するッ！
+              </v-btn>
             </v-card-actions>
           </ValidationObserver>
-
         </v-card>
       </v-col>
     </v-row>
-
   </div>
 </template>
 
