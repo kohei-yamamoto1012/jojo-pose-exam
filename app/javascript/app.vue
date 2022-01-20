@@ -4,7 +4,7 @@
 
       <v-main class="bg main">
         <v-container>
-          <transition mode="out-in">
+          <transition :name="transitionName" mode="out-in">
             <router-view />
           </transition>
         </v-container>
@@ -23,15 +23,38 @@ export default {
   components: {
     TheHeader,
     TheFooter
+  },
+  watch: {
+    '$route' (to, from){
+      if(from.name == 'ExamIndex' && to.name == 'ExamResultIndex'){
+        this.transitionName = 'leave'
+      }
+      else{
+        this.transitionName = 'normal'
+      }
+    }
+  },
+  
+  data: function(){
+    return {
+      transitionName: 'normal'
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.v-enter-active, .v-leave-active {
-  transition: opacity .5s;
+.normal-enter-active, .normal-leave-active {
+  transition: opacity .6s;
 }
-.v-enter, .v-leave-to {
+.normal-enter, .normal-leave-to {
+  opacity: 0;
+}
+
+.leave-leave-active {
+  transition: opacity .6s;
+}
+.leave-leave-to {
   opacity: 0;
 }
 
