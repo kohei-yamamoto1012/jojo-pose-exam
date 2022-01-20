@@ -3,6 +3,7 @@
     <v-navigation-drawer
       app
       v-model="drawer"
+      :disable-resize-watcher="true"
     >
       <v-list-item>
         <router-link :to="{ name: 'TopIndex'}">
