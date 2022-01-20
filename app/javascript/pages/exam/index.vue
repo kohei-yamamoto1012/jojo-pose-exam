@@ -16,8 +16,9 @@
       </div>
     </loading>
 
-    <v-row dense class="mt-1 mb-3" justify="center">
-      <v-col cols="11" md="6" lg="4">
+  <div>
+    <v-row dense class="mt-1 mb-16" justify="center">
+      <v-col cols="11" md="6" lg="3" class="mb-2">
         <v-card>
           <v-img
             v-if="exam.title"
@@ -29,11 +30,9 @@
           <v-card-text>{{ exam.description }}</v-card-text>
         </v-card>
       </v-col>
-    </v-row>
 
-    <v-row dense class="mb-3" justify="center">
-      <v-col cols="11" md="6" lg="4">
-        <v-card>
+      <v-col cols="11" md="6" lg="3">
+        <v-card class="mb-4">
           <v-card-title class="py-2 card-font font-weight-bold">
             チェックポイント
           </v-card-title>
@@ -46,16 +45,12 @@
           >
             <v-list-item>
                 <v-icon class="me-2" color="accent">star</v-icon>
-                <span class="text-subtitle-2 text-sm-subtitle-1">{{ check_item.content }}</span>
+                <span class="text-subtitle-2 text-sm-subtitle-1 card-font font-weight-bold">{{ check_item.content }}</span>
             </v-list-item>
           </v-list>
 
         </v-card>
-      </v-col>
-    </v-row>
 
-    <v-row dense class="mb-16" justify="center">
-      <v-col cols="11" md="6" lg="4">
         <v-card>
           <v-card-title class="py-2 card-font font-weight-bold">
             受検フォーム
