@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="exam_result.exam.title">
     <v-overlay 
       :value="comment_cutin"
       opacity="1"
@@ -126,7 +126,7 @@ export default {
           description: ''
         },
         exam_result_comment: {
-          content: ' '
+          content: ''
         }
       },
       comment_cutin: false,
@@ -169,7 +169,6 @@ export default {
       }
     },
     typingCompleted(){
-      console.log('comp!')
       setTimeout(() =>{
         this.comment_cutin = false
       }, 1500)
