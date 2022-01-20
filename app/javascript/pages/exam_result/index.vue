@@ -169,6 +169,7 @@ export default {
       }
     },
     typingCompleted(){
+      console.log('comp!')
       setTimeout(() =>{
         this.comment_cutin = false
       }, 1500)
