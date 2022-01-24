@@ -6,10 +6,10 @@ import store from '../store/store.js'
 import '../plugins/validation.js'
 import vuetify from '../plugins/vuetify.js'
 
-import TheLinkButton from '../components/TheLinkButton.vue'
-import TheSectionTitle from '../components/TheSectionTitle.vue'
-Vue.component('TheLinkButton', TheLinkButton)
-Vue.component('TheSectionTitle', TheSectionTitle)
+import AppLinkButton from '../components/AppLinkButton.vue'
+import AppSectionTitle from '../components/AppSectionTitle.vue'
+Vue.component('AppLinkButton', AppLinkButton)
+Vue.component('AppSectionTitle', AppSectionTitle)
 
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
