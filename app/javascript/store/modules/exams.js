@@ -21,8 +21,14 @@ export default {
     setExams(state, exams){
       state.exams = exams
     },
+    resetExams(state){
+      state.exams = []
+    },
     setExam(state, exam){
       state.exam = exam
+    },
+    resetExam(state){
+      state.exam = {}
     }
   },
 
