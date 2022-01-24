@@ -35,6 +35,6 @@ class CheckItem < ApplicationRecord
     l_elbow_angle_125to160: 3,
     rl_leg_angle_100to150: 4,
     r_knee_angle_160to195: 5,
-    l_knee_angle_110to140: 6
+    l_knee_angle_105to140: 6
   }
 end

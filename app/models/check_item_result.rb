@@ -101,7 +101,7 @@ class CheckItemResult < ApplicationRecord
           max_angle: 195
         )
 
-      when 'l_knee_angle_110to140'
+      when 'l_knee_angle_105to140'
         left_knee = exam_result_keypoints.find { |n| n.keypoint.name == 'left_knee' }
         left_hip = exam_result_keypoints.find { |n| n.keypoint.name == 'left_hip' }
         left_ankle = exam_result_keypoints.find { |n| n.keypoint.name == 'left_ankle' }
@@ -110,7 +110,7 @@ class CheckItemResult < ApplicationRecord
           vertex_keypoint: left_knee,
           side_a_keypoint: left_hip,
           side_b_keypoint: left_ankle,
-          min_angle: 110,
+          min_angle: 105,
           max_angle: 140
         )
       end
