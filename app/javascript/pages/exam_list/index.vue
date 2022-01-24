@@ -1,26 +1,30 @@
 <template>
   <div>
-    <v-row
-      dense
-      class="mb-10"
-      justify="center"
-    >
-      <v-col
-        v-for="(exam) in exams"
-        :key="exam.title"
-        cols="11"
-        md="6"
-        lg="3"
-        class="mb-6"
-      >
-        <v-card :to="{ name: 'ExamIndex', params: { exam_id: exam.id } }">
-          <v-img :src="getImagePath(exam.title)" />
-          <v-card-title class="py-1 card-exam-font font-weight-bold">
-            {{ exam.title }}検定
-          </v-card-title>
-        </v-card>
-      </v-col>
-    </v-row>
+    <transition name="content" mode="out-in">
+      <div v-show="isExams">
+        <v-row
+          dense
+          class="mb-10"
+          justify="center"
+        >
+          <v-col
+            v-for="(exam) in exams"
+            :key="exam.title"
+            cols="11"
+            md="6"
+            lg="3"
+            class="mb-6"
+          >
+            <v-card :to="{ name: 'ExamIndex', params: { exam_id: exam.id } }">
+              <v-img :src="getImagePath(exam.title)" />
+              <v-card-title class="py-1 card-exam-font font-weight-bold">
+                {{ exam.title }}検定
+              </v-card-title>
+            </v-card>
+          </v-col>
+        </v-row>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -32,14 +36,21 @@ export default {
     return {
     }
   },
+  destroyed(){
+    this.resetExams()
+  },
   computed:{
-    ...mapGetters('exams', ['exams'])
+    ...mapGetters('exams', ['exams']),
+    isExams(){
+      return this.exams.length !== 0 ? true : false
+    }
   },
   created() {
     this.fetchExams()
   },
   methods: {
     ...mapActions('exams', ['fetchExams']),
+    ...mapMutations('exams', ['resetExams']),
 
     getImagePath(title){
       return require(`../../../assets/images/${title}.png`)

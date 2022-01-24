@@ -1,100 +1,103 @@
 <template>
   <div>
-    <v-row 
-      dense
-      class="mt-1 mb-16"
-      justify="center"
-    >
-      <v-col
-        cols="11"
-        md="6"
-        lg="3"
-        class="mb-2"
+    <transition name="content" mode="out-in">
+      <v-row 
+        dense
+        class="mt-1 mb-16"
+        justify="center"
+        v-show="isExam"
       >
-        <v-card>
-          <v-img
-            v-if="exam.title"
-            :src="getImagePath(exam.title)"
-          />
-          <v-card-title class="py-1 card-font font-weight-bold">
-            {{ exam.title }}検定
-          </v-card-title>
-          <v-card-text>{{ exam.description }}</v-card-text>
-        </v-card>
-      </v-col>
+        <v-col
+          cols="11"
+          md="6"
+          lg="3"
+          class="mb-2"
+        >
+          <v-card>
+            <v-img
+              v-if="isExam"
+              :src="getImagePath(exam.title)"
+            />
+            <v-card-title class="py-1 card-font font-weight-bold">
+              {{ exam.title }}検定
+            </v-card-title>
+            <v-card-text>{{ exam.description }}</v-card-text>
+          </v-card>
+        </v-col>
 
-      <v-col
-        cols="11"
-        md="6"
-        lg="3"
-      >
-        <v-card class="mb-4">
-          <v-card-title class="py-2 card-font font-weight-bold">
-            チェックポイント
-          </v-card-title>
+        <v-col
+          cols="11"
+          md="6"
+          lg="3"
+        >
+          <v-card class="mb-4">
+            <v-card-title class="py-2 card-font font-weight-bold">
+              チェックポイント
+            </v-card-title>
 
-          <v-list
-            v-for="check_item in exam.check_items"
-            :key="check_item.id"
-            class="py-0"
-            dense
-          >
-            <v-list-item>
-              <v-icon
-                class="me-2"
-                color="accent"
-              >
-                star
-              </v-icon>
-              <span class="text-subtitle-2 text-sm-subtitle-1 card-font font-weight-bold">{{ check_item.content }}</span>
-            </v-list-item>
-          </v-list>
-        </v-card>
-
-        <v-card>
-          <v-card-title class="py-2 card-font font-weight-bold">
-            受検フォーム
-          </v-card-title>
-
-          <ValidationObserver v-slot="{ handleSubmit }">
-            <!-- eslint-disable vue/no-unused-vars -->
-            <ValidationProvider
-              v-slot="{ errors, validate }"
-              ref="provider"
-              rules="required|image"
+            <v-list
+              v-for="check_item in exam.check_items"
+              :key="check_item.id"
+              class="py-0"
+              dense
             >
-              <v-file-input
-                accept="image/*"
-                prepend-icon="add_a_photo"
-                label="ジョジョ立ち画像"
-                :error-messages="errors"
-                class="mx-5"
-                color="font"
-                :disabled="isLoading"
-                @change="handleChange"
-              />
-            </ValidationProvider>
+              <v-list-item>
+                <v-icon
+                  class="me-2"
+                  color="accent"
+                >
+                  star
+                </v-icon>
+                <span class="text-subtitle-2 text-sm-subtitle-1 card-font font-weight-bold">{{ check_item.content }}</span>
+              </v-list-item>
+            </v-list>
+          </v-card>
 
-            <v-card-actions class="justify-center">
-              <v-btn
-                color="primary"
-                block
-                :loading="isLoading"
-                :disabled="isLoading"
-                @click="handleSubmit(takeExam)"
+          <v-card>
+            <v-card-title class="py-2 card-font font-weight-bold">
+              受検フォーム
+            </v-card-title>
+
+            <ValidationObserver v-slot="{ handleSubmit }">
+              <!-- eslint-disable vue/no-unused-vars -->
+              <ValidationProvider
+                v-slot="{ errors, validate }"
+                ref="provider"
+                rules="required|image"
               >
-                受検するッ！
-              </v-btn>
-            </v-card-actions>
-          </ValidationObserver>
-        </v-card>
-      </v-col>
-    </v-row>
+                <v-file-input
+                  accept="image/*"
+                  prepend-icon="add_a_photo"
+                  label="ジョジョ立ち画像"
+                  :error-messages="errors"
+                  class="mx-5"
+                  color="font"
+                  :disabled="isLoading"
+                  @change="handleChange"
+                />
+              </ValidationProvider>
+
+              <v-card-actions class="justify-center">
+                <v-btn
+                  color="primary"
+                  block
+                  :loading="isLoading"
+                  :disabled="isLoading"
+                  @click="handleSubmit(takeExam)"
+                >
+                  受検するッ！
+                </v-btn>
+              </v-card-actions>
+            </ValidationObserver>
+          </v-card>
+        </v-col>
+      </v-row>
+    </transition>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
   props: {
@@ -111,13 +114,20 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('exams', ['exam'])
+    ...mapGetters('exams', ['exam']),
+    isExam(){
+      return Object.keys(this.exam).length
+    }
   },
   created(){
     this.fetchExam(this.examId)
   },
+  destroyed(){
+    this.resetExam()
+  },
   methods: {
     ...mapActions('exams', ['fetchExam']),
+    ...mapMutations('exams', ['resetExam']),
 
     getImagePath(title){
       return require(`../../../assets/images/${title}.png`)

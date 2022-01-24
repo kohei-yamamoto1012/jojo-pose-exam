@@ -6,7 +6,7 @@
       color="background"
     >
       <VueTyper
-        v-if="exam_result.exam.title"
+        v-if="isExamResult"
         :text="comment"
         :type-delay="90"
         :repeat="0"
@@ -15,81 +15,89 @@
       />
     </v-overlay>
 
-    <v-row
-      dense
-      justify="center"
-    >
-      <v-col
-        cols="11"
-        md="6"
-        lg="3"
-        class="mb-2"
-      >
-        <v-card>
-          <v-card-title class="pb-0 justify-center text-subtitle-1">
-            <span class="result-text">~ {{ exam_result.exam.title }}検定 ~</span>
-          </v-card-title>
-          <v-card-title class="pt-0 justify-center font-wheight-bold text-h5">
-            <span
-              class="result-text"
-              :class="isPass ? 'pass_underline':'fail_underline'"
-            >
-              {{ result_text }}
-            </span>
-          </v-card-title>
-
-          <v-img
-            :src="exam_result.upload_image_url"
-          />
-        </v-card>
-      </v-col>
-
-      <v-col
-        cols="11"
-        md="6"
-        lg="4"
-      >
-        <v-card class="mb-4">
-          <v-card-title class="py-2 card-font font-weight-bold">
-            チェックポイント
-          </v-card-title>
-
-          <v-list
-            v-for="check_item_result in exam_result.check_item_results"
-            :key="check_item_result.content"
-            class="py-0"
-            dense
+    <transition name="content" mode="out-in">
+      <div v-show="isExamResult">
+        <v-row
+          dense
+          justify="center"
+        >
+          <v-col
+            cols="11"
+            md="6"
+            lg="3"
+            class="mb-2"
           >
-            <v-list-item>
-              <v-icon
-                class="me-2"
-                :color="getCheckItemResultIcon(check_item_result.result).color"
+            <v-card>
+              <v-card-title class="pb-0 justify-center text-subtitle-2">
+                <span class="result-text">~ {{ exam_result.exam.title }}検定 ~</span>
+              </v-card-title>
+              <v-card-title class="pt-0 justify-center font-wheight-bold text-h5">
+                <span
+                  class="result-text"
+                  :class="isPass ? 'pass_underline':'fail_underline'"
+                >
+                  {{ resultText }}
+                </span>
+              </v-card-title>
+
+              <v-img
+                :src="exam_result.upload_image_url"
+              />
+            </v-card>
+          </v-col>
+
+          <v-col
+            cols="11"
+            md="6"
+            lg="4"
+          >
+            <v-card class="mb-4">
+              <v-card-title class="py-2 card-font font-weight-bold">
+                チェックポイント
+              </v-card-title>
+
+              <v-list
+                v-for="check_item_result in exam_result.check_item_results"
+                :key="check_item_result.content"
+                class="py-0"
+                dense
               >
-                {{ getCheckItemResultIcon(check_item_result.result).icon }}
-              </v-icon>
-              <span class="text-subtitle-2 text-sm-subtitle-1 card-font font-weight-bold">{{ check_item_result.content }}</span>
-            </v-list-item>
-          </v-list>
-        </v-card>
+                <v-list-item>
+                  <v-icon
+                    class="me-2"
+                    :color="getCheckItemResultIcon(check_item_result.result).color"
+                  >
+                    {{ getCheckItemResultIcon(check_item_result.result).icon }}
+                  </v-icon>
+                  <span class="text-subtitle-2 text-sm-subtitle-1 card-font font-weight-bold">{{ check_item_result.content }}</span>
+                </v-list-item>
+              </v-list>
+            </v-card>
 
-        <v-card>
-          <v-card-title class="py-2 card-font font-weight-bold">
-            評価コメント
-          </v-card-title>
-          <v-card-text class="text-subtitle-1 card-font font-weight-bold">
-            {{ comment }}
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
+            <v-card>
+              <v-card-title class="py-2 card-font font-weight-bold">
+                評価コメント
+              </v-card-title>
+              <v-card-text class="text-subtitle-1 card-font font-weight-bold">
+                {{ comment }}
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
 
-    <div class="text-center mt-8 mb-16">
-      <TheLinkButton 
-        :to="{ name: 'ExamIndex', params: { exam_id: exam_result.exam.id } }"
-      >
-        再挑戦する
-      </TheLinkButton>
-    </div>
+        <v-row
+          dense
+          justify="center"
+          class="mt-8 mb-16"
+        >
+          <AppLinkButton 
+            :to="{ name: 'ExamIndex', params: { exam_id: exam_result.exam.id } }"
+          >
+            再挑戦する
+          </AppLinkButton>
+        </v-row>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -102,7 +110,7 @@ export default {
       next( vm => vm.comment_cutin = true )
     }
     else{
-      next()
+      next( vm => vm.comment_cutin = false )
     }
   },
   components:{
@@ -134,10 +142,13 @@ export default {
     }
   },
   computed: {
+    isExamResult(){
+      return this.exam_result.exam.title
+    },
     isPass(){
       return this.exam_result.total_score >= 80 ? true : false
     },
-    result_text(){
+    resultText(){
       if(this.isPass){
         return `${this.exam_result.total_score}点 合格ッ！`
       }
@@ -149,15 +160,14 @@ export default {
       return this.exam_result.exam_result_comment.content.replaceAll('\\n', '\n')
     }
   },
-  async created() {
-    await this.getExamResult()
+  created() {
+    this.getExamResult()
   },
   methods: {
-    async getExamResult(){
-      await this.$axios.get(`/api/exam_results/${this.examResultId}`)
+    getExamResult(){
+      this.$axios.get(`/api/exam_results/${this.examResultId}`)
         .then(res => {
           this.exam_result = res.data.exam_result
-          // console.log(res.data.exam_result)
         })
         .catch(err => console.log(err.status))
     },
@@ -179,24 +189,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi:wght@500&display=swap');
 
 .vue-typer{
   writing-mode: vertical-rl;
   white-space: pre-wrap;
 }
+
 .result-text{
-  font-family: 'Kaisei HarunoUmi', serif;
   font-weight: bold;
   color: var(--v-font-base);
 }
 
 .pass_underline{
-  background: linear-gradient(transparent 90%, red 95%);
+  background: linear-gradient(transparent 85%, red 100%);
 }
 
 .fail_underline{
-  background: linear-gradient(transparent 90%, blue 95%);
+  background: linear-gradient(transparent 85%, blue 100%);
 }
 
 .card-font{
