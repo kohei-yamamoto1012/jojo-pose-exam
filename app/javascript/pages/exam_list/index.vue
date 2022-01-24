@@ -53,7 +53,7 @@ export default {
     ...mapMutations('exams', ['resetExams']),
 
     getImagePath(title){
-      return require(`../../../assets/images/${title}.png`)
+      return require(`../../../assets/images/${title}.jpg`)
     }
 
   }
