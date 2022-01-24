@@ -124,6 +124,7 @@ class ExamResult < ApplicationRecord
   end
 
   def preprocess(img)
+    img = img.autorot
     img = img[0..2] if img.bands > 3
     resize_hscale = INPUT_IMG_WIDTH / img.width
     resize_vscale = INPUT_IMG_HEIGHT / img.height
