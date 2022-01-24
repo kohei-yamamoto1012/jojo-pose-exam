@@ -201,11 +201,11 @@ export default {
 }
 
 .pass_underline{
-  background: linear-gradient(transparent 85%, red 100%);
+  background: linear-gradient(transparent 90%, red 50%);
 }
 
 .fail_underline{
-  background: linear-gradient(transparent 85%, blue 100%);
+  background: linear-gradient(transparent 90%, blue 50%);
 }
 
 .card-font{
