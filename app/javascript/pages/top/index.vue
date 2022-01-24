@@ -11,12 +11,14 @@
     </v-row>
 
     <div class="text-center mb-16">
-      <TheLinkButton :to="{ name: 'ExamListIndex'}">
+      <AppLinkButton :to="{ name: 'ExamListIndex'}">
         受験する
-      </TheLinkButton>
+      </AppLinkButton>
     </div>
 
-    <TheSectionTitle>~ 受検手順 ~</TheSectionTitle>
+    <v-divider class="mb-15" style="opacity: 0"/>
+
+    <AppSectionTitle>~ 受検手順 ~</AppSectionTitle>
 
     <v-row
       dense
@@ -50,11 +52,10 @@
       </v-col>
     </v-row>
 
-
     <div class="text-center mb-16">
-      <TheLinkButton :to="{ name: 'ExamListIndex'}">
+      <AppLinkButton :to="{ name: 'ExamListIndex'}">
         受験する
-      </TheLinkButton>
+      </AppLinkButton>
     </div>
   </div>
 </template>
@@ -65,9 +66,6 @@ export default {
   data: function () {
     return {
       logo_top_src: require('../../../assets/images/logo_top.svg'),
-      select_exam_src: require('../../../assets/images/select_exam.svg'),
-      take_picture_src: require('../../../assets/images/take_picture.svg'),
-      upload_picture_src: require('../../../assets/images/upload_picture.svg'),
 
       cards: [
         {
