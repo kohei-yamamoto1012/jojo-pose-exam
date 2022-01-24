@@ -85,18 +85,17 @@ export default {
           src: require('../../../assets/images/upload_picture.svg'),
           text: '撮影したジョジョ立ち画像をアップロードしましょう。ジョジョ立ち解析後に検定結果が表示されます！'
         }
-
       ]
     }
   }
 }
 </script>
 
-<style scoped>
-
-
-</style>
-
 <style  lang="scss" scoped>
-
+.page-enter-active{
+  transition: opacity 1.1s;
+}
+.page-enter{
+  opacity: 0;
+}
 </style>

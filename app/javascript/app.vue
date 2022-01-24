@@ -5,7 +5,7 @@
     <v-main class="bg main">
       <v-container>
         <transition 
-          :name="transitionName"
+          name="page"
           mode="out-in"
         >
           <router-view />
