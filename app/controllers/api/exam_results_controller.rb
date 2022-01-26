@@ -3,13 +3,17 @@ class Api::ExamResultsController < ApplicationController
 
   def create
     @exam_result = ExamResult.new(exam_result_params)
-    @exam_result.upload_image_tmpfile = exam_result_params['upload_image'].tempfile
+
+    upload_image_file = exam_result_params['upload_image']
+    @exam_result.upload_image_vips = Vips::Image.new_from_file(upload_image_file.tempfile.path).autorot
+    @exam_result.upload_image_name = "#{upload_image_file.original_filename}.webp"
 
     if @exam_result.save
       render json: ExamResultResource.new(@exam_result).serialize
     else
       render json: @exam_result.errors, status: :bad_request
     end
+    @exam_result.delete_tmp_image
   end
 
   def show
