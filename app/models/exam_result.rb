@@ -46,6 +46,7 @@ class ExamResult < ApplicationRecord
   ML_MODEL_PATH = 'app/ml_models/movenet_singlepose_lightning_4.onnx'.freeze
   INPUT_IMG_WIDTH = 192.0
   INPUT_IMG_HEIGHT = 192.0
+  ATTACH_IMG_WIDTH = 1008
 
   def set_exam
     return unless exam_id
@@ -107,8 +108,11 @@ class ExamResult < ApplicationRecord
   def attach_webp_image
     return unless @upload_image_vips
 
+    aspect_height = @upload_image_vips.height.to_f / @upload_image_vips.width.to_f
+    img = @upload_image_vips.thumbnail_image(ATTACH_IMG_WIDTH, height: ATTACH_IMG_WIDTH * aspect_height)
+
     tmp_save_path = Rails.root.join('tmp', @upload_image_name).to_s
-    @upload_image_vips.webpsave(tmp_save_path) # WebP変換
+    img.webpsave(tmp_save_path)
     upload_image.attach(io: File.open(tmp_save_path), filename: @upload_image_name, content_type: 'image/webp')
   end
 
@@ -141,9 +145,7 @@ class ExamResult < ApplicationRecord
 
   def preprocess(img)
     img = img[0..2] if img.bands > 3
-    resize_hscale = INPUT_IMG_WIDTH / img.width
-    resize_vscale = INPUT_IMG_HEIGHT / img.height
-    img_resize = img.resize(resize_hscale, vscale: resize_vscale)
+    img_resize = img.thumbnail_image(INPUT_IMG_WIDTH, height: INPUT_IMG_HEIGHT, size: :force)
     img_resize.to_a
   end
 end
