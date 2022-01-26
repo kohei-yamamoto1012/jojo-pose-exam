@@ -33,14 +33,15 @@ class ExamResult < ApplicationRecord
   validates :hide_face, inclusion: { in: [true, false] }
   validates :privacy_setting, inclusion: { in: [true, false] }
 
-  attr_writer :upload_image_tmpfile
+  attr_writer :upload_image_vips, :upload_image_name
 
   before_validation :set_exam,
                     :set_privacy_setting_default,
                     :set_hide_face_default,
                     :set_exam_result_keypoints,
                     :set_check_item_results,
-                    :set_exam_result_comment
+                    :set_exam_result_comment,
+                    :attach_webp_image
 
   ML_MODEL_PATH = 'app/ml_models/movenet_singlepose_lightning_4.onnx'.freeze
   INPUT_IMG_WIDTH = 192.0
@@ -65,9 +66,9 @@ class ExamResult < ApplicationRecord
   end
 
   def set_exam_result_keypoints
-    return unless @upload_image_tmpfile
+    return unless @upload_image_vips
 
-    img = Vips::Image.new_from_file(@upload_image_tmpfile.path)
+    img = @upload_image_vips
     results = estimate_pose(img)
     results.each_with_index do |keypoint, index|
       exam_result_keypoint = ExamResultKeypoint.new(
@@ -103,6 +104,14 @@ class ExamResult < ApplicationRecord
     self.exam_result_comment = ExamResultComment.where(score_border: comment_score_border).sample
   end
 
+  def attach_webp_image
+    return unless @upload_image_vips
+
+    tmp_save_path = Rails.root.join('tmp', @upload_image_name).to_s
+    @upload_image_vips.webpsave(tmp_save_path) # WebP変換
+    upload_image.attach(io: File.open(tmp_save_path), filename: @upload_image_name, content_type: 'image/webp')
+  end
+
   def upload_image_url
     upload_image.attached? ? Rails.application.routes.url_helpers.rails_blob_path(upload_image, only_path: true) : nil
   end
@@ -115,6 +124,13 @@ class ExamResult < ApplicationRecord
     score
   end
 
+  def delete_tmp_image
+    return unless @upload_image_name
+
+    tmp_save_path = Rails.root.join('tmp', @upload_image_name).to_s
+    File.delete(tmp_save_path) if File.exist?(tmp_save_path)
+  end
+
   private
 
   def estimate_pose(img)
@@ -124,7 +140,6 @@ class ExamResult < ApplicationRecord
   end
 
   def preprocess(img)
-    img = img.autorot
     img = img[0..2] if img.bands > 3
     resize_hscale = INPUT_IMG_WIDTH / img.width
     resize_vscale = INPUT_IMG_HEIGHT / img.height
