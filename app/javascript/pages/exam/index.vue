@@ -130,7 +130,7 @@ export default {
     ...mapMutations('exams', ['resetExam']),
 
     getImagePath(title){
-      return require(`../../../assets/images/${title}.jpg`)
+      return require(`../../../assets/images/${title}.jpg.webp`)
     },
 
     async handleChange(e){
