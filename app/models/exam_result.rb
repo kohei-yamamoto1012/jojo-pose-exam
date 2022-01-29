@@ -44,8 +44,8 @@ class ExamResult < ApplicationRecord
                     :attach_webp_image
 
   ML_MODEL_PATH = 'app/ml_models/movenet_singlepose_lightning_4.onnx'.freeze
-  INPUT_IMG_WIDTH = 192.0
-  INPUT_IMG_HEIGHT = 192.0
+  INPUT_IMG_WIDTH = 192
+  INPUT_IMG_HEIGHT = 192
   ATTACH_IMG_WIDTH = 1008
 
   def set_exam
@@ -71,11 +71,14 @@ class ExamResult < ApplicationRecord
 
     img = @upload_image_vips
     results = estimate_pose(img)
+    x_pad = img.height > img.width ? (img.height - img.width) : 0
+    y_pad = img.width > img.height ? (img.width - img.height) : 0
+
     results.each_with_index do |keypoint, index|
       exam_result_keypoint = ExamResultKeypoint.new(
         keypoint: Keypoint.find(index + 1),
-        x_coordinate: (keypoint[1] * img.width).round,
-        y_coordinate: (keypoint[0] * img.height).round,
+        x_coordinate: (keypoint[1] * (img.width + x_pad)).round,
+        y_coordinate: (keypoint[0] * (img.height + y_pad)).round,
         score: (keypoint[2] * 100).round
       )
       exam_result_keypoints << exam_result_keypoint
@@ -145,7 +148,8 @@ class ExamResult < ApplicationRecord
 
   def preprocess(img)
     img = img[0..2] if img.bands > 3
-    img_resize = img.thumbnail_image(INPUT_IMG_WIDTH, height: INPUT_IMG_HEIGHT, size: :force)
+    img_resize = img.thumbnail_image(INPUT_IMG_WIDTH, height: INPUT_IMG_HEIGHT) # アスペクト比を保持しつつ変換
+    img_resize = img_resize.embed(0, 0, INPUT_IMG_WIDTH, INPUT_IMG_HEIGHT, extend: :black) # 0埋め
     img_resize.to_a
   end
 end
