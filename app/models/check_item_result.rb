@@ -41,7 +41,7 @@ class CheckItemResult < ApplicationRecord
           right_keypoint: left_hip
         )
 
-      when 'r_elbow_angle_0to30'
+      when 'r_elbow_angle_0to35'
         right_elbow = exam_result_keypoints.find { |n| n.keypoint.name == 'right_elbow' }
         right_wrist = exam_result_keypoints.find { |n| n.keypoint.name == 'right_wrist' }
         right_shoulder = exam_result_keypoints.find { |n| n.keypoint.name == 'right_shoulder' }
@@ -50,8 +50,8 @@ class CheckItemResult < ApplicationRecord
           vertex_keypoint: right_elbow,
           side_a_keypoint: right_wrist,
           side_b_keypoint: right_shoulder,
-          min_angle: 0,
-          max_angle: 30
+          min_angle: 5,
+          max_angle: 35
         )
 
       when 'l_elbow_angle_125to160'
