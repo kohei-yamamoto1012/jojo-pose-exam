@@ -84,3 +84,5 @@ production:
   database: jojo_pose_exam_production
   username: jojo_pose_exam
   password: <%= ENV['JOJO_POSE_EXAM_DATABASE_PASSWORD'] %>
+  url:  <%= ENV["DATABASE_URL"] %>
+  pool: <%= ENV['RAILS_MAX_THREADS'] || 5 %>
