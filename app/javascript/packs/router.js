@@ -36,5 +36,8 @@ export default new VueRouter({
         examResultId: routes.params.exam_result_id
       })
     }
-  ]
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  }
 })
