@@ -23,6 +23,14 @@
             </v-card>
           </v-col>
         </v-row>
+
+        <v-row
+          dense
+          class="mb-16"
+          justify="center"
+        >
+          <span class="text-subtitle-1 text-md-h6 font-weight-black background">more coming soon...</span>
+        </v-row>
       </div>
     </transition>
   </div>
