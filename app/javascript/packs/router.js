@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import TopIndex from '../pages/top/index.vue'
+import Terms from '../pages/shared/terms.vue'
+import Policy from '../pages/shared/policy.vue'
+import Contact from '../pages/shared/contact.vue'
 import ExamListIndex from '../pages/exam_list/index.vue'
 import ExamIndex from '../pages/exam/index.vue'
 import ExamResultIndex from '../pages/exam_result/index.vue'
@@ -14,6 +17,21 @@ export default new VueRouter({
       path: '/',
       name: 'TopIndex',
       component: TopIndex
+    },
+    {
+      path: '/terms',
+      name: 'Terms',
+      component: Terms
+    },
+    {
+      path: '/policy',
+      name: 'Policy',
+      component: Policy
+    },
+    {
+      path: '/contact',
+      name: 'Contact',
+      component: Contact
     },
     {
       path: '/exams',

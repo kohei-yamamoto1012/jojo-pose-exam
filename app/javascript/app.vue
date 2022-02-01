@@ -2,7 +2,7 @@
   <v-app>
     <TheHeader />
 
-    <v-main class="bg main">
+    <v-main class="bg main mb-16">
       <v-container>
         <transition 
           name="page"
