@@ -22,7 +22,7 @@
 
     <v-row
       dense
-      class="mb-6"
+      class="mb-12"
       justify="center"
     >
       <v-col
@@ -52,7 +52,7 @@
       </v-col>
     </v-row>
 
-    <div class="text-center mb-16">
+    <div class="text-center mb-12">
       <AppLinkButton :to="{ name: 'ExamListIndex'}">
         受験する
       </AppLinkButton>

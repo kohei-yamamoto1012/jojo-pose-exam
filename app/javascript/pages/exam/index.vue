@@ -3,7 +3,7 @@
     <transition name="content" mode="out-in">
       <v-row 
         dense
-        class="mt-1 mb-16"
+        class="mt-1 mb-8"
         justify="center"
         v-show="isExam"
       >
