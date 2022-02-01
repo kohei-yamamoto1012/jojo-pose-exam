@@ -72,7 +72,7 @@ export default {
       supports:[
         {
           name: '検定一覧',
-          icon: 'emoji_people',
+          icon: 'mdi-card-bulleted-settings-outline',
           link: { name:'ExamListIndex' }
         }
       ]
