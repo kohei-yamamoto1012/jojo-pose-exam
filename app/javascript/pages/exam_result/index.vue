@@ -88,7 +88,7 @@
         <v-row
           dense
           justify="center"
-          class="mt-8 mb-16"
+          class="mt-10 mb-8"
         >
           <AppLinkButton 
             :to="{ name: 'ExamIndex', params: { exam_id: exam_result.exam.id } }"
@@ -173,10 +173,10 @@ export default {
     },
     getCheckItemResultIcon(result){
       if(result == true){
-        return { color: 'green', icon:'task_alt' }
+        return { color: 'green', icon:'mdi-check-circle-outline' }
       }
       else{
-        return { color: 'red', icon: 'highlight_off' }
+        return { color: 'red', icon: 'mdi-close-octagon-outline' }
       }
     },
     typingCompleted(){

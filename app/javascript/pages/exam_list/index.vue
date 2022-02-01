@@ -26,7 +26,7 @@
 
         <v-row
           dense
-          class="mb-16"
+          class="mb-4"
           justify="center"
         >
           <span class="text-subtitle-1 text-md-h6 font-weight-black background">more coming soon...</span>
