@@ -173,10 +173,10 @@ export default {
     },
     getCheckItemResultIcon(result){
       if(result == true){
-        return { color: 'green', icon:'task_alt' }
+        return { color: 'green', icon:'mdi-check-circle-outline' }
       }
       else{
-        return { color: 'red', icon: 'highlight_off' }
+        return { color: 'red', icon: 'mdi-close-octagon-outline' }
       }
     },
     typingCompleted(){

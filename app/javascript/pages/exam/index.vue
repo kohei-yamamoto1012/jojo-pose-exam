@@ -46,7 +46,7 @@
                   class="me-2"
                   color="accent"
                 >
-                  star
+                  mdi-star
                 </v-icon>
                 <span class="text-subtitle-2 text-sm-subtitle-1 card-font font-weight-bold">{{ check_item.content }}</span>
               </v-list-item>
@@ -67,7 +67,7 @@
               >
                 <v-file-input
                   accept="image/*"
-                  prepend-icon="add_a_photo"
+                  prepend-icon="mdi-camera-plus"
                   label="ジョジョ立ち画像"
                   :error-messages="errors"
                   class="mx-5"
@@ -89,7 +89,7 @@
                   <template v-slot:loader>
                     <span>解析中ッ</span>
                     <span class="custom-loader">
-                      <v-icon>cached</v-icon>
+                      <v-icon>mdi-sync</v-icon>
                     </span>
                   </template>
                 </v-btn>
