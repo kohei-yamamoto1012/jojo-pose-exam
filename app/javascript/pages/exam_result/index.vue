@@ -185,9 +185,8 @@ export default {
     twitterShare(){
       // const url = 'https://jojo-pose-exam.herokuapp.com…' // 末尾の…でツイート中のurl表示が省略されることを避ける
       const url = `${location.origin}/${this.exam_result.id}…` // 末尾の…でツイート中のurl表示が省略されることを避ける
-      const text = `%0a%23ジョジョ立ち検定 を受検しました！%0a%0a検定名: ${this.exam_result.exam.title}%0a受験結果: ${this.resultText}%0a%0a▼ 受検結果ページ ▼%0a`
+      const text = `%0a%23ジョジョ立ち検定 を受検しました！%0a%0a検定名: ${this.exam_result.exam.title}検定%0a受験結果: ${this.resultText}%0a%0a▼ 受検結果ページ ▼%0a`
 
-      // %0a で改行
       return `https://twitter.com/intent/tweet?url=${url}&text=${text}`
     }
   },
