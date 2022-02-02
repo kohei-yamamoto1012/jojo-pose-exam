@@ -4,6 +4,8 @@
     large
     rounded
     :to="to"
+    dark
+    :min-width="minWidth"
   >
     <slot />
   </v-btn>
@@ -19,6 +21,9 @@ export default {
     to: {
       type: Object,
       required: true
+    },
+    minWidth: {
+      type: [ String, Number ]
     }
   },
   data: function () {
