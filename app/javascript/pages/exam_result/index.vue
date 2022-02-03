@@ -88,12 +88,35 @@
         <v-row
           dense
           justify="center"
-          class="mt-10 mb-8"
+          class="mt-10 mb-5"
         >
-          <AppLinkButton 
-            :to="{ name: 'ExamIndex', params: { exam_id: exam_result.exam.id } }"
+          <v-btn
+            :href="twitterShare"
+            target="_blank"
+            color="blue lighten-1"
+            dark
+            large
+            rounded
+            min-width="140"
           >
-            再挑戦する
+            <v-icon>mdi-twitter</v-icon>
+             結果を共有
+          </v-btn>
+
+        </v-row>
+
+        <v-row
+          dense
+          justify="center"
+          class="mb-10"
+        >
+          <AppLinkButton
+            :to="{ name: 'ExamIndex', params: { exam_id: exam_result.exam.id } }"
+            color="red accent-2 "
+            min-width="140"
+          >
+            <v-icon>mdi-replay</v-icon>
+            リトライ
           </AppLinkButton>
         </v-row>
       </div>
@@ -158,6 +181,12 @@ export default {
     },
     comment(){
       return this.exam_result.exam_result_comment.content.replaceAll('\\n', '\n')
+    },
+    twitterShare(){
+      const url = `${location.origin}/exam_results/${this.exam_result.id}.` // 末尾の.でツイート中のurl表示が省略されることを避ける
+      const text = `%0a%23ジョジョ立ち検定 を受検しました！%0a%0a検定名: ${this.exam_result.exam.title}検定%0a受験結果: ${this.resultText}%0a%0a▼ 受検結果ページ ▼%0a`
+
+      return `https://twitter.com/intent/tweet?url=${url}&text=${text}`
     }
   },
   created() {
