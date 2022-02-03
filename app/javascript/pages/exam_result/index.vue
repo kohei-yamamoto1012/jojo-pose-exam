@@ -183,8 +183,7 @@ export default {
       return this.exam_result.exam_result_comment.content.replaceAll('\\n', '\n')
     },
     twitterShare(){
-      // const url = 'https://jojo-pose-exam.herokuapp.com…' // 末尾の…でツイート中のurl表示が省略されることを避ける
-      const url = `${location.origin}/${this.exam_result.id}…` // 末尾の…でツイート中のurl表示が省略されることを避ける
+      const url = `${location.origin}/exam_results/${this.exam_result.id}…` // 末尾の…でツイート中のurl表示が省略されることを避ける
       const text = `%0a%23ジョジョ立ち検定 を受検しました！%0a%0a検定名: ${this.exam_result.exam.title}検定%0a受験結果: ${this.resultText}%0a%0a▼ 受検結果ページ ▼%0a`
 
       return `https://twitter.com/intent/tweet?url=${url}&text=${text}`
