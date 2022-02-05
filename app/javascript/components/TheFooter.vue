@@ -1,34 +1,43 @@
 <template>
   <v-footer
-    app
     padless
-    color="background"
-    absolute
+    color="indigo lighten-5"
   >
-  <v-row
-    justify="center"
-    no-gutters
-  >
-    <v-btn
-      v-for="link in links"
-      :key="link.name"
-      :to="link.to"
-      text
-      class="mt-1"
-      rounded
-      :small="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm"
-      active-class="no-active"
+    <v-row
+      justify="center"
+      no-gutters
+      class="mt-2"
     >
-      {{ link.name }}
-    </v-btn>
+      <v-col 
+        cols="12"
+        md="4"
+        lg="2"
+        v-for="link in links"
+        :key="link.name"
+      >
+        <v-list
+          dense
+          class="indigo lighten-5 pt-0"
+          shaped
+        >
+          <v-list-item class="mx-10" :to="link.to">
+            <v-list-item-title class=" font--text">{{ link.name }}</v-list-item-title>
+            <v-icon 
+              color="grey lighten-1"
+            >
+             mdi-chevron-right
+            </v-icon>
+          </v-list-item>
+        </v-list>
+      </v-col>
 
-    <v-col
-      class="text-center mb-2"
-      cols="12"
-    >
-      <span class="test text-caption">&copy; 2022 ジョジョ立ち検定</span>
-    </v-col>
-  </v-row>
+      <v-col
+        class="text-center mb-2"
+        cols="12"
+      >
+        <span class="test text-caption font--text">&copy; 2022 ジョジョ立ち検定</span>
+      </v-col>
+    </v-row>
   </v-footer>
 </template>
 
@@ -48,7 +57,5 @@ export default {
 </script>
 
 <style scoped>
-.v-btn--active.no-active::before {
-  opacity: 0 !important;
-}
+
 </style>
