@@ -111,7 +111,7 @@
           class="mb-10"
         >
           <AppLinkButton
-            :to="{ name: 'ExamIndex', params: { exam_id: exam_result.exam.id } }"
+            :to="{ name: 'Exam', params: { exam_id: exam_result.exam.id } }"
             color="red accent-2 "
             min-width="140"
           >
@@ -129,7 +129,7 @@ import { VueTyper } from 'vue-typer'
 
 export default {
   beforeRouteEnter: (to, from, next) => {
-    if(from.name == 'ExamIndex'){
+    if(from.name == 'Exam'){
       next( vm => vm.comment_cutin = true )
     }
     else{

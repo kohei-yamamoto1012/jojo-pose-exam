@@ -11,7 +11,7 @@
     </v-row>
 
     <div class="text-center mb-16">
-      <AppLinkButton :to="{ name: 'ExamListIndex'}">
+      <AppLinkButton :to="{ name: 'ExamList'}">
         受験する
       </AppLinkButton>
     </div>
@@ -54,7 +54,7 @@
     </v-row>
 
     <div class="text-center mb-12">
-      <AppLinkButton :to="{ name: 'ExamListIndex'}">
+      <AppLinkButton :to="{ name: 'ExamList'}">
         受験する
       </AppLinkButton>
     </div>
@@ -66,22 +66,22 @@
 export default {
   data: function () {
     return {
-      logo_top_src: require('../../../assets/images/logo_top.svg'),
+      logo_top_src: require('../../assets/images/logo_top.svg'),
 
       cards: [
         {
           title: '検定を選択',
-          src: require('../../../assets/images/select_exam.svg'),
+          src: require('../../assets/images/select_exam.svg'),
           text: '検定一覧から受験したいジョジョ立ち検定を選択しましょう。'
         },
         {
           title: 'ジョジョ立ち撮影',
-          src: require('../../../assets/images/take_picture.svg'),
+          src: require('../../assets/images/take_picture.svg'),
           text: 'ジョジョ立ちを撮影しましょう。全身が映るようにすることが撮影のポイントです。'
         },
         {
           title: 'ジョジョ立ちアップロード',
-          src: require('../../../assets/images/upload_picture.svg'),
+          src: require('../../assets/images/upload_picture.svg'),
           text: '撮影したジョジョ立ち画像をアップロードしましょう。AIによる解析後に検定結果が表示されます！'
         }
       ]
