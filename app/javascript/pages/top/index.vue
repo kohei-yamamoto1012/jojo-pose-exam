@@ -36,6 +36,7 @@
         <v-card
           rounded
           class="rounded-xl"
+          :min-height="cardsHight"
         >
           <p class="text-button text-center mb-2">
             Lesson{{ index + 1 }}
@@ -76,14 +77,19 @@ export default {
         {
           title: 'ジョジョ立ち撮影',
           src: require('../../../assets/images/take_picture.svg'),
-          text: 'ジョジョ立ちを撮影しましょう。全身が映るように撮影する必要があります。'
+          text: 'ジョジョ立ちを撮影しましょう。全身が映るようにすることが撮影のポイントです。'
         },
         {
           title: 'ジョジョ立ちアップロード',
           src: require('../../../assets/images/upload_picture.svg'),
-          text: '撮影したジョジョ立ち画像をアップロードしましょう。ジョジョ立ち解析後に検定結果が表示されます！'
+          text: '撮影したジョジョ立ち画像をアップロードしましょう。AIによる解析後に検定結果が表示されます！'
         }
       ]
+    }
+  },
+  computed:{
+    cardsHight(){
+      return this.$vuetify.breakpoint.xl ? '376px' : '288px'
     }
   }
 }
