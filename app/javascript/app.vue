@@ -4,9 +4,11 @@
 
     <v-main class="bg main">
       <v-container>
+        <NotFound v-if="isNotFound" />
         <transition 
           name="page"
           mode="out-in"
+          v-else
         >
           <router-view />
         </transition>
@@ -21,11 +23,25 @@
 
 import TheHeader from './components/TheHeader.vue'
 import TheFooter from './components/TheFooter.vue'
+import NotFound from './pages/shared/NotFound.vue'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   components: {
     TheHeader,
-    TheFooter
+    TheFooter,
+    NotFound
+  },
+  computed: {
+    ...mapGetters('isNotFound', ['isNotFound']),
+  },
+  methods: {
+    ...mapMutations('isNotFound', ['setIsNotFound']),
+  },
+  watch: {
+    $route() {
+      this.setIsNotFound(false)
+    }
   }
 }
 </script>
