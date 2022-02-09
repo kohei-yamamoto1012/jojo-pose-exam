@@ -15,7 +15,7 @@
             lg="3"
             class="mb-6"
           >
-            <v-card :to="{ name: 'ExamIndex', params: { exam_id: exam.id } }">
+            <v-card :to="{ name: 'Exam', params: { exam_id: exam.id } }">
               <v-img :src="getImagePath(exam.title)" />
               <v-card-title class="py-1 card-exam-font font-weight-bold">
                 {{ exam.title }}検定
@@ -61,7 +61,7 @@ export default {
     ...mapMutations('exams', ['resetExams']),
 
     getImagePath(title){
-      return require(`../../../assets/images/${title}`)
+      return require(`../../assets/images/${title}`)
     }
 
   }

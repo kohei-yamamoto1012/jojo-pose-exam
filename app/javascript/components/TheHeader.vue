@@ -6,7 +6,7 @@
       :disable-resize-watcher="true"
     >
       <v-list-item>
-        <router-link :to="{ name: 'TopIndex'}">
+        <router-link :to="{ name: 'Top'}">
           <v-img
             :src="logo_nav_src"
             max-width="200"
@@ -40,10 +40,10 @@
       color="transparent"
     >
       <v-toolbar-title 
-        v-if="$route.name != 'TopIndex'" 
+        v-if="$route.name != 'Top'" 
         style="cursor: pointer"
       >
-        <router-link :to="{ name: 'TopIndex'}">
+        <router-link :to="{ name: 'Top'}">
           <v-img
             :src="logo_head_src"
             max-width="200"
@@ -73,7 +73,7 @@ export default {
         {
           name: '検定一覧',
           icon: 'mdi-card-bulleted-settings-outline',
-          link: { name:'ExamListIndex' }
+          link: { name:'ExamList' }
         }
       ]
     }

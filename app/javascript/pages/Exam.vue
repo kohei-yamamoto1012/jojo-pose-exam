@@ -136,7 +136,7 @@ export default {
     ...mapMutations('exams', ['resetExam']),
 
     getImagePath(title){
-      return require(`../../../assets/images/${title}`)
+      return require(`../../assets/images/${title}`)
     },
 
     async handleChange(e){
@@ -159,7 +159,7 @@ export default {
         const exam_result = res.data.exam_result
 
         this.isLoading = false
-        this.$router.push({ name: 'ExamResultIndex', params: { exam_result_id: exam_result.id } })
+        this.$router.push({ name: 'ExamResult', params: { exam_result_id: exam_result.id } })
       })
     }
 

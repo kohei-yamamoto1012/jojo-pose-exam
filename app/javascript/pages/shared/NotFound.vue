@@ -1,4 +1,4 @@
-<template>
+<template>  
   <v-row
     dense
     class="mb-6"
@@ -10,33 +10,41 @@
       lg="7"
     >
       <v-card>
-        <v-card-title class="font-weight-bold">お問い合わせ</v-card-title>
+        <v-card-title class="font-weight-bold">404 NotFound</v-card-title>
         <v-card-text class="text-subtitle-2 font-weight-bold py-1">
-          <p>ジョジョ立ち検定に関するお問い合わせ、不具合の報告などございましたら、以下のTwitterアカウントまでご連絡ください。</p>
-          <span>ご感想もお待ちしております！</span> 
+          <p>お探しのページが見つかりませんでした。</p>
+          <p>一時的にアクセスができない状況にあるか、移動もしくは削除された可能性があります。</p>
+          <p>URLにお間違いがないか再度ご確認ください。</p>
         </v-card-text>
 
         <v-card-actions>
           <v-btn
-            href="https://twitter.com/koheiyamamoto26"
-            color="blue lighten-1"
+            :to="{ name: 'Top'}"
+            color="font"
             dark
             class="text-lowercase pe-4"
-            target="_blank"
           >
             <v-icon
               left
             >
-              mdi-twitter
+              mdi-home
             </v-icon>
-            @koheiyamamoto26
+            トップページに戻る
           </v-btn>
+
         </v-card-actions>
 
       </v-card>
     </v-col>
   </v-row>
+
 </template>
+
+<script>
+export default {
+
+}
+</script>
 
 <style  lang="scss" scoped>
 .page-enter-active{
