@@ -7,6 +7,7 @@ import Contact from '../pages/shared/Contact.vue'
 import ExamList from '../pages/ExamList.vue'
 import Exam from '../pages/Exam.vue'
 import ExamResult from '../pages/ExamResult.vue'
+import NotFound from '../pages/shared/NotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -53,6 +54,11 @@ export default new VueRouter({
       props: routes => ({
         examResultId: routes.params.exam_result_id
       })
+    },
+    {
+      path: "*",
+      name: "NotFound",
+      component: NotFound,
     }
   ],
   scrollBehavior (to, from, savedPosition) {
