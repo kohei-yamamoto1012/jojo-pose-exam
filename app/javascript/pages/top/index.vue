@@ -36,6 +36,7 @@
         <v-card
           rounded
           class="rounded-xl"
+          :min-height="cardsHight"
         >
           <p class="text-button text-center mb-2">
             Lesson{{ index + 1 }}
@@ -84,6 +85,11 @@ export default {
           text: '撮影したジョジョ立ち画像をアップロードしましょう。AIによる解析後に検定結果が表示されます！'
         }
       ]
+    }
+  },
+  computed:{
+    cardsHight(){
+      return this.$vuetify.breakpoint.xl ? '376px' : '288px'
     }
   }
 }
