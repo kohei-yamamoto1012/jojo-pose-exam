@@ -9,10 +9,7 @@ axiosInstance.interceptors.response.use(
   response => response,
   error => {
     const { status } = error.response
-    const notFound = 404
-    if (status === notFound) {
-      store.commit("isNotFound/setIsNotFound", true)
-    }
+    store.commit("responseStatus/setResponseStatus", status)
     return Promise.reject(error)
   }
 )

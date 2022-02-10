@@ -4,13 +4,13 @@
 
     <v-main class="bg main">
       <v-container>
-        <NotFound v-if="isNotFound" />
         <transition 
           name="page"
           mode="out-in"
-          v-else
         >
-          <router-view />
+          <NotFound v-if="responseStatus === 404" />
+          <InternalServerError v-else-if="responseStatus === 500" />
+          <router-view v-else />
         </transition>
       </v-container>
     </v-main>
@@ -24,23 +24,25 @@
 import TheHeader from './components/TheHeader.vue'
 import TheFooter from './components/TheFooter.vue'
 import NotFound from './pages/shared/NotFound.vue'
+import InternalServerError from './pages/shared/InternalServerError.vue'
 import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   components: {
     TheHeader,
     TheFooter,
-    NotFound
+    NotFound,
+    InternalServerError
   },
   computed: {
-    ...mapGetters('isNotFound', ['isNotFound']),
+    ...mapGetters('responseStatus', ['responseStatus']),
   },
   methods: {
-    ...mapMutations('isNotFound', ['setIsNotFound']),
+    ...mapMutations('responseStatus', ['setResponseStatus']),
   },
   watch: {
     $route() {
-      this.setIsNotFound(false)
+      this.setResponseStatus(null)
     }
   }
 }
