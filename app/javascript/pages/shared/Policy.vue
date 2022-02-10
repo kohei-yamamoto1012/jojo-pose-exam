@@ -13,7 +13,7 @@
         <v-card>
           <v-card-title class="font-weight-bold">プライバシーポリシー</v-card-title>
           <v-card-text class="text-subtitle-2 font-weight-bold">
-            <p>本ウェブサイトの管理者（以下，「管理者」といいます。）は，本ウェブサイト上で提供するサービス（以下,「本サービス」といいます。）における，ユーザーの個人情報の取扱いについて，以下のとおりプライバシーポリシー（以下，「本ポリシー」といいます。）を定めます。</p>
+            <p>本ウェブサイトの管理者（以下、「管理者」といいます。）は、本ウェブサイト上で提供するサービス（以下、「本サービス」といいます。）における、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」といいます。）を定めます。</p>
           </v-card-text>
 
           <v-card-title class="text-subtitle-1 font-weight-bold">第1条 (ユーザーから取得する情報)</v-card-title>
@@ -72,7 +72,7 @@
 
           <v-card-title class="text-subtitle-1 font-weight-bold">第6条 (お問い合わせ)</v-card-title>
           <v-card-text class="text-subtitle-2 font-weight-bold">
-            本ポリシーに関するお問い合わせは，お問い合わせフォームまでお願いいたします。
+            本ポリシーに関するお問い合わせは、お問い合わせフォームまでお願いいたします。
           </v-card-text>
 
           <v-card-text class="text-subtitle-2 font-weight-bold">2022年2月1日 制定</v-card-text>
