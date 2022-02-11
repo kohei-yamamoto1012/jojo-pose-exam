@@ -5,7 +5,7 @@ module ApplicationHelper
       description: 'ジョジョ立ちの高みを目指す人達に向けた、ジョジョ立ち検定サービスです。AI技術を用いてあなたジョジョ立ちを解析し、合否を判定いたします。',
       canonical: 'https://jojo-pose-exam.jp',
       noindex: !Rails.env.production?, # production環境以外はnoindex
-      icon:  image_url('favicon.ico'),
+      icon: image_url('favicon.ico'),
       og: {
         title: :title,
         description: :description,

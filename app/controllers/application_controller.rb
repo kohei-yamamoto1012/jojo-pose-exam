@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   before_action :ensure_domain, if: :production?
-  FQDN = 'jojo-pose-exam.jp'
+  FQDN = 'jojo-pose-exam.jp'.freeze
 
   def ensure_domain
     return unless /\.herokuapp.com/.match?(request.host)
