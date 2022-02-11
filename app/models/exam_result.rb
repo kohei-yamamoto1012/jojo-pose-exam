@@ -71,15 +71,14 @@ class ExamResult < ApplicationRecord
 
     img = @upload_image_vips
     results = estimate_pose(img)
-    x_pad = img.height > img.width ? (img.height - img.width) : 0
-    y_pad = img.width > img.height ? (img.width - img.height) : 0
+    normalized_results = normalize_results(results, img.height, img.width)
 
-    results.each_with_index do |keypoint, index|
+    normalized_results.each_with_index do |keypoint, index|
       exam_result_keypoint = ExamResultKeypoint.new(
         keypoint: Keypoint.find(index + 1),
-        x_coordinate: (keypoint[1] * (img.width + x_pad)).round,
-        y_coordinate: (keypoint[0] * (img.height + y_pad)).round,
-        score: (keypoint[2] * 100).round
+        x_coordinate: keypoint[:x_coordinate],
+        y_coordinate: keypoint[:y_coordinate],
+        score: keypoint[:score]
       )
       exam_result_keypoints << exam_result_keypoint
     end
@@ -111,7 +110,7 @@ class ExamResult < ApplicationRecord
   def attach_webp_image
     return unless @upload_image_vips
 
-    aspect_height = @upload_image_vips.height.to_f / @upload_image_vips.width.to_f
+    aspect_height = @upload_image_vips.height.to_f / @upload_image_vips.width
     img = @upload_image_vips.thumbnail_image(ATTACH_IMG_WIDTH, height: ATTACH_IMG_WIDTH * aspect_height)
 
     tmp_save_path = Rails.root.join('tmp', @upload_image_name).to_s
@@ -149,7 +148,24 @@ class ExamResult < ApplicationRecord
   def preprocess(img)
     img = img[0..2] if img.bands > 3
     img_resize = img.thumbnail_image(INPUT_IMG_WIDTH, height: INPUT_IMG_HEIGHT) # アスペクト比を保持しつつ変換
-    img_resize = img_resize.embed(0, 0, INPUT_IMG_WIDTH, INPUT_IMG_HEIGHT, extend: :black) # 0埋め
+    img_resize = img_resize.embed(0, 0, INPUT_IMG_WIDTH, INPUT_IMG_HEIGHT, extend: :black) # 正方形に0埋め
     img_resize.to_a
+  end
+
+  def normalize_results(results, img_height, img_width)
+    x_pad = img_height > img_width ? (img_height - img_width) : 0
+    y_pad = img_width > img_height ? (img_width - img_height) : 0
+
+    normalized_results = []
+    results.each do |result|
+      normalized_result = {
+        x_coordinate: (result[1] * (img_width + x_pad)).round,
+        y_coordinate: (result[0] * (img_height + y_pad)).round,
+        score: (result[2] * 100).round
+      }
+      normalized_results.push(normalized_result)
+    end
+
+    normalized_results
   end
 end
