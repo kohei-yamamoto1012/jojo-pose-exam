@@ -9,6 +9,8 @@
 #
 class Keypoint < ApplicationRecord
   has_many :exam_result_keypoints, dependent: :destroy
+  has_many :check_item_keypoints, dependent: :destroy
+
   validates :name, presence: true
   validates :name, length: { maximum: 30 }
 end
