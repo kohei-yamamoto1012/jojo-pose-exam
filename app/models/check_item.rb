@@ -38,6 +38,6 @@ class CheckItem < ApplicationRecord
   enum check_pattern: {
     keypoints_horizontal: 1,
     keypoints_vertical: 2,
-    keypoints_angle: 3,
+    keypoints_angle: 3
   }
 end

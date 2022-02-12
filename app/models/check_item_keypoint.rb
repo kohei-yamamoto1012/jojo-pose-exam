@@ -15,16 +15,16 @@
 #  index_check_item_keypoints_on_keypoint_id    (keypoint_id)
 #
 class CheckItemKeypoint < ApplicationRecord
-belongs_to :keypoint
-belongs_to :check_item
+  belongs_to :keypoint
+  belongs_to :check_item
 
-validates :position, presence: true
+  validates :position, presence: true
 
-enum position: {
-  center: 1,
-  left: 2,
-  right: 3,
-  top: 4,
-  bottom: 5
-}
+  enum position: {
+    center: 1,
+    left: 2,
+    right: 3,
+    top: 4,
+    bottom: 5
+  }
 end
