@@ -6,6 +6,8 @@
 #  allocation    :integer          not null
 #  check_pattern :integer          not null
 #  content       :string           not null
+#  max_angle     :integer          not null
+#  min_angle     :integer          not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  exam_id       :bigint           not null

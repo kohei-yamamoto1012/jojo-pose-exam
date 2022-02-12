@@ -4,6 +4,8 @@ class CreateCheckItems < ActiveRecord::Migration[6.1]
       t.belongs_to :exam, null: false
       t.string :content, null: false
       t.integer :allocation, null: false
+      t.integer :min_angle, null: false
+      t.integer :max_angle, null: false
       t.integer :check_pattern, null: false
 
       t.timestamps
