@@ -20,7 +20,7 @@ CSV.foreach('db/exams.csv', headers: true) do |row|
         allocation: row['allocation'],
         min_angle: row['min_angle'],
         max_angle: row['max_angle'],
-        check_pattern: row['check_pattern']#.to_i 動作確認必要
+        check_pattern: row['check_pattern']
       )
 
       #check_itemに関連づくcheck_item_keypointsを作成
@@ -29,7 +29,7 @@ CSV.foreach('db/exams.csv', headers: true) do |row|
           check_item.check_item_keypoints << CheckItemKeypoint.create!(
             keypoint: Keypoint.find_by(name: row['keypoint_name']),
             check_item: check_item,
-            position: row['position']#.to_i 動作確認必要
+            position: row['position']
           )
         end
       end
