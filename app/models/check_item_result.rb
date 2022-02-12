@@ -120,8 +120,6 @@ class CheckItemResult < ApplicationRecord
 
   private
 
-  def 
-
   def between_horizontal?(center_keypoint:, left_keypoint:, right_keypoint:)
     center_keypoint.x_coordinate > left_keypoint.x_coordinate && center_keypoint.x_coordinate < right_keypoint.x_coordinate
   end
