@@ -41,7 +41,7 @@ class CheckItemResult < ApplicationRecord
           right_keypoint: left_hip
         )
 
-      when 'r_elbow_angle_0to35'
+      when 'r_elbow_angle_5to35'
         right_elbow = exam_result_keypoints.find { |n| n.keypoint.name == 'right_elbow' }
         right_wrist = exam_result_keypoints.find { |n| n.keypoint.name == 'right_wrist' }
         right_shoulder = exam_result_keypoints.find { |n| n.keypoint.name == 'right_shoulder' }
@@ -119,6 +119,8 @@ class CheckItemResult < ApplicationRecord
   end
 
   private
+
+  def 
 
   def between_horizontal?(center_keypoint:, left_keypoint:, right_keypoint:)
     center_keypoint.x_coordinate > left_keypoint.x_coordinate && center_keypoint.x_coordinate < right_keypoint.x_coordinate
