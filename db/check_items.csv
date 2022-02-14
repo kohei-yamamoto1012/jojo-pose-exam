@@ -1,7 +1,8 @@
-exam_title,check_pattern,content,allocation
-ジョルノ立ち,1,顎を軽く引き、正面を見据える,10
-ジョルノ立ち,2,右肘を曲げ、右手で胸元を掴む,20
-ジョルノ立ち,3,左手を軽く握り、左腿に添える,20
-ジョルノ立ち,4,足を大きく開く,10
-ジョルノ立ち,5,右膝を真っ直ぐ斜めに伸ばす,20
-ジョルノ立ち,6,左膝を軽く曲げ、踵を浮かす,20
+exam_title,content,allocation,min_angle,max_angle,check_pattern
+ジョルノ立ち,顎を軽く引き、正面を見据える,10,0,0,keypoints_horizontal
+ジョルノ立ち,右肘を曲げ、右手で胸元を掴む,20,5,35,keypoints_angle
+ジョルノ立ち,左手を軽く握り、左腿に添える,20,125,160,keypoints_angle
+ジョルノ立ち,右足を大きく開く,5,100,150,keypoints_angle
+ジョルノ立ち,左足を大きく開く,5,100,150,keypoints_angle
+ジョルノ立ち,右膝を真っ直ぐ斜めに伸ばす,20,160,195,keypoints_angle
+ジョルノ立ち,左膝を軽く曲げ、踵を浮かす,20,105,140,keypoints_angle

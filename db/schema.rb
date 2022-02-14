@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_20_090401) do
+ActiveRecord::Schema.define(version: 2022_02_12_135028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(version: 2021_12_20_090401) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "check_item_keypoints", force: :cascade do |t|
+    t.bigint "keypoint_id", null: false
+    t.bigint "check_item_id", null: false
+    t.integer "position", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["check_item_id"], name: "index_check_item_keypoints_on_check_item_id"
+    t.index ["keypoint_id"], name: "index_check_item_keypoints_on_keypoint_id"
+  end
+
   create_table "check_item_results", force: :cascade do |t|
     t.uuid "exam_result_id", null: false
     t.bigint "check_item_id", null: false
@@ -58,6 +68,8 @@ ActiveRecord::Schema.define(version: 2021_12_20_090401) do
     t.bigint "exam_id", null: false
     t.string "content", null: false
     t.integer "allocation", null: false
+    t.integer "min_angle", null: false
+    t.integer "max_angle", null: false
     t.integer "check_pattern", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

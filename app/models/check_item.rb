@@ -6,6 +6,8 @@
 #  allocation    :integer          not null
 #  check_pattern :integer          not null
 #  content       :string           not null
+#  max_angle     :integer          not null
+#  min_angle     :integer          not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  exam_id       :bigint           not null
@@ -18,11 +20,15 @@ class CheckItem < ApplicationRecord
   belongs_to :exam
   has_many :check_item_results, dependent: :destroy
   has_many :exam_results, through: :check_item_results
+  has_many :check_item_keypoints, dependent: :destroy
+  has_many :keypoints, through: :check_item_keypoints
 
   with_options presence: true do
     validates :exam
     validates :content
     validates :allocation
+    validates :min_angle
+    validates :max_angle
     validates :check_pattern
   end
 
@@ -30,11 +36,8 @@ class CheckItem < ApplicationRecord
   validates :allocation, inclusion: { in: 0..100 }
 
   enum check_pattern: {
-    nose_between_rl_hip: 1,
-    r_elbow_angle_0to35: 2,
-    l_elbow_angle_125to160: 3,
-    rl_leg_angle_100to150: 4,
-    r_knee_angle_160to195: 5,
-    l_knee_angle_105to140: 6
+    keypoints_horizontal: 1,
+    keypoints_vertical: 2,
+    keypoints_angle: 3
   }
 end
