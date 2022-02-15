@@ -33,6 +33,7 @@ gem 'aws-sdk-s3', require: false
 gem 'ruby-vips'
 gem 'onnxruntime'
 gem 'meta-tags'
+gem 'seed-fu'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
