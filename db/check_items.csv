@@ -1,4 +1,9 @@
 exam_title,content,allocation,min_angle,max_angle,check_pattern
+ジョナサン立ち,左手の人差し指を鼻筋に合わせる,20,0,0,keypoints_horizontal
+ジョナサン立ち,右肩を上げる,20,0,0,keypoints_vertical
+ジョナサン立ち,右手を広げ、腕を伸ばす,20,100,140,keypoints_angle
+ジョナサン立ち,左足を開き、膝を少し内側へ,20,90,140,keypoints_angle
+ジョナサン立ち,右足を開き、膝を少し内側へ,20,90,140,keypoints_angle
 ジョルノ立ち,顎を軽く引き、正面を見据える,10,0,0,keypoints_horizontal
 ジョルノ立ち,右肘を曲げ、右手で胸元を掴む,20,5,35,keypoints_angle
 ジョルノ立ち,左手を軽く握り、左腿に添える,20,125,160,keypoints_angle
