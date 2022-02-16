@@ -35,7 +35,7 @@
         class="text-center mb-2"
         cols="12"
       >
-        <span class="test text-caption font--text">&copy; 2022 ジョジョ立ち検定</span>
+        <span class="text-caption font--text">&copy; 2022 ジョジョ立ち検定</span>
       </v-col>
     </v-row>
   </v-footer>
