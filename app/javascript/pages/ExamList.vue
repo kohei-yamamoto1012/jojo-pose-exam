@@ -4,16 +4,15 @@
       <div v-show="isExams">
         <v-row
           dense
-          class="mb-10"
           justify="center"
+          v-for="(exam) in exams"
+          :key="exam.title"
         >
           <v-col
-            v-for="(exam) in exams"
-            :key="exam.title"
             cols="11"
-            md="6"
+            md="5"
             lg="3"
-            class="mb-6"
+            class="mb-3"
           >
             <v-card :to="{ name: 'Exam', params: { exam_id: exam.id } }">
               <v-img :src="getImagePath(exam.title)" />
@@ -26,7 +25,7 @@
 
         <v-row
           dense
-          class="mb-4"
+          class="my-8"
           justify="center"
         >
           <span class="text-subtitle-1 text-md-h6 font-weight-black background">more coming soon...</span>
