@@ -60,7 +60,7 @@ export default {
     ...mapMutations('exams', ['resetExams']),
 
     getImagePath(title){
-      return require(`../../assets/images/${title}`)
+      return require(`../../assets/images/exams/${title}`)
     }
 
   }
