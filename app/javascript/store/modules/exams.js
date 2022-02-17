@@ -35,12 +35,18 @@ export default {
   actions: {
     fetchExams({commit}){
       axios.get('/api/exams')
-        .then(res => commit('setExams', res.data))
+        .then(res => {
+          commit('setExams', res.data)
+          window.scrollTo(0,0)
+        })
         .catch(err => console.log(err.response))
     },
     fetchExam({commit}, exam_id){
       axios.get(`/api/exams/${exam_id}`)
-        .then(res => commit('setExam', res.data.exam))
+        .then(res =>  {
+          commit('setExam', res.data.exam)
+          window.scrollTo(0,0)
+        })
         .catch(err => console.log(err.response))
     }
   }
