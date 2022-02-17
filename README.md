@@ -1,4 +1,8 @@
-# ジョジョ立ち検定(仮)
+# ジョジョ立ち検定
+![rails](https://img.shields.io/badge/Rails-v6.1.4-red)
+![rails](https://img.shields.io/badge/Vue-v2.6.14-brightgreen)
+
+
 ### サービス概要
 ジョジョ立ちの高みを目指す人達が、ジョジョ立ちの検定を受けるためのサービスです。<br>
 姿勢推定の技術を用いて、アップロードされたジョジョ立ち画像の合否を決定します。
