@@ -12,7 +12,7 @@
 
     <div class="text-center mb-16">
       <AppLinkButton :to="{ name: 'ExamList'}">
-        受験する
+        受検する
       </AppLinkButton>
     </div>
 
@@ -55,7 +55,7 @@
 
     <div class="text-center mb-12">
       <AppLinkButton :to="{ name: 'ExamList'}">
-        受験する
+        受検する
       </AppLinkButton>
     </div>
   </div>
@@ -72,7 +72,7 @@ export default {
         {
           title: '検定を選択',
           src: require('../../assets/images/select_exam.svg'),
-          text: '検定一覧から受験したいジョジョ立ち検定を選択しましょう。'
+          text: '検定一覧から受検したいジョジョ立ち検定を選択しましょう。'
         },
         {
           title: 'ジョジョ立ち撮影',
