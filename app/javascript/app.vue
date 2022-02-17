@@ -37,13 +37,13 @@ export default {
   computed: {
     ...mapGetters('responseStatus', ['responseStatus']),
   },
-  methods: {
-    ...mapMutations('responseStatus', ['setResponseStatus']),
-  },
   watch: {
     $route() {
       this.setResponseStatus(null)
     }
+  },
+  methods: {
+    ...mapMutations('responseStatus', ['setResponseStatus']),
   }
 }
 </script>

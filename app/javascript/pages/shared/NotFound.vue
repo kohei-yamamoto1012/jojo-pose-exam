@@ -10,7 +10,9 @@
       lg="7"
     >
       <v-card>
-        <v-card-title class="font-weight-bold">404 NotFound</v-card-title>
+        <v-card-title class="font-weight-bold">
+          404 NotFound
+        </v-card-title>
         <v-card-text class="text-subtitle-2 font-weight-bold py-1">
           <p>お探しのページが見つかりませんでした。</p>
           <p>一時的にアクセスができない状況にあるか、移動もしくは削除された可能性があります。</p>
@@ -31,13 +33,10 @@
             </v-icon>
             トップページに戻る
           </v-btn>
-
         </v-card-actions>
-
       </v-card>
     </v-col>
   </v-row>
-
 </template>
 
 <script>

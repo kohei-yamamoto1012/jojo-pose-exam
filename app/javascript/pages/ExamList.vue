@@ -1,12 +1,15 @@
 <template>
   <div>
-    <transition name="content" mode="out-in">
+    <transition
+      name="content"
+      mode="out-in"
+    >
       <div v-show="isExams">
         <v-row
-          dense
-          justify="center"
           v-for="(exam) in exams"
           :key="exam.title"
+          dense
+          justify="center"
         >
           <v-col
             cols="11"
@@ -43,14 +46,14 @@ export default {
     return {
     }
   },
-  destroyed(){
-    this.resetExams()
-  },
   computed:{
     ...mapGetters('exams', ['exams']),
     isExams(){
       return this.exams.length !== 0 ? true : false
     }
+  },
+  destroyed(){
+    this.resetExams()
   },
   created() {
     this.fetchExams()
