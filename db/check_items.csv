@@ -1,9 +1,9 @@
 id,exam_title,content,allocation,min_angle,max_angle,check_pattern
-1,ジョナサン立ち,左手の人差し指を鼻筋に合わせる,20,0,0,keypoints_horizontal
+1,ジョナサン立ち,左手の人差し指を鼻筋に合わせる,30,0,0,keypoints_horizontal
 2,ジョナサン立ち,右肩を上げる,20,0,0,keypoints_vertical
 3,ジョナサン立ち,右手を広げ、腕を伸ばす,20,100,140,keypoints_angle
-4,ジョナサン立ち,左足を開き、膝を少し内側へ,20,90,140,keypoints_angle
-5,ジョナサン立ち,右足を開き、膝を少し内側へ,20,90,140,keypoints_angle
+4,ジョナサン立ち,左足を開き、膝を少し内側へ,15,90,140,keypoints_angle
+5,ジョナサン立ち,右足を開き、膝を少し内側へ,15,90,140,keypoints_angle
 6,ジョルノ立ち,顎を軽く引き、正面を見据える,10,0,0,keypoints_horizontal
 7,ジョルノ立ち,右肘を曲げ、右手で胸元を掴む,20,5,35,keypoints_angle
 8,ジョルノ立ち,左手を軽く握り、左腿に添える,20,125,160,keypoints_angle
@@ -11,3 +11,7 @@ id,exam_title,content,allocation,min_angle,max_angle,check_pattern
 10,ジョルノ立ち,左足を大きく開く,5,100,150,keypoints_angle
 11,ジョルノ立ち,右膝を真っ直ぐ斜めに伸ばす,20,160,195,keypoints_angle
 12,ジョルノ立ち,左膝を軽く曲げ、踵を浮かす,20,105,140,keypoints_angle
+13,承太郎立ち,体を右向きにし、上半身を左にひねる,30,0,0,keypoints_horizontal
+14,承太郎立ち,左足を前に出し、右足を後に引く,20,0,0,keypoints_horizontal
+15,承太郎立ち,右肘を目線の高さに、手首は直角に折る,30,0,0,keypoints_vertical
+16,承太郎立ち,左肘を直角に曲げ、左手を腰の横に,20,75,105,keypoints_angle
