@@ -10,7 +10,9 @@
       lg="7"
     >
       <v-card>
-        <v-card-title class="font-weight-bold">お問い合わせ</v-card-title>
+        <v-card-title class="font-weight-bold">
+          お問い合わせ
+        </v-card-title>
         <v-card-text class="text-subtitle-2 font-weight-bold py-1">
           <p>ジョジョ立ち検定に関するお問い合わせ、不具合の報告などございましたら、以下のTwitterアカウントまでご連絡ください。</p>
           <span>ご感想もお待ちしております！</span> 
@@ -32,7 +34,6 @@
             @koheiyamamoto26
           </v-btn>
         </v-card-actions>
-
       </v-card>
     </v-col>
   </v-row>

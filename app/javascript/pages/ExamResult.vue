@@ -15,7 +15,10 @@
       />
     </v-overlay>
 
-    <transition name="content" mode="out-in">
+    <transition
+      name="content"
+      mode="out-in"
+    >
       <div v-show="isExamResult">
         <v-row
           dense
@@ -100,9 +103,8 @@
             min-width="140"
           >
             <v-icon>mdi-twitter</v-icon>
-             結果を共有
+            結果を共有
           </v-btn>
-
         </v-row>
 
         <v-row

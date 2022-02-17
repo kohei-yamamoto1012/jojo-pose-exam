@@ -9,23 +9,28 @@
       class="mt-2"
     >
       <v-col 
+        v-for="link in links"
+        :key="link.name"
         cols="12"
         md="4"
         lg="2"
-        v-for="link in links"
-        :key="link.name"
       >
         <v-list
           dense
           class="indigo lighten-5 pt-0"
           shaped
         >
-          <v-list-item class="mx-10" :to="link.to">
-            <v-list-item-title class=" font--text">{{ link.name }}</v-list-item-title>
+          <v-list-item
+            class="mx-10"
+            :to="link.to"
+          >
+            <v-list-item-title class=" font--text">
+              {{ link.name }}
+            </v-list-item-title>
             <v-icon 
               color="grey lighten-1"
             >
-             mdi-chevron-right
+              mdi-chevron-right
             </v-icon>
           </v-list-item>
         </v-list>

@@ -10,7 +10,9 @@
       lg="7"
     >
       <v-card>
-        <v-card-title class="font-weight-bold">500 InternalServerError</v-card-title>
+        <v-card-title class="font-weight-bold">
+          500 InternalServerError
+        </v-card-title>
         <v-card-text class="text-subtitle-2 font-weight-bold py-1">
           <p>申し訳ありません...サーバーエラーが発生した為、ページを表示できません。</p>
         </v-card-text>
@@ -30,11 +32,9 @@
             トップページに戻る
           </v-btn>
         </v-card-actions>
-
       </v-card>
     </v-col>
   </v-row>
-
 </template>
 
 <script>

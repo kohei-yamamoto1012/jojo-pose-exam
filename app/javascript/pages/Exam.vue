@@ -1,11 +1,14 @@
 <template>
   <div>
-    <transition name="content" mode="out-in">
+    <transition
+      name="content"
+      mode="out-in"
+    >
       <v-row 
+        v-show="isExam"
         dense
         class="mt-1 mb-8"
         justify="center"
-        v-show="isExam"
       >
         <v-col
           cols="11"
