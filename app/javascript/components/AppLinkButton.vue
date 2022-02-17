@@ -23,7 +23,8 @@ export default {
       required: true
     },
     minWidth: {
-      type: [ String, Number ]
+      type: [ String, Number ],
+      default: 'none'
     }
   },
   data: function () {

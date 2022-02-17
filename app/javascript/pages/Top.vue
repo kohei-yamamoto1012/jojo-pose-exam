@@ -16,7 +16,10 @@
       </AppLinkButton>
     </div>
 
-    <v-divider class="mb-15" style="opacity: 0"/>
+    <v-divider
+      class="mb-15"
+      style="opacity: 0"
+    />
 
     <AppSectionTitle>~ 受検手順 ~</AppSectionTitle>
 
