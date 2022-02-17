@@ -35,3 +35,15 @@ id,check_item_content,keypoint_name,position
 34,左膝を軽く曲げ、踵を浮かす,left_knee,center
 35,左膝を軽く曲げ、踵を浮かす,left_hip,left
 36,左膝を軽く曲げ、踵を浮かす,left_ankle,right
+37,体を右向きにし、上半身を左にひねる,left_hip,center
+38,体を右向きにし、上半身を左にひねる,left_knee,left
+39,体を右向きにし、上半身を左にひねる,left_shoulder,right
+40,左足を前に出し、右足を後に引く,left_hip,center
+41,左足を前に出し、右足を後に引く,left_ankle,left
+42,左足を前に出し、右足を後に引く,right_ankle,right
+43,右肘を目線の高さに、手首は直角に折る,right_shoulder,center
+44,右肘を目線の高さに、手首は直角に折る,right_elbow,top
+45,右肘を目線の高さに、手首は直角に折る,left_shoulder,bottom
+46,左肘を直角に曲げ、左手を腰の横に,left_elbow,center
+47,左肘を直角に曲げ、左手を腰の横に,left_shoulder,left
+48,左肘を直角に曲げ、左手を腰の横に,left_wrist,right
