@@ -13,8 +13,9 @@
         >
           <v-col
             cols="11"
-            md="5"
-            lg="3"
+            md="6"
+            lg="4"
+            xl="3"
             class="mb-3"
           >
             <v-card :to="{ name: 'Exam', params: { exam_id: exam.id } }">

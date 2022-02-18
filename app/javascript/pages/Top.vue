@@ -3,8 +3,9 @@
     <v-row justify="center">
       <v-col
         cols="12"
-        md="6"
-        lg="4"
+        md="8"
+        lg="6"
+        xl="4"
       >
         <v-img :src="logo_top_src" />
       </v-col>
@@ -34,12 +35,12 @@
         cols="10"
         md="4"
         lg="3"
+        xl="2"
         class="mb-3"
       >
         <v-card
           rounded
           class="rounded-xl"
-          :min-height="cardsHight"
         >
           <p class="text-button text-center mb-2">
             Lesson{{ index + 1 }}
@@ -75,12 +76,12 @@ export default {
         {
           title: '検定を選択',
           src: require('../../assets/images/select_exam.svg'),
-          text: '検定一覧から受検したいジョジョ立ち検定を選択しましょう。'
+          text: '検定一覧から受検したいジョジョ立ち検定を選択しましょう！覚悟はいいか？俺はできてる。'
         },
         {
           title: 'ジョジョ立ち撮影',
           src: require('../../assets/images/take_picture.svg'),
-          text: 'ジョジョ立ちを撮影しましょう。全身が映るようにすることが撮影のポイントです。'
+          text: '検定画像のモデルを参考に、チェックポイントを意識しながらをジョジョ立ちを行いましょう！'
         },
         {
           title: 'ジョジョ立ちアップロード',
@@ -88,11 +89,6 @@ export default {
           text: '撮影したジョジョ立ち画像をアップロードしましょう。AIによる解析後に検定結果が表示されます！'
         }
       ]
-    }
-  },
-  computed:{
-    cardsHight(){
-      return this.$vuetify.breakpoint.xl ? '376px' : '288px'
     }
   }
 }

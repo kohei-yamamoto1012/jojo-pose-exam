@@ -11,9 +11,10 @@
       <v-col 
         v-for="link in links"
         :key="link.name"
-        cols="12"
+        cols="11"
         md="4"
-        lg="2"
+        lg="3"
+        xl="2"
       >
         <v-list
           dense

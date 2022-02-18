@@ -8,7 +8,8 @@
       <v-col
         cols="12"
         md="11"
-        lg="7"
+        lg="8"
+        xl="6"
       >
         <v-card>
           <v-card-title class="font-weight-bold">
