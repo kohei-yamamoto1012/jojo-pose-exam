@@ -27,8 +27,8 @@
           <v-col
             cols="11"
             md="6"
-            lg="3"
-            class="mb-2"
+            lg="4"
+            xl="3"
           >
             <v-card>
               <v-card-title class="pb-0 justify-center text-subtitle-2">
@@ -48,13 +48,19 @@
               />
             </v-card>
           </v-col>
+        </v-row>
 
+        <v-row
+          dense
+          justify="center"
+        >
           <v-col
             cols="11"
             md="6"
             lg="4"
+            xl="3"
           >
-            <v-card class="mb-4">
+            <v-card>
               <v-card-title class="py-2 card-font font-weight-bold">
                 チェックポイント
               </v-card-title>
@@ -76,7 +82,19 @@
                 </v-list-item>
               </v-list>
             </v-card>
+          </v-col>
+        </v-row>
 
+        <v-row
+          dense
+          justify="center"
+        >
+          <v-col
+            cols="11"
+            md="6"
+            lg="4"
+            xl="3"
+          >
             <v-card>
               <v-card-title class="py-2 card-font font-weight-bold">
                 評価コメント
@@ -91,7 +109,7 @@
         <v-row
           dense
           justify="center"
-          class="mt-10 mb-5"
+          class="mt-10 mb-7"
         >
           <v-btn
             :href="twitterShare"

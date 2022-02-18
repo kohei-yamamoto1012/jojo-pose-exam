@@ -4,103 +4,123 @@
       name="content"
       mode="out-in"
     >
-      <v-row 
-        v-show="isExam"
-        dense
-        class="mt-1 mb-8"
-        justify="center"
-      >
-        <v-col
-          cols="11"
-          md="6"
-          lg="3"
-          class="mb-2"
+      <div v-show="isExam">
+        <v-row 
+          v-show="isExam"
+          dense
+          justify="center"
         >
-          <v-card>
-            <v-img
-              v-if="isExam"
-              :src="getImagePath(exam.title)"
-            />
-            <v-card-title class="py-1 card-font font-weight-bold">
-              {{ exam.title }}検定
-            </v-card-title>
-            <v-card-text>{{ exam.description }}</v-card-text>
-          </v-card>
-        </v-col>
+          <v-col
+            cols="11"
+            md="6"
+            lg="4"
+            xl="3"
+          >
+            <v-card>
+              <v-img
+                v-if="isExam"
+                :src="getImagePath(exam.title)"
+              />
+              <v-card-title class="py-1 card-font font-weight-bold">
+                {{ exam.title }}検定
+              </v-card-title>
+              <v-card-text>{{ exam.description }}</v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
 
-        <v-col
-          cols="11"
-          md="6"
-          lg="3"
+        <v-row
+          dense
+          justify="center"
         >
-          <v-card class="mb-4">
-            <v-card-title class="py-2 card-font font-weight-bold">
-              チェックポイント
-            </v-card-title>
+          <v-col
+            cols="11"
+            md="6"
+            lg="4"
+            xl="3"
+          >
+            <v-card>
+              <v-card-title class="py-2 card-font font-weight-bold">
+                チェックポイント
+              </v-card-title>
 
-            <v-list
-              v-for="check_item in exam.check_items"
-              :key="check_item.id"
-              class="py-0"
-              dense
-            >
-              <v-list-item>
-                <v-icon
-                  class="me-2"
-                  color="accent"
-                >
-                  mdi-star
-                </v-icon>
-                <span class="text-subtitle-2 text-sm-subtitle-1 card-font font-weight-bold">{{ check_item.content }}</span>
-              </v-list-item>
-            </v-list>
-          </v-card>
-
-          <v-card>
-            <v-card-title class="py-2 card-font font-weight-bold">
-              受検フォーム
-            </v-card-title>
-
-            <ValidationObserver v-slot="{ handleSubmit }">
-              <!-- eslint-disable vue/no-unused-vars -->
-              <ValidationProvider
-                v-slot="{ errors, validate }"
-                ref="provider"
-                rules="required|image"
+              <v-list
+                v-for="check_item in exam.check_items"
+                :key="check_item.id"
+                class="py-0"
+                dense
               >
-                <v-file-input
-                  accept="image/*"
-                  prepend-icon="mdi-camera-plus"
-                  label="ジョジョ立ち画像"
-                  :error-messages="errors"
-                  class="mx-5"
-                  color="font"
-                  :disabled="isLoading"
-                  @change="handleChange"
-                />
-              </ValidationProvider>
+                <v-list-item>
+                  <v-icon
+                    class="me-2"
+                    color="accent"
+                  >
+                    mdi-star
+                  </v-icon>
+                  <span class="text-subtitle-2 card-font font-weight-bold">{{ check_item.content }}</span>
+                </v-list-item>
+              </v-list>
+            </v-card>
+          </v-col>
+        </v-row>
 
-              <v-card-actions class="justify-center">
-                <v-btn
-                  color="primary"
-                  block
-                  :loading="isLoading"
-                  :disabled="isLoading"
-                  @click="handleSubmit(takeExam)"
+        <v-row
+          dense
+          justify="center"
+          class="mb-3"
+        >
+          <v-col
+            cols="11"
+            md="6"
+            lg="4"
+            xl="3"
+          >
+            <v-card>
+              <v-card-title class="py-2 card-font font-weight-bold">
+                受検フォーム
+              </v-card-title>
+
+              <ValidationObserver v-slot="{ handleSubmit }">
+                <!-- eslint-disable vue/no-unused-vars -->
+                <ValidationProvider
+                  v-slot="{ errors, validate }"
+                  ref="provider"
+                  rules="required|image"
                 >
-                  受検するッ！
-                  <template v-slot:loader>
-                    <span>解析中ッ</span>
-                    <span class="custom-loader">
-                      <v-icon>mdi-sync</v-icon>
-                    </span>
-                  </template>
-                </v-btn>
-              </v-card-actions>
-            </ValidationObserver>
-          </v-card>
-        </v-col>
-      </v-row>
+                  <v-file-input
+                    accept="image/*"
+                    prepend-icon="mdi-camera-plus"
+                    label="ジョジョ立ち画像"
+                    :error-messages="errors"
+                    class="mx-5"
+                    color="font"
+                    :disabled="isLoading"
+                    @change="handleChange"
+                  />
+                </ValidationProvider>
+
+                <v-card-actions class="justify-center">
+                  <v-btn
+                    color="primary"
+                    block
+                    :loading="isLoading"
+                    :disabled="isLoading"
+                    @click="handleSubmit(takeExam)"
+                  >
+                    受検するッ！
+                    <template v-slot:loader>
+                      <span>解析中ッ</span>
+                      <span class="custom-loader">
+                        <v-icon>mdi-sync</v-icon>
+                      </span>
+                    </template>
+                  </v-btn>
+                </v-card-actions>
+              </ValidationObserver>
+            </v-card>
+          </v-col>
+        </v-row>
+      </div>
     </transition>
   </div>
 </template>

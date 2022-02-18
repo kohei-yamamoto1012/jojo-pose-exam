@@ -3,8 +3,9 @@
     <v-row justify="center">
       <v-col
         cols="12"
-        md="6"
-        lg="4"
+        md="8"
+        lg="6"
+        xl="4"
       >
         <v-img :src="logo_top_src" />
       </v-col>
@@ -34,6 +35,7 @@
         cols="10"
         md="4"
         lg="3"
+        xl="2"
         class="mb-3"
       >
         <v-card
