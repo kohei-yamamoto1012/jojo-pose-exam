@@ -1,6 +1,6 @@
 class Api::ExamsController < ApplicationController
   def index
-    @exams = Exam.all
+    @exams = Exam.order(:id)
     render json: ExamResource.new(@exams).serialize
   end
 
