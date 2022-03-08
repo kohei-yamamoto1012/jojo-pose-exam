@@ -1,4 +1,4 @@
-## ジョジョ立ち検定
+# ジョジョ立ち検定
 ![rails](https://img.shields.io/badge/Rails-v6.1.4-red)
 ![rails](https://img.shields.io/badge/Vue-v2.6.14-brightgreen)
 
@@ -10,6 +10,10 @@
 [ジョジョ立ち](https://ja.wikipedia.org/wiki/%E8%8D%92%E6%9C%A8%E9%A3%9B%E5%91%82%E5%BD%A6#%E3%82%B8%E3%83%A7%E3%82%B8%E3%83%A7%E7%AB%8B%E3%81%A1)の高みを目指す人達が、ジョジョ立ちの検定を受けるためのサービスです。<br>
 AI技術を用いてあなたジョジョ立ちを解析し、アップロードされたジョジョ立ち画像の合否を判定します。
 
+▼ 開発者の受験結果ページ<br>
+https://jojo-pose-exam.jp/exam_results/c71da2f4-fdd8-4851-bbf1-e1f831f0b255
+
+
 ## 画面・機能一覧
 | トップページ                                                          | 検定一覧ページ                                                          |
 | ------------------------------------------------------------------ | -------------------------------------------------------------------- |
@@ -20,13 +24,13 @@ AI技術を用いてあなたジョジョ立ちを解析し、アップロード
 | 検定詳細ページ                                                                       | 受検結果ページ                                                         |
 | ------------------------------------------------------------------                | -------------------------------------------------------------------- |
 | <img src="https://gyazo.com/a6cf62864530e720760b91fd9ac222ce.png">                | <img src="https://gyazo.com/82686eb88ca6cc62b21a63fd4fe439c7.png">   |
-| ・ジョジョ立ちの概要、チェックポイントを表示する<br>・受検用の画像選択フォームを表示する<br>・受検結果ページに遷移する | ・得点、各チェックポイントの成否判定結果、評価コメントを表示する　<br>・Twitterシェアボタンでツイート投稿ページに遷移する<br>・リトライボタンで検定詳細ページに遷移する |
+| ・ジョジョ立ちの概要、チェックポイントを表示する<br>・受検用の画像選択フォームを表示する<br>・受検結果ページに遷移する | ・得点、合否、各チェックポイントの成否判定結果、評価コメントを表示する　<br>・Twitterシェアボタンでツイート投稿ページに遷移する<br>・リトライボタンで検定詳細ページに遷移する |
 <br>
 
-| 受検結果コメントのカットイン                                                                      | 利用規約                                                       |
+| 受検結果コメントのカットイン演出                                                                      | 利用規約                                                       |
 | ------------------------------------------------------------------                | -------------------------------------------------------------------- |
 | <img src="https://gyazo.com/cf13b301d7f635f21b382a349f36f102.png">                | <img src="https://gyazo.com/1ad975307df6de906859a4ddc30d32c2.png"> |
-| ・受検結果ページへ遷移する際には、評価コメントをカットイン演出で表示する<br>・評価コメントは検定結果に対応したものがランダムに設定される | 利用規約を表示する|
+| ・受検結果ページへ遷移する際には、評価コメントをカットイン演出で表示する<br>・評価コメントは検定結果に対応したもの中からランダムに決定される | 利用規約を表示する|
 <br>
 
 | プライバシーポリシー                                                    | お問い合わせ                                                               |
@@ -36,58 +40,57 @@ AI技術を用いてあなたジョジョ立ちを解析し、アップロード
 <br>
 
 ## 使用技術
-- sss
+**フロントエンド**
+<ul>
+  <li>Vue.js 2.6.14</li>
+  <details>
+    <summary>主要npmパッケージ</summary>
+    <ul>
+      <li><a href="https://github.com/vuetifyjs/vuetify">vuetify</a></li>
+      <li><a href="https://github.com/vuejs/vue-router">vue-router</a></li>
+      <li><a href="https://github.com/vuejs/vuex/tree/3.x">vuex</a></li>
+      <li><a href="https://github.com/logaretm/vee-validate">vee-validate</a></li>
+      <li><a href="https://github.com/cngu/vue-typer">vue-typer</a></li> 
+      <li><a href="https://github.com/eslint/eslint">eslint</a></li>
+    </ul>
+  </deatails>
+</ul>
 
+**バックエンド**
+<ul>
+  <li>Ruby 3.0.2</li>
+  <li>Rails 6.1.4</li>
+  <details>
+    <summary>主要gem</summary>
+    <ul>
+      <li><a href="https://github.com/microsoft/onnxruntime">onnxruntime</a></li>
+      <li><a href="https://github.com/libvips/ruby-vips">ruby-vips</a></li>
+      <li><a href=https://github.com/aws/aws-sdk-ruby"">aws-sdk-s3</a></li>     
+      <li><a href="https://github.com/okuramasafumi/alba">alba</a></li>
+      <li><a href="https://github.com/mbleigh/seed-fu">seed-fu</a></li>
+      <li><a href="https://github.com/kpumuk/meta-tags">meta-tags</a></li>
+      <li><a href="https://github.com/rubocop/rubocop">rubocop</a></li>
+    </ul>
+  </deatails>
+</ul>
+  
+**インフラ**
+- Heroku
+- PostgreSQL
+- Amazon S3
 
-## 関連ページ
-- Qiita
-- ツイッターハッシュタグ
+**その他**<br>
+ジョジョ立ちの姿勢推定用の機械学習モデルとして、Tensorflowの[movenet](https://www.tensorflow.org/hub/tutorials/movenet?hl=ja)を採用した。<br>
+Ruby上で実行するために、学習モデルをpb形式からonnx形式に変換した上で、[gem onnxruntime](https://github.com/microsoft/onnxruntime)を用いて実行する。
 
+## 合否判定処理の概要
+![合否判定](https://gyazo.com/045ac4c6f0582d06d0c7f88b073ec154.png)
 
-### メインのターゲットユーザー
-- ジョジョの奇妙な冒険・ジョジョ立ちが好きな人
-- 色々な人のジョジョ立ちを見て楽しみたい人
+## ER図
+![ER図](https://gyazo.com/b1b912d86ed8d3ee1bd09ed60112304a.png)
 
-### ユーザーが抱える課題
-- ジョジョ立ちの正確性を定量的に判断してくれるサービスが存在しない
-- ジョジョ立ちで盛り上がれるようなサービスが存在しない
-- 色々な人のジョジョ立ちをまとめて閲覧できるサービスが存在しない
-
-### 解決方法
-- 姿勢推定を用いて、ジョジョ立ち正確性を定量的に採点する
-- 受検結果（=ジョジョ立ち画像）の一覧を閲覧可能にする
-
-### 実装予定の機能
-- 未ログインの　一般ユーザー
-  - 受検結果(=ジョジョ立ち画像)の閲覧
-  - ユーザー作成・ログイン
-- ログイン済みの一般ユーザー
-  - 受検結果(=ジョジョ立ち画像)の閲覧
-    - ログイン済みの場合、気に入った受検結果をお気に入り登録できる
-  - ジョジョ立ち検定の受検
-    - ジョジョ立ち画像をアップロードすることで、ジョジョ立ち検定を受検できる
-    - アップロードされたジョジョ立ち画像を姿勢推定した結果に基づいて、合否を決定する
-    - 複数種の検定が受検可能で、1つの検定が1つのジョジョ立ちに対応する
-  - 受検結果(=ジョジョ立ち画像)の公開
-    - 受検者は検定結果の公開・非公開を選択できる
-    - 顔を公開したくない受検者は、顔を隠して受検公開することを選択できる
-  - マイページ機能
-    - ユーザー情報の編集・削除ができる
-    - 自分の受検結果の閲覧・削除・公開状況の編集ができる
-  - お気に入りした受検結果の一覧を閲覧できる
-- 管理ユーザー
-  - ユーザーのCRUD
-  - 受検結果のCRUD
-  - 管理ユーザーのCRUD
-
-### 姿勢推定方法
-- ジョジョ立ち画像の姿勢推定には、[MoveNet](https://blog.tensorflow.org/2021/05/next-generation-pose-detection-with-movenet-and-tensorflowjs.html)を用いる
-- MoveNetはTensorFlow.jsを使用した、ブラウザで実行可能な姿勢推定モデルである
-- 事前調査で、ジョジョ立ち画像に対して、そこそこの精度で姿勢推定ができることを確認済み<br>
-  ※身体の重なりが箇所が少ないものに限る
-
-# 画面遷移図
+## 画面遷移図
 https://www.figma.com/file/kggQ7O5W0hDlSyVkDHkqz3/Flow?node-id=0%3A1
 
-# ER図
-https://drive.google.com/file/d/1exeQR9-3mtaBkws9xHW6EycWYrHn5mrL/view?usp=sharing
+## 関連ページ
+- Twitterハッシュタグ [#ジョジョ立ち検定](https://twitter.com/search?q=%23%E3%82%B8%E3%83%A7%E3%82%B8%E3%83%A7%E7%AB%8B%E3%81%A1%E6%A4%9C%E5%AE%9A&src=typed_query)
