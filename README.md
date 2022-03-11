@@ -93,4 +93,5 @@ Ruby上で実行するために、学習モデルをpb形式からonnx形式に�
 https://www.figma.com/file/kggQ7O5W0hDlSyVkDHkqz3/Flow?node-id=0%3A1
 
 ## 関連ページ
-- Twitterハッシュタグ [#ジョジョ立ち検定](https://twitter.com/search?q=%23%E3%82%B8%E3%83%A7%E3%82%B8%E3%83%A7%E7%AB%8B%E3%81%A1%E6%A4%9C%E5%AE%9A&src=typed_query)
+- Twitterハッシュタグ: [#ジョジョ立ち検定](https://twitter.com/search?q=%23%E3%82%B8%E3%83%A7%E3%82%B8%E3%83%A7%E7%AB%8B%E3%81%A1%E6%A4%9C%E5%AE%9A&src=typed_query)
+- Qiita記事: [【個人開発】AI技術を用いたジョジョ立ち検定サービスをリリースしましたッ！](https://qiita.com/yamamoto-kohei1111/items/3a966b28f53f76aec7f9)
