@@ -22,7 +22,7 @@
       style="opacity: 0"
     />
 
-    <AppSectionTitle>~ 受検手順 ~</AppSectionTitle>
+    <AppSectionTitle>『 受検手順 』</AppSectionTitle>
 
     <v-row
       dense
@@ -57,6 +57,29 @@
       </v-col>
     </v-row>
 
+    <AppSectionTitle>『 誇り高き挑戦者たちの受験結果 』</AppSectionTitle>
+
+    <v-row
+      dense
+      class="mb-12"
+      justify="center"
+    >
+      <v-col
+        cols="10"
+        md="6"
+        lg="5"
+        xl="4"
+      >
+      <a 
+        class="twitter-timeline"
+        href="https://twitter.com/jojo_pose_exam?ref_src=twsrc%5Etfw"
+        data-chrome="noheader nofooter"
+        height="800"
+      >
+      </a>
+      </v-col>
+    </v-row>
+
     <div class="text-center mb-12">
       <AppLinkButton :to="{ name: 'ExamList'}">
         受検する
@@ -68,6 +91,9 @@
 <script>
 
 export default {
+  mounted(){
+    this.getTwitterTimelineScript()
+  },
   data: function () {
     return {
       logo_top_src: require('../../assets/images/logo_top.svg'),
@@ -89,6 +115,15 @@ export default {
           text: '撮影したジョジョ立ち画像をアップロードしましょう。AIによる解析後に検定結果が表示されます！'
         }
       ]
+    }
+  },
+  methods: {
+    getTwitterTimelineScript(){
+      let scriptEl = document.createElement('script')
+      scriptEl.setAttribute('src', 'https://platform.twitter.com/widgets.js')
+      scriptEl.setAttribute('charset', 'utf-8')
+      scriptEl.setAttribute('async', '')
+      document.head.appendChild(scriptEl)
     }
   }
 }
