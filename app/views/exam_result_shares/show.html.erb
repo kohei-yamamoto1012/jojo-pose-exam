@@ -1,0 +1,10 @@
+<% 
+  set_meta_tags(
+    og: { 
+      title: "#{@exam_result.exam.title}の受検結果",
+      description: "受検結果: #{@exam_result.total_score}点",
+      image: request_url + rails_storage_proxy_path(@exam_result.upload_image.variant(resize_and_pad: [1000, 500, {background: [255, 255, 255]}]).processed)
+    },
+    twitter: { card: 'summary_large_image' }
+  )
+%>
