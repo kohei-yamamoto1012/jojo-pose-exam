@@ -70,13 +70,12 @@
         lg="5"
         xl="4"
       >
-      <a 
-        class="twitter-timeline"
-        href="https://twitter.com/jojo_pose_exam?ref_src=twsrc%5Etfw"
-        data-chrome="noheader nofooter"
-        height="800"
-      >
-      </a>
+        <a 
+          class="twitter-timeline"
+          href="https://twitter.com/jojo_pose_exam?ref_src=twsrc%5Etfw"
+          data-chrome="noheader nofooter"
+          height="800"
+        />
       </v-col>
     </v-row>
 
@@ -91,9 +90,6 @@
 <script>
 
 export default {
-  mounted(){
-    this.getTwitterTimelineScript()
-  },
   data: function () {
     return {
       logo_top_src: require('../../assets/images/logo_top.svg'),
@@ -116,6 +112,9 @@ export default {
         }
       ]
     }
+  },
+  mounted(){
+    this.getTwitterTimelineScript()
   },
   methods: {
     getTwitterTimelineScript(){
