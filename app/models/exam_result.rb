@@ -132,9 +132,9 @@ class ExamResult < ApplicationRecord
 
   def pass_or_fail_text
     if self.total_score >= 80
-      '合格ッ！!'
+      '合格ッ！！'
     else
-      '不合格！'
+      '不合格！！'
     end
 
   end
