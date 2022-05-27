@@ -20,4 +20,8 @@ module ApplicationHelper
       }
     }
   end
+
+  def request_url
+    "#{request.protocol}#{request.host}:#{request.port}"
+  end
 end
