@@ -57,7 +57,7 @@
       </v-col>
     </v-row>
 
-    <AppSectionTitle>『 誇り高き挑戦者たちの受験結果 』</AppSectionTitle>
+    <AppSectionTitle>『 誇り高き挑戦者たちの受検結果 』</AppSectionTitle>
 
     <v-row
       dense
