@@ -6,7 +6,7 @@
 
 <!-- ![ogp](https://github.com/kohei-yamamoto1012/jojo-pose-exam/blob/main/app/assets/images/ogp.png) -->
 ## サービス紹介動画
-[![](https://gyazo.com/3b42db342709d3fb39205bef8c94759c.png)](https://youtu.be/5aKI900iGVo?t=1336)
+[![サービス紹介動画](https://gyazo.com/3b42db342709d3fb39205bef8c94759c.png)](https://youtu.be/5aKI900iGVo?t=1336)
 
 ## サービス概要
 [ジョジョ立ち](https://ja.wikipedia.org/wiki/%E8%8D%92%E6%9C%A8%E9%A3%9B%E5%91%82%E5%BD%A6#%E3%82%B8%E3%83%A7%E3%82%B8%E3%83%A7%E7%AB%8B%E3%81%A1)の高みを目指す人達が、ジョジョ立ちの検定を受けるためのサービスです。<br>
