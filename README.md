@@ -2,7 +2,7 @@
 ![rails](https://img.shields.io/badge/Rails-v6.1.4-red)
 ![rails](https://img.shields.io/badge/Vue-v2.6.14-brightgreen)
 
-### https://jojo-pose-exam.jp/
+~https://jojo-pose-exam.jp/~ → 現在サービス停止中
 
 <!-- ![ogp](https://github.com/kohei-yamamoto1012/jojo-pose-exam/blob/main/app/assets/images/ogp.png) -->
 ## サービス紹介動画
