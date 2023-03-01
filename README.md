@@ -5,7 +5,8 @@
 ~https://jojo-pose-exam.jp/~ → 現在サービス停止中
 
 <!-- ![ogp](https://github.com/kohei-yamamoto1012/jojo-pose-exam/blob/main/app/assets/images/ogp.png) -->
-## サービス紹介動画
+
+## サービス紹介プレゼン（約5分）
 [![サービス紹介動画](https://user-images.githubusercontent.com/84756197/173222007-3aefa245-4c0e-45e6-9855-91f0e3be89ed.png)](https://youtu.be/5aKI900iGVo?t=1336)
 
 
